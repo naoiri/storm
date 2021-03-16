@@ -1,9 +1,9 @@
 .DS_Store
 node_modules
-/dist
+search/dist
 
-/tests/e2e/videos/
-/tests/e2e/screenshots/
+search/tests/e2e/videos/
+search/tests/e2e/screenshots/
 
 
 # local env files
