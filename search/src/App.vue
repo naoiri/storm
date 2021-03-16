@@ -1,14 +1,14 @@
 <template>
-    <hello-world msg="Välkommen" />
+    <fire msg="Senaste brandvarningar i Sverige" />
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue"
+import Fire from "./components/Fire.vue"
 
 export default {
     name: "App",
     components: {
-        HelloWorld,
+        Fire,
     },
 }
 </script>
