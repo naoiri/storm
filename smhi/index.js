@@ -16,16 +16,51 @@ async function updateFireWarning() {
 
 function addFireWarning(place, firewarning) {
     const placeDiv = document.createElement("div")
-    const fireWarningDiv = document.createElement("div")
-    //const timeDiv = document.createElement("div")
+    const fireBallDiv1 = document.createElement("div")
+    const fireBallDiv2 = document.createElement("div")
+
     placeDiv.innerText = place
-    fireWarningDiv.innerText = firewarning
-    //timeDiv.innerText = time
+
+    if (firewarning === 'Risk Grass fire') {
+        fireBallDiv1.style.width = '20px'
+        fireBallDiv1.style.height = '20px'
+        fireBallDiv1.style.borderRadius = '50%'
+        fireBallDiv1.style.background = 'red'
+        fireBallDiv1.style.border = '1px solid black'
+        fireBallDiv2.style.width = '20px'
+        fireBallDiv2.style.height = '20px'
+        fireBallDiv2.style.borderRadius = '50%'
+        fireBallDiv2.style.border = '1px solid black'
+
+    } else if (firewarning === 'Risk Forest fire') {
+
+        fireBallDiv1.style.width = '20px'
+        fireBallDiv1.style.height = '20px'
+        fireBallDiv1.style.borderRadius = '50%'
+        fireBallDiv1.style.background = 'red'
+        fireBallDiv2.style.width = '20px'
+        fireBallDiv2.style.height = '20px'
+        fireBallDiv2.style.borderRadius = '50%'
+        fireBallDiv2.style.background = 'red'
+    } else {
+        fireBallDiv1.innerText = "aaa"
+        fireBallDiv2.innerText = "bbb"
+            /*
+            fireBallDiv1.style.width = '20px'
+            fireBallDiv1.style.height = '20px'
+            fireBallDiv1.style.borderRadius = '50%'
+            fireBallDiv2.style.width = '20px'
+            fireBallDiv2.style.height = '20px'
+            fireBallDiv2.style.borderRadius = '50%'*/
+    }
+
+
 
     const fireWarningContainer = document.getElementById("firewarning")
     fireWarningContainer.append(placeDiv)
-    fireWarningContainer.append(fireWarningDiv)
-    //fireWarningContainer.append(timeDiv)
+    fireWarningContainer.append(fireBallDiv1)
+    fireWarningContainer.append(fireBallDiv2)
+
 }
 
 //Checks if the alert is about fire warning
@@ -38,7 +73,8 @@ function eventIsFireWarning(info) {
 
 function getTypeOfFireWarning(eventCode) {
     return eventCode[0].value
-    //"Risk Grass Fire" or "Risk Forest Fire"
+        //"Risk Grass fire" or "Risk Forest fire"
 }
+
 
 updateFireWarning()
