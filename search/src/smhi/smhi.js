@@ -1,15 +1,15 @@
 const BASE_URL = "https://opendata-download-metfcst.smhi.se/api";
 
 const cities = [
-  { name: "Göteborg", lng: 16.158, lat: 58.5812 },
-  { name: "Helsingborg", lng: 12.68, lat: 56.04 },
-  { name: "Jönköping", lng: 14.17, lat: 57.78 },
-  { name: "Linköping", lng: 15.67, lat: 58.38 },
-  { name: "Malmö", lng: 13.00073, lat: 55.60587 },
-  { name: "Stockholm", lng: 18.0649, lat: 59.33258 },
-  { name: "Uppsala", lng: 17.7, lat: 59.87 },
-  { name: "Västerås", lng: 16.55, lat: 59.6 },
-  { name: "Örebro", lng: 15.18, lat: 59.28 },
+  { name: "Ale Backen", lng: 11.9924, lat: 57.7156 },
+  { name: "Sälen-Högflället V", lng: 13.1138, lat: 61.1583 },
+  { name: "Idre Fjäll", lng: 12.8521, lat: 61.8886 },
+  { name: "Riksgränsen", lng: 18.1670, lat: 68.4207 },
+  { name: "Dundret", lng: 20.2704, lat: 67.2551 },
+  { name: "Ulricehamn", lng: 13.4083, lat: 57.8052 },
+  { name: "Källebacken", lng: 14.1001, lat: 57.9625 },
+  { name: "Galgbacken", lng: 13.9411, lat: 58.1617 },
+  { name: "Svanberga", lng: 18.6313, lat: 59.8317 },
 ];
 
 /*
