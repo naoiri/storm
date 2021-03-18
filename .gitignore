@@ -1,10 +1,13 @@
 .DS_Store
 node_modules
-search/dist
 
-search/tests/e2e/videos/
-search/tests/e2e/screenshots/
+#vue/cli
+*/dist
+*/tests/e2e/videos/
+*/tests/e2e/screenshots/
 
+#Auto Complete local demo
+autoComplete.js/
 
 # local env files
 .env.local
