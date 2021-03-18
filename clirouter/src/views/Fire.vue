@@ -4,13 +4,14 @@
         <div id="firewarning">
             <div v-for="county in counties" :key="county.id">
                 <router-link :to="'/county/' + county.id">{{ county.name }}</router-link>
+                <!--Create next element here -->
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import Counties from "../db/generic.json"
+import Counties from "../db/counties.js"
 export default {
     name: "Fire",
     data() {
@@ -18,8 +19,8 @@ export default {
             counties: [],
         }
     },
-    async created() {
-        this.counties = await Counties.json()
+    created() {
+        this.counties = Counties
     },
 }
 </script>
