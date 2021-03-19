@@ -1,10 +1,17 @@
 .DS_Store
 node_modules
+
+
+#vue/cli
 */dist
 */tests/e2e/videos/
 */tests/e2e/screenshots/
 
+
 #Mårten local file
+
+#Auto Complete local demo
+
 autoComplete.js/
 
 # local env files

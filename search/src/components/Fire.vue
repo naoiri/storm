@@ -1,12 +1,13 @@
 <template>
-    <div class="hello">
+    <div class="fire">
         <h1>{{ msg }}</h1>
+        <div id="firewarning"></div>
     </div>
 </template>
 
 <script>
 export default {
-    name: "HelloWorld",
+    name: "Fire",
     props: {
         msg: String,
     },
@@ -14,9 +15,12 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<<<<<<< HEAD
 <style scoped>
-h3 {
-    margin: 40px 0 0;
+#firewarning {
+    border: 2px solid gray;
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    padding: 1rem;
+    width: 600px;
 }
 </style>
