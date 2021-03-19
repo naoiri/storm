@@ -8,7 +8,7 @@
 
 <script>
 //import Counties from "../db/counties.js"
-import autoComplete from "../../autoComplete.js"
+import autoComplete from "@tarekraafat/autocomplete.js"
 // The autoComplete.js Engine instance creator
 const autoCompleteJS = new autoComplete({
     name: "Regioner",
