@@ -7,7 +7,7 @@
         <div id="ski">
             <div v-for="skiresort in skiresorts" :key="skiresort.name">
                 <router-link :to="'/ski/' + skiresort.name">{{ skiresort.name }}</router-link>
-               <span> Shows the actual temp in degrees </span>
+                <span> Shows the actual temp in degrees </span>
             </div>
             <!--div class="city">
         <h1>City</h1>
@@ -18,8 +18,8 @@
             <div v-for="city in city" :key="city.name">
                 <router-link :to="'/city/' + city.name">{{ city.name }}</router-link>
            -->
-            </div>
-            </div>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -42,7 +42,6 @@ export default {
             city: city,
         }
     },*/
-    
     mounted() {
         new autoComplete({
             data: {
