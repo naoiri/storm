@@ -1,6 +1,9 @@
 <template>
     <div class="fire">
         <h1>This is a fire warning page</h1>
+        <div class="autoComplete_wrapper">
+            <input id="autoComplete" type="text" autocomplete="off" />
+        </div>
         <div id="firewarning">
             <div v-for="county in counties" :key="county.id">
                 <router-link :to="'/county/' + county.id">{{ county.name }}</router-link>
@@ -11,6 +14,8 @@
 </template>
 
 <script>
+import autoComplete from "@tarekraafat/autocomplete.js"
+import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
 import Counties from "../db/counties.js"
 export default {
     name: "Fire",
@@ -21,6 +26,16 @@ export default {
     },
     created() {
         this.counties = Counties
+    },
+    mounted() {
+        new autoComplete({
+            data: {
+                src: ["apa", "bepa", "cepa"],
+            },
+            onSelection: (feedback) => {
+                document.getElementById("autoComplete").value = feedback.selection.value
+            },
+        })
     },
 }
 </script>
