@@ -1,5 +1,6 @@
 <template>
   <hello-world msg="Ski resorts in Sweden" />
+
 </template>
 
 <script>
