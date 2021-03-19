@@ -24,6 +24,12 @@ const routes = [
         // which is lazy-loaded when the route is visited.
         component: () => import(/* webpackChunkName: "fire" */ "../views/Fire.vue"),
     },
+    {
+        path: "/ski",
+        name: "Ski",
+
+        component: () => import(/* webpackChunkName: "ski" */ "../views/Ski.vue"),
+    },
 ]
 
 const router = createRouter({
