@@ -33,8 +33,7 @@
 import autoComplete from "@tarekraafat/autocomplete.js"
 import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
 import Skiresorts from "../db/skiresorts.js"
-//import City from "../db/cities.js"
-//import City from "../db/city.js"
+import Cities from "../db/temp.js"
 import Title from "@/components/Title.vue"
 
 export default {
@@ -44,20 +43,19 @@ export default {
     },
     data() {
         return {
-            skiresorts: Skiresorts,
+            skiresorts: [],
+            cities: [],
         }
     },
-    /*export default {
-    name: "city",
-    data() {
-        return {
-            city: city,
-        }
-    },*/
+
+    created() {
+        this.skiresorts = Skiresorts
+        this.cities = Cities
+    },
     mounted() {
         new autoComplete({
             data: {
-                src: ["apa", "bepa", "cepa"],
+                src: this.cities,
             },
             onSelection: (feedback) => {
                 document.getElementById("autoComplete").value = feedback.selection.value

@@ -41,7 +41,7 @@ export default {
         }
     },
 
-    async created() {
+    created() {
         this.counties = Counties
         this.names = Names
         /* GET request using fetch with async/await
