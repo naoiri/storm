@@ -6,15 +6,8 @@
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
         <div class="firewarning main">
-            <div v-for="county in names" :key="county.name">
-                <div v-if="show">
-                    <router-link :to="'/county/' + county.name">{{ county.name }}</router-link>
-                    <span> Test</span>
-                </div>
-            </div>
-            <!--div v-for="fireWarning in fireWarnings" :key="fireWarning.identifier">
-                {{ fireWarning.info.headline }}, {{ fireWarning.info.eventCode[0].value }}
-            </div-->
+            <div>{{ query }}</div>
+            <div>{{ fireWarningMessage }}</div>
         </div>
     </div>
 </template>
@@ -22,8 +15,7 @@
 <script>
 import autoComplete from "@tarekraafat/autocomplete.js"
 import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
-import Counties from "../db/counties.js"
-import Names from "../db/counties copy 2.js"
+import Counties from "@/db/regions.js"
 import Title from "@/components/Title.vue"
 
 export default {
@@ -34,30 +26,40 @@ export default {
     data() {
         return {
             counties: [],
-            names: [],
-            query: undefined,
-            show: this.query === undefined,
-            //fireWarnings: [],
+            query: "",
+            alerts: [],
+            fireWarningMessage: "",
         }
     },
 
-    created() {
+    async created() {
         this.counties = Counties
-        this.names = Names
-        /* GET request using fetch with async/await
+        //GET request using fetch with async/await
         const response = await fetch("https://opendata-download-warnings.smhi.se/api/version/2/alerts.json")
-        const alerts = await response.json()
-        this.fireWarnings = alerts.alert
-        console.log(this.fireWarnings[0].info.event)*/
+        const json = await response.json()
+        this.alerts = json.alert
     },
+
     mounted() {
         new autoComplete({
             data: {
                 src: this.counties,
             },
             onSelection: (feedback) => {
+                let isFireWarning = false
                 document.getElementById("autoComplete").value = feedback.selection.value
                 this.query = feedback.selection.value
+
+                for (const alert of this.alerts) {
+                    if (this.query === alert.info.headline) {
+                        this.fireWarningMesssage = alert.info.eventCode[3].value
+                        isFireWarning = true
+                    }
+                }
+
+                if (!isFireWarning) {
+                    this.fireWarningMessage = "Ingen brandrisk"
+                }
             },
         })
     },
