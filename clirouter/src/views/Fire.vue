@@ -6,9 +6,9 @@
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
         <div class="firewarning main">
-            <div v-for="county in names" :key="county.id">
+            <div v-for="county in names" :key="county.name">
                 <div v-if="show">
-                    <router-link :to="'/county/' + county.id">{{ county.name }}</router-link>
+                    <router-link :to="'/county/' + county.name">{{ county.name }}</router-link>
                     <span> Test</span>
                 </div>
             </div>

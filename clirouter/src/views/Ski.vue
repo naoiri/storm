@@ -11,6 +11,7 @@
             <div v-for="skiresort in skiresorts" :key="skiresort.name">
                 <router-link :to="'/ski/' + skiresort.name">{{ skiresort.name }}</router-link>
                 <span> Shows the actual temp in degrees </span>
+                <!--span> "${skiresort.lng}" </span-->
             </div>
             <!--div class="city">
         <h1>City</h1>
