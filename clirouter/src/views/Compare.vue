@@ -3,24 +3,24 @@
         <Title msg="Jämför vädret historiskt" />
         <p>Här kan du jämföra hur vädret varit på samma dag för två olika orter.</p>
         <div class="main">
-            <span>Ort 1: </span>
+            <span class="text center">Ort 1: </span>
             <span class="autoComplete_wrapper main">
                 <input id="autoComplete" type="text" autocomplete="off" />
             </span>
         </div>
         <div class="main">
-            <span>Ort 2: </span>
+            <span class="text center">Ort 2: </span>
             <span class="autoComplete_wrapper main">
                 <input id="city2" type="text" autocomplete="off" />
             </span>
         </div>
         <div class="main">
-            <span>Välj datum: </span>
+            <span class="text center">Välj datum: </span>
             <span class="autoComplete_wrapper main">
                 <input id="date" type="text" autocomplete="off" />
             </span>
         </div>
-        <div class="data main">
+        <div class="data main center">
             <span> {{ query }} </span>
         </div>
     </div>
@@ -62,6 +62,19 @@ export default {
 <style>
 .main {
     width: 400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.text {
+    width: 100px;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* for single line flex container */
+    align-content: center; /* for multi-line flex container */
 }
 
 .data {
