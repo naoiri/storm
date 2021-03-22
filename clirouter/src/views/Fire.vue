@@ -6,15 +6,8 @@
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
         <div class="firewarning main">
-            <div v-for="county in names" :key="county.name">
-                <div v-if="show">
-                    <router-link :to="'/county/' + county.name">{{ county.name }}</router-link>
-                    <span> Test</span>
-                </div>
-            </div>
-            <!--div v-for="fireWarning in fireWarnings" :key="fireWarning.identifier">
-                {{ fireWarning.info.headline }}, {{ fireWarning.info.eventCode[0].value }}
-            </div-->
+            <p>{{ query }}</p>
+            <p>{{ fireWarning }}</p>
         </div>
     </div>
 </template>
@@ -22,8 +15,7 @@
 <script>
 import autoComplete from "@tarekraafat/autocomplete.js"
 import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
-import Counties from "../db/counties.js"
-import Names from "../db/counties copy 2.js"
+import Counties from "@/db/counties copy 3.js"
 import Title from "@/components/Title.vue"
 
 export default {
@@ -35,22 +27,15 @@ export default {
         return {
             counties: [],
             names: [],
-            query: undefined,
-            show: this.query === undefined,
-            //fireWarnings: [],
+            query: "",
+            fireWarning: "",
         }
     },
 
-    async created() {
+    created() {
         this.counties = Counties
-        this.names = Names
-        /* GET request using fetch with async/await
-        const response = await fetch("https://opendata-download-warnings.smhi.se/api/version/2/alerts.json")
-        const alerts = await response.json()
-        this.fireWarnings = alerts.alert
-        console.log(this.fireWarnings[0].info.event)*/
     },
-    mounted() {
+    async mounted() {
         new autoComplete({
             data: {
                 src: this.counties,
@@ -58,6 +43,14 @@ export default {
             onSelection: (feedback) => {
                 document.getElementById("autoComplete").value = feedback.selection.value
                 this.query = feedback.selection.value
+                /*GET request using fetch with async/await
+                const response = await fetch("https://opendata-download-warnings.smhi.se/api/version/2/alerts.json")
+                const alerts = await response.json()
+                this.fireWarning = alerts.altert[0].info.event
+                
+                //old code
+                this.fireWarnings = alerts.alert
+                console.log(this.fireWarnings[0].info.event)*/
             },
         })
     },
