@@ -1,14 +1,16 @@
 <template>
     <div class="fire">
-        <Title msg="This is a fire warning page" />
+        <Title msg="Brandrisk" />
         <p>Här kan du få information om brandrisken.</p>
         <div class="autoComplete_wrapper main">
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
         <div class="firewarning main">
             <div v-for="county in names" :key="county.id">
-                <router-link :to="'/county/' + county.id">{{ county.name }}</router-link>
-                <span> Test</span>
+                <div v-if="show">
+                    <router-link :to="'/county/' + county.id">{{ county.name }}</router-link>
+                    <span> Test</span>
+                </div>
             </div>
             <!--div v-for="fireWarning in fireWarnings" :key="fireWarning.identifier">
                 {{ fireWarning.info.headline }}, {{ fireWarning.info.eventCode[0].value }}
@@ -33,6 +35,8 @@ export default {
         return {
             counties: [],
             names: [],
+            query: undefined,
+            show: this.query === undefined,
             //fireWarnings: [],
         }
     },
@@ -53,6 +57,7 @@ export default {
             },
             onSelection: (feedback) => {
                 document.getElementById("autoComplete").value = feedback.selection.value
+                this.query = feedback.selection.value
             },
         })
     },
