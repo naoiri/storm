@@ -27,14 +27,17 @@ const routes = [
     {
         path: "/ski",
         name: "Ski",
-
         component: () => import(/* webpackChunkName: "ski" */ "../views/Ski.vue"),
     },
     {
         path: "/compare",
         name: "Compare",
-
         component: () => import(/* webpackChunkName: "compare" */ "../views/Compare.vue"),
+    },
+    {
+        path: "/ski/:resort",
+        name: "SkiResort",
+        component: () => import(/* webpackChunkName: "skiresort" */ "../views/SkiResort.vue"),
     },
 ]
 
