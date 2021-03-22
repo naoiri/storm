@@ -1,7 +1,19 @@
 <template>
     <div class="about">
-        <h1>Version 1.3</h1>
+        <Title msg="Om oss i Storm" />
+        <p>Text</p>
+        <p>Version 1.0.5"</p>
         <p>API:https://opendata.smhi.se/apidocs/warnings/index.html</p>
         <p>Email: marten.hernebring@gmail.com</p>
     </div>
 </template>
+
+<script>
+import Title from "@/components/Title.vue"
+export default {
+    name: "About",
+    components: {
+        Title,
+    },
+}
+</script>

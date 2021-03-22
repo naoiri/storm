@@ -1,6 +1,9 @@
 <template>
     <div class="ski">
-        <h1>Ski resorts in Sweden</h1>
+        <Title msg="Ski resorts in Sweden" />
+        <p>
+            Här kan du välja vilken ort i din närhet som har bäst väder för din skidåkning. Sök på att se ort och väder.
+        </p>
         <div class="autoComplete_wrapper">
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
@@ -31,9 +34,14 @@ import autoComplete from "@tarekraafat/autocomplete.js"
 import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
 import Skiresorts from "../db/skiresorts.js"
 //import City from "../db/cities.js"
+//import City from "../db/city.js"
+import Title from "@/components/Title.vue"
 
 export default {
     name: "Ski",
+    components: {
+        Title,
+    },
     data() {
         return {
             skiresorts: Skiresorts,
@@ -46,7 +54,6 @@ export default {
             city: city,
         }
     },*/
-
     mounted() {
         new autoComplete({
             data: {

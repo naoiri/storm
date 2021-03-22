@@ -30,6 +30,12 @@ const routes = [
 
         component: () => import(/* webpackChunkName: "ski" */ "../views/Ski.vue"),
     },
+    {
+        path: "/compare",
+        name: "Compare",
+
+        component: () => import(/* webpackChunkName: "compare" */ "../views/Compare.vue"),
+    },
 ]
 
 const router = createRouter({
