@@ -1,4 +1,4 @@
-const citys = [
+const cities = [
     { name: "Göteborg", lng: 16.158, lat: 58.5812 },
     { name: "Helsingborg", lng: 12.68, lat: 56.04 },
     { name: "Jönköping", lng: 14.17, lat: 57.78 },
@@ -9,4 +9,4 @@ const citys = [
     { name: "Västerås", lng: 16.55, lat: 59.6 },
     { name: "Örebro", lng: 15.18, lat: 59.28 },
   ];
-  export default citys
+  export default cities
