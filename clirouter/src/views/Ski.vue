@@ -9,8 +9,8 @@
         </div>
         <div id="ski">
             <div>
-                <span>Ski resorts </span>
-                <span> Temperature </span>
+                <span><em>Ski resorts</em> </span>
+                <span><em> Temperature</em> </span>
             </div>
             <div v-for="skiresort in skiresorts" :key="skiresort.name">
                 <router-link :to="'/ski/' + skiresort.name">{{ skiresort.name }}</router-link>
@@ -65,7 +65,3 @@ export default {
 }
 </script>
 
-<!--style>
-
-}
-</style-->
