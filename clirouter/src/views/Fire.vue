@@ -7,7 +7,7 @@
         </div>
         <div class="firewarning main">
             <span>{{ query }}</span>
-            <span> {{ fireWarning }}</span>
+            <span> {{ fireWarningMsg }}</span>
         </div>
     </div>
 </template>
@@ -28,29 +28,39 @@ export default {
             counties: [],
             names: [],
             query: "",
-            fireWarning: "",
+            fireWarnings: [],
+            fireWarningMsg: "",
         }
     },
 
-    created() {
+    async created() {
         this.counties = Counties
+        //GET request using fetch with async/await
+        const response = await fetch("https://opendata-download-warnings.smhi.se/api/version/2/alerts.json")
+        const alerts = await response.json()
+        this.fireWarnings = alerts.alert
     },
-    async mounted() {
+
+    mounted() {
         new autoComplete({
             data: {
                 src: this.counties,
             },
             onSelection: (feedback) => {
+                let fireWarningIssued = false
                 document.getElementById("autoComplete").value = feedback.selection.value
                 this.query = feedback.selection.value
-                /*GET request using fetch with async/await
-                const response = await fetch("https://opendata-download-warnings.smhi.se/api/version/2/alerts.json")
-                const alerts = await response.json()
-                this.fireWarning = alerts.altert[0].info.event
-                
-                //old code
-                this.fireWarnings = alerts.alert
-                console.log(this.fireWarnings[0].info.event)*/
+
+                for (const eachAlert of this.fireWarnings) {
+                    if (this.query === eachAlert.info.headline) {
+                        this.fireWarningMsg = eachAlert.info.eventCode[3].value
+                        fireWarningIssued = true
+                    }
+                }
+
+                if (!fireWarningIssued) {
+                    this.fireWarningMsg = "Ingen brandrisk"
+                }
             },
         })
     },
