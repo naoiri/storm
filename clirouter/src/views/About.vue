@@ -1,7 +1,7 @@
 <template>
-  <div class="about">
-    <h1>Version 1.2</h1>
-    <p>API:https://opendata.smhi.se/apidocs/warnings/index.html</p>
-    <p>Email: marten.hernebring@gmail.com</p>
-  </div>
+    <div class="about">
+        <h1>Version 1.2</h1>
+        <p>API:https://opendata.smhi.se/apidocs/warnings/index.html</p>
+        <p>Email: marten.hernebring@gmail.com</p>
+    </div>
 </template>
