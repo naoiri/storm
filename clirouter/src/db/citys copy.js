@@ -8,5 +8,5 @@ const citys = [
     { name: "Uppsala", lng: 17.7, lat: 59.87 },
     { name: "Västerås", lng: 16.55, lat: 59.6 },
     { name: "Örebro", lng: 15.18, lat: 59.28 },
-  ];
-  export default citys
+]
+export default citys

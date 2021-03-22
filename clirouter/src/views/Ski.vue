@@ -43,13 +43,6 @@ export default {
             skiresorts: Skiresorts,
         }
     },
-    /*export default {
-    name: "city",
-    data() {
-        return {
-            city: city,
-        }
-    },*/
     mounted() {
         new autoComplete({
             data: {
