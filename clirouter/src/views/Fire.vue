@@ -6,8 +6,8 @@
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
         <div class="firewarning main">
-            <p>{{ query }}</p>
-            <p>{{ fireWarning }}</p>
+            <span>{{ query }}</span>
+            <span> {{ fireWarning }}</span>
         </div>
     </div>
 </template>
