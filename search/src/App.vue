@@ -1,5 +1,5 @@
 <template>
-    <fire msg="Senaste brandvarningar i Sverige" />
+    <hello-world msg="Ski resorts in Sweden" />
 </template>
 
 <script>

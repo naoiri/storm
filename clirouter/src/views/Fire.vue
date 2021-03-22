@@ -1,6 +1,10 @@
 <template>
     <div class="fire">
-        <h1>This is a fire warning page</h1>
+        <Title msg="This is a fire warning page" />
+        <p>Här kan du få information om brandrisken.</p>
+        <div class="autoComplete_wrapper">
+            <input id="autoComplete" type="text" autocomplete="off" />
+        </div>
         <div id="firewarning">
             <div v-for="county in counties" :key="county.id">
                 <router-link :to="'/county/' + county.id">{{ county.name }}</router-link>
@@ -14,11 +18,16 @@
 </template>
 
 <script>
+import autoComplete from "@tarekraafat/autocomplete.js"
+import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
 import Counties from "../db/counties.js"
+import Title from "@/components/Title.vue"
 
 export default {
     name: "Fire",
-
+    components: {
+        Title,
+    },
     data() {
         return {
             counties: [],
@@ -33,6 +42,16 @@ export default {
         const alerts = await response.json()
         this.fireWarnings = alerts.alert
         console.log(this.fireWarnings[0].info.event)*/
+    },
+    mounted() {
+        new autoComplete({
+            data: {
+                src: ["apa", "bepa", "cepa"],
+            },
+            onSelection: (feedback) => {
+                document.getElementById("autoComplete").value = feedback.selection.value
+            },
+        })
     },
 }
 </script>
