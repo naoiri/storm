@@ -6,8 +6,8 @@
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
         <div class="firewarning main">
-            <span>{{ query }}</span>
-            <span> {{ fireWarningMsg }}</span>
+            <div>{{ query }}</div>
+            <div>{{ fireWarningMessage }}</div>
         </div>
     </div>
 </template>
@@ -15,7 +15,7 @@
 <script>
 import autoComplete from "@tarekraafat/autocomplete.js"
 import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
-import Counties from "@/db/counties copy 3.js"
+import Counties from "@/db/regions.js"
 import Title from "@/components/Title.vue"
 
 export default {
@@ -26,10 +26,9 @@ export default {
     data() {
         return {
             counties: [],
-            names: [],
             query: "",
-            fireWarnings: [],
-            fireWarningMsg: "",
+            alerts: [],
+            fireWarningMessage: "",
         }
     },
 
@@ -37,8 +36,8 @@ export default {
         this.counties = Counties
         //GET request using fetch with async/await
         const response = await fetch("https://opendata-download-warnings.smhi.se/api/version/2/alerts.json")
-        const alerts = await response.json()
-        this.fireWarnings = alerts.alert
+        const json = await response.json()
+        this.alerts = json.alert
     },
 
     mounted() {
@@ -47,19 +46,19 @@ export default {
                 src: this.counties,
             },
             onSelection: (feedback) => {
-                let fireWarningIssued = false
+                let isFireWarning = false
                 document.getElementById("autoComplete").value = feedback.selection.value
                 this.query = feedback.selection.value
 
-                for (const eachAlert of this.fireWarnings) {
-                    if (this.query === eachAlert.info.headline) {
-                        this.fireWarningMsg = eachAlert.info.eventCode[3].value
-                        fireWarningIssued = true
+                for (const alert of this.alerts) {
+                    if (this.query === alert.info.headline) {
+                        this.fireWarningMesssage = alert.info.eventCode[3].value
+                        isFireWarning = true
                     }
                 }
 
-                if (!fireWarningIssued) {
-                    this.fireWarningMsg = "Ingen brandrisk"
+                if (!isFireWarning) {
+                    this.fireWarningMessage = "Ingen brandrisk"
                 }
             },
         })
