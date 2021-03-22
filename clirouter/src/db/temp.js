@@ -1,4 +1,4 @@
-const BASE_URL = "https://opendata-download-metfcst.smhi.se/api"
+/*const BASE_URL = "https://opendata-download-metfcst.smhi.se/api"
 
 const cities = [
     { name: "Ale Backen", lng: 11.9924, lat: 57.7156 },
@@ -12,11 +12,11 @@ const cities = [
     { name: "Svanberga", lng: 18.6313, lat: 59.8317 },
 ]
 
-/*
+
 Using information from the documentation at:
 https://opendata.smhi.se/apidocs/metfcst/get-forecast.html
 https://opendata.smhi.se/apidocs/metfcst/parameters.html
-*/
+
 async function updateWeatherData() {
     for (const { name, lng, lat } of cities) {
         const url = `${BASE_URL}/category/pmp3g/version/2/geotype/point/lon/${lng}/lat/${lat}/data.json`
@@ -67,3 +67,4 @@ function findTemperature(parameters) {
 }
 
 updateWeatherData()
+*/
