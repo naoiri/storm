@@ -6,8 +6,8 @@
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
         <div class="firewarning main">
-            <span>{{ query }}</span>
-            <span> {{ fireWarning }}</span>
+            <div>{{ query }}</div>
+            <div>{{ fireWarningMessage }}</div>
         </div>
     </div>
 </template>
@@ -15,7 +15,7 @@
 <script>
 import autoComplete from "@tarekraafat/autocomplete.js"
 import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
-import Counties from "@/db/counties copy 3.js"
+import Counties from "@/db/regions.js"
 import Title from "@/components/Title.vue"
 
 export default {
@@ -26,31 +26,40 @@ export default {
     data() {
         return {
             counties: [],
-            names: [],
             query: "",
-            fireWarning: "",
+            alerts: [],
+            fireWarningMessage: "",
         }
     },
 
-    created() {
+    async created() {
         this.counties = Counties
+        //GET request using fetch with async/await
+        const response = await fetch("https://opendata-download-warnings.smhi.se/api/version/2/alerts.json")
+        const json = await response.json()
+        this.alerts = json.alert
     },
-    async mounted() {
+
+    mounted() {
         new autoComplete({
             data: {
                 src: this.counties,
             },
             onSelection: (feedback) => {
+                let isFireWarning = false
                 document.getElementById("autoComplete").value = feedback.selection.value
                 this.query = feedback.selection.value
-                /*GET request using fetch with async/await
-                const response = await fetch("https://opendata-download-warnings.smhi.se/api/version/2/alerts.json")
-                const alerts = await response.json()
-                this.fireWarning = alerts.altert[0].info.event
-                
-                //old code
-                this.fireWarnings = alerts.alert
-                console.log(this.fireWarnings[0].info.event)*/
+
+                for (const alert of this.alerts) {
+                    if (this.query === alert.info.headline) {
+                        this.fireWarningMesssage = alert.info.eventCode[3].value
+                        isFireWarning = true
+                    }
+                }
+
+                if (!isFireWarning) {
+                    this.fireWarningMessage = "Ingen brandrisk"
+                }
             },
         })
     },
