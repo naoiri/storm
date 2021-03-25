@@ -8,7 +8,7 @@
                 <input id="autoComplete" type="text" autocomplete="off" />
             </span>
         </div>
-        <div class="main">
+        <!--div class="main">
             <span class="text center">Ort 2: </span>
             <span class="autoComplete_wrapper main">
                 <input id="city2" type="text" autocomplete="off" />
@@ -19,9 +19,10 @@
             <span class="autoComplete_wrapper main">
                 <input id="date" type="text" autocomplete="off" />
             </span>
-        </div>
+        </div-->
         <div class="data main center">
-            <span> {{ query }} </span>
+            <div>{{ query }}</div>
+            <div>{{ temperatureData }}</div>
         </div>
     </div>
 </template>
