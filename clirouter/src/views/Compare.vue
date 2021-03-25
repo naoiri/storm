@@ -21,8 +21,7 @@
             </span>
         </div-->
         <div class="data main center">
-            <div>{{ query }}</div>
-            <div>{{ temperatureData }}</div>
+            <div>{{ query }} {{ temperatureData }}</div>
         </div>
     </div>
 </template>
@@ -32,6 +31,7 @@ import autoComplete from "@tarekraafat/autocomplete.js"
 import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
 import Title from "@/components/Title.vue"
 import Cities from "@/db/cities.js"
+
 export default {
     name: "Compare",
     components: {
@@ -41,11 +41,25 @@ export default {
         return {
             cities: [],
             query: "",
+            parameter1: [],
+            temperatureData: "",
+
         }
     },
-    created() {
+    async created() {
         this.cities = Cities
+        /*//GET request using fetch with async/await
+        const response = await fetch(
+            "https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/98230/period/latest-months/data.json"
+        )
+        const json = await response.json()
+        console.log(json)
+        //this.parameter1 = json*/
     },
+    /*watch: {},
+    methods: {
+        updateData() {},
+    },*/
     async mounted() {
         new autoComplete({
             data: {
@@ -54,6 +68,17 @@ export default {
             onSelection: (feedback) => {
                 document.getElementById("autoComplete").value = feedback.selection.value
                 this.query = feedback.selection.value
+                this.temperatureData = "10"
+                /*for (const alert of this.alerts) {
+                    if (this.query === alert.info.headline) {
+                        this.fireWarningMessage = alert.info.eventCode[3].value
+                        isFireWarning = true
+                    }
+                }
+
+                if (!isFireWarning) {
+                    this.fireWarningMessage = "Ingen brandrisk"
+                }*/
             },
         })
     },
@@ -62,7 +87,7 @@ export default {
 
 <style>
 .main {
-    width: 400px;
+    width: 350px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }

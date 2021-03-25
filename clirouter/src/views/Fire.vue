@@ -68,7 +68,7 @@ export default {
 
 <style>
 .main {
-    width: 400px;
+    width: 350px;
 }
 
 .firewarning {
