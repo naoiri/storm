@@ -43,7 +43,6 @@ export default {
             query: "",
             parameter1: [],
             temperatureData: "",
-
         }
     },
     async created() {
@@ -55,10 +54,6 @@ export default {
         const json = await response.json()
         this.parameter1 = json.value
     },
-    /*watch: {},
-    methods: {
-        updateData() {},
-    },*/
     async mounted() {
         new autoComplete({
             data: {
@@ -67,7 +62,12 @@ export default {
             onSelection: (feedback) => {
                 document.getElementById("autoComplete").value = feedback.selection.value
                 this.query = feedback.selection.value
-                this.temperatureData = this.parameter1[0].value
+                if (this.query === "Stockholm") {
+                    this.temperatureData = this.parameter1[0].value
+                } else {
+                    this.temperatureData = ""
+                }
+
                 //console.log(this.parameter1)
                 /*for (const alert of this.alerts) {
                     if (this.query === alert.info.headline) {
