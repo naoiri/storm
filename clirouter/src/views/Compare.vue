@@ -45,16 +45,26 @@ export default {
             temperatureData: "",
         }
     },
-    async created() {
-        this.cities = Cities
-        //GET request using fetch with async/await
-        const response = await fetch(
-            "https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/98230/period/latest-months/data.json"
-        )
-        const json = await response.json()
-        this.parameter1 = json.value
+    methods: {
+        async updateData() {
+            //GET request using fetch with async/await
+            if (this.query === "Stockholm") {
+                const response = await fetch(
+                    "https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/98230/period/latest-months/data.json"
+                )
+                const json = await response.json()
+                this.parameter1 = json.value
+                this.temperatureData = this.parameter1[0].value
+            } else {
+                this.temperatureData = ""
+            }
+        },
     },
-    async mounted() {
+    created() {
+        this.cities = Cities
+    },
+    mounted() {
+        const interaction = this
         new autoComplete({
             data: {
                 src: this.cities,
@@ -62,23 +72,7 @@ export default {
             onSelection: (feedback) => {
                 document.getElementById("autoComplete").value = feedback.selection.value
                 this.query = feedback.selection.value
-                if (this.query === "Stockholm") {
-                    this.temperatureData = this.parameter1[0].value
-                } else {
-                    this.temperatureData = ""
-                }
-
-                //console.log(this.parameter1)
-                /*for (const alert of this.alerts) {
-                    if (this.query === alert.info.headline) {
-                        this.fireWarningMessage = alert.info.eventCode[3].value
-                        isFireWarning = true
-                    }
-                }
-
-                if (!isFireWarning) {
-                    this.fireWarningMessage = "Ingen brandrisk"
-                }*/
+                interaction.updateData()
             },
         })
     },
