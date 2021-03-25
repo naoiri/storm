@@ -1,7 +1,7 @@
 <template>
     <div class="compare">
         <Title msg="Jämför vädret historiskt" />
-        <p>Här kan du jämföra hur vädret varit på samma dag för två olika orter.</p>
+        <p>Se vilken temperatur det var för 4 månader sedan.</p>
         <div class="main">
             <span class="text center">Ort 1: </span>
             <span class="autoComplete_wrapper main">
@@ -21,7 +21,7 @@
             </span>
         </div-->
         <div class="data main center">
-            <div>{{ query }} {{ temperatureData }}</div>
+            <div>Vädret i {{ query }} för 4 månader sedan var: {{ temperatureData }} grader Celcius.</div>
         </div>
     </div>
 </template>
@@ -48,13 +48,12 @@ export default {
     },
     async created() {
         this.cities = Cities
-        /*//GET request using fetch with async/await
+        //GET request using fetch with async/await
         const response = await fetch(
             "https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/98230/period/latest-months/data.json"
         )
         const json = await response.json()
-        console.log(json)
-        //this.parameter1 = json*/
+        this.parameter1 = json.value
     },
     /*watch: {},
     methods: {
@@ -68,7 +67,8 @@ export default {
             onSelection: (feedback) => {
                 document.getElementById("autoComplete").value = feedback.selection.value
                 this.query = feedback.selection.value
-                this.temperatureData = "10"
+                this.temperatureData = this.parameter1[0].value
+                //console.log(this.parameter1)
                 /*for (const alert of this.alerts) {
                     if (this.query === alert.info.headline) {
                         this.fireWarningMessage = alert.info.eventCode[3].value
