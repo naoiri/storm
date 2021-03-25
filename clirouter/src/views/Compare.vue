@@ -31,6 +31,7 @@ import autoComplete from "@tarekraafat/autocomplete.js"
 import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
 import Title from "@/components/Title.vue"
 import Cities from "@/db/cities.js"
+import csv from "@/db/metobs_sunshineTime_active_sites.csv"
 
 export default {
     name: "Compare",
@@ -73,7 +74,6 @@ export default {
                     this.getCityId() +
                     "/period/latest-months/data.json"
             )
-            console.log(response)
             const json = await response.json()
             this.parameter1 = json.value
             this.temperatureData = this.parameter1[0].value
@@ -82,6 +82,7 @@ export default {
     },
     created() {
         this.cities = Cities
+        console.log(csv)
     },
     mounted() {
         const interaction = this
