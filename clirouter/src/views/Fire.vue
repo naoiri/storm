@@ -11,7 +11,9 @@
                 <div>{{ fireWarningMessage }}</div>
                 <div id="fire-balls-area">
                     <div v-if="first"><img src="../assets/flamma.png" alt="fire" /></div>
+                    <div class="empty-ball" v-else></div>
                     <div v-if="second"><img src="../assets/flamma.png" alt="fire" /></div>
+                    <div class="empty-ball" v-else></div>
                 </div>
             </div>
         </div>
@@ -102,5 +104,17 @@ img {
 #result {
     display: flex;
     justify-content: space-between;
+}
+
+#fire-balls-area {
+    display: flex;
+    justify-content: space-between;
+}
+
+.empty-ball {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 1px solid black;
 }
 </style>
