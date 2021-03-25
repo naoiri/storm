@@ -10,9 +10,9 @@
                 <div>{{ query }}</div>
                 <div>{{ fireWarningMessage }}</div>
                 <div id="fire-balls-area">
-                    <div v-if="first"><img src="../assets/flamma.png" alt="fire" /></div>
+                    <div v-if="firstBall"><img src="../assets/flamma.png" alt="fire" /></div>
                     <div class="empty-ball" v-else></div>
-                    <div v-if="second"><img src="../assets/flamma.png" alt="fire" /></div>
+                    <div v-if="secondBall"><img src="../assets/flamma.png" alt="fire" /></div>
                     <div class="empty-ball" v-else></div>
                 </div>
             </div>
@@ -37,8 +37,8 @@ export default {
             query: "",
             alerts: [],
             fireWarningMessage: "",
-            first: false,
-            second: false,
+            firstBall: false,
+            secondBall: false,
         }
     },
 
@@ -57,8 +57,8 @@ export default {
             },
             onSelection: (feedback) => {
                 let isFireWarning = false
-                this.first = false
-                this.second = false
+                this.firstBall = false
+                this.secondBall = false
                 document.getElementById("autoComplete").value = feedback.selection.value
                 this.query = feedback.selection.value
 
@@ -67,11 +67,11 @@ export default {
                         this.fireWarningMessage = alert.info.eventCode[3].value
                         isFireWarning = true
                         if (this.fireWarningMessage === "Risk Gräsbrand") {
-                            this.first = true
-                            this.second = false
+                            this.firstBall = true
+                            this.secondBall = false
                         } else if (this.fireWarningMessage === "Risk Skogsbrand") {
-                            this.first = true
-                            this.second = true
+                            this.firstBall = true
+                            this.secondBall = true
                         }
                     }
                 }
