@@ -6,8 +6,14 @@
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
         <div class="firewarning main">
-            <div>{{ query }}</div>
-            <div>{{ fireWarningMessage }}</div>
+            <div id="result">
+                <div>{{ query }}</div>
+                <div>{{ fireWarningMessage }}</div>
+                <div id="fire-balls-area">
+                    <div v-if="first"><img src="../assets/flamma.png" alt="fire" /></div>
+                    <div v-if="second"><img src="../assets/flamma.png" alt="fire" /></div>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -29,6 +35,8 @@ export default {
             query: "",
             alerts: [],
             fireWarningMessage: "",
+            first: false,
+            second: false,
         }
     },
 
@@ -47,6 +55,8 @@ export default {
             },
             onSelection: (feedback) => {
                 let isFireWarning = false
+                this.first = false
+                this.second = false
                 document.getElementById("autoComplete").value = feedback.selection.value
                 this.query = feedback.selection.value
 
@@ -54,6 +64,13 @@ export default {
                     if (this.query === alert.info.headline) {
                         this.fireWarningMessage = alert.info.eventCode[3].value
                         isFireWarning = true
+                        if (this.fireWarningMessage === "Risk Gräsbrand") {
+                            this.first = true
+                            this.second = false
+                        } else if (this.fireWarningMessage === "Risk Skogsbrand") {
+                            this.first = true
+                            this.second = true
+                        }
                     }
                 }
 
@@ -76,5 +93,14 @@ export default {
     display: grid;
     grid-template-columns: 1fr;
     border: 2px solid gray;
+}
+img {
+    width: 40px;
+    height: 40px;
+}
+
+#result {
+    display: flex;
+    justify-content: space-between;
 }
 </style>
