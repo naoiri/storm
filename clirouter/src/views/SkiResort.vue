@@ -18,17 +18,18 @@
 </template>
 
 <script>
-import Temperature from "@/views/Ski.vue"
 
 export default {
     name: "SkiResort",
+    props: [ "resort"],
     data() {
         return {
             temperature: new Map(),
         }
     },
     created() {
-        this.temperature = Temperature
+        console.log(this.resort)
+        //https://opendata-download-metanalys.smhi.se/api/category/mesan1g/version/2/geotype/point/lon/16.158/lat/58.5812/data.json
     },
 }
 </script>

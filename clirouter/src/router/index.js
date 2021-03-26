@@ -37,6 +37,7 @@ const routes = [
     {
         path: "/ski/:resort",
         name: "SkiResort",
+        props: true,
         component: () => import(/* webpackChunkName: "skiresort" */ "../views/SkiResort.vue"),
     },
 ]
