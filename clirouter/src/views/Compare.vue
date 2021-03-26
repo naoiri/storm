@@ -31,7 +31,7 @@ import autoComplete from "@tarekraafat/autocomplete.js"
 import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
 import Title from "@/components/Title.vue"
 import Cities from "@/db/cities.js"
-import csv from "@/db/metobs_sunshineTime_active_sites.csv"
+import Sunshine from "@/db/metobs_sunshineTime_active_sites.csv"
 
 export default {
     name: "Compare",
@@ -45,10 +45,24 @@ export default {
             query: "",
             parameter1: [],
             temperatureData: "",
+            Sunshine,
         }
     },
     methods: {
-        getCityId() {
+        async updateData() {
+            const response = await fetch(
+                "https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/" +
+                    this.getTemperatureId +
+                    "/period/latest-months/data.json"
+            )
+            const json = await response.json()
+            this.parameter1 = json.value
+            this.temperatureData = this.parameter1[0].value
+            this.current = this.query
+        },
+    },
+    computed: {
+        getTemperatureId() {
             switch (this.query) {
                 case "Stockholm":
                     return "98230"
@@ -68,21 +82,9 @@ export default {
                     return "00000"
             }
         },
-        async updateData() {
-            const response = await fetch(
-                "https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/" +
-                    this.getCityId() +
-                    "/period/latest-months/data.json"
-            )
-            const json = await response.json()
-            this.parameter1 = json.value
-            this.temperatureData = this.parameter1[0].value
-            this.current = this.query
-        },
     },
     created() {
         this.cities = Cities
-        console.log(csv)
     },
     mounted() {
         const interaction = this
