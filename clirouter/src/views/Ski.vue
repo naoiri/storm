@@ -4,9 +4,6 @@
         <p>
             Här kan du välja vilken ort i din närhet som har bäst väder för din skidåkning. Sök på ort för att se väder.
         </p>
-        <div class="autoComplete_wrapper main hidden">
-            <input id="autoComplete" type="text" autocomplete="off" />
-        </div>
         <div id="ski main">
             <div>
                 <span><em>Ski resorts</em> </span>
@@ -20,10 +17,7 @@
 </template>
 
 <script>
-import autoComplete from "@tarekraafat/autocomplete.js"
-import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
 import Skiresorts from "@/db/skiresorts.js"
-//import Cities from "../db/gps.js"
 import Title from "@/components/Title.vue"
 
 const BASE_URL = "https://opendata-download-metfcst.smhi.se/api"
@@ -37,30 +31,13 @@ export default {
         return {
             skiresorts: [],
             temperature: new Map(),
-            //cities: [],
         }
     },
     created() {
         this.skiresorts = Skiresorts
-        //this.cities = Cities
-        //GET request using fetch with async/await
-
-        /*Using information from the documentation at:
-        https://opendata.smhi.se/apidocs/metfcst/get-forecast.html
-        https://opendata.smhi.se/apidocs/metfcst/parameters.html*/
-
         this.updateWeatherData()
     },
-    mounted() {
-        new autoComplete({
-            data: {
-                src: this.skiresorts.name,
-            },
-            onSelection: (feedback) => {
-                document.getElementById("autoComplete").value = feedback.selection.value
-            },
-        })
-    },
+
     methods: {
         async updateWeatherData() {
             for (const { name, lng, lat } of this.skiresorts) {
