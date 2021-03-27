@@ -10,7 +10,7 @@
                 <span><em> Temperature</em> </span>
             </div>
             <div v-for="skiresort in skiresorts" :key="skiresort.name">
-                <router-link :to="'/ski/' + skiresort.name" />{{ skiresort.name }}
+                {{ skiresort.name }} {{ temperature.get(skiresort.name).lo }}
             </div>
         </div>
     </div>
@@ -44,19 +44,11 @@ export default {
                 const url = `${BASE_URL}/category/pmp3g/version/2/geotype/point/lon/${lng}/lat/${lat}/data.json`
                 const response = await fetch(url)
                 const forecast = await response.json()
-<<<<<<< HEAD
                 const { lowest, highest } = this.findHighAndLowTemp(forecast)
                 this.temperature.set(name, { lo: lowest, hi: highest })
             }
         },
         findHighAndLowTemp(forecast) {
-=======
-                const { lowest, highest } = this.findLowTemp(forecast)
-                this.temperature.set(name, { lo: lowest, hi: highest })
-            }
-        },
-        findLowTemp(forecast) {
->>>>>>> b29829d7054c1c235962b06f14609355a8c2ed36
             let highest = -1000
             let lowest = 1000
             for (const hourlyData of forecast.timeSeries) {
@@ -70,10 +62,7 @@ export default {
             }
             return { lowest, highest }
         },
-<<<<<<< HEAD
 
-=======
->>>>>>> b29829d7054c1c235962b06f14609355a8c2ed36
         findTemperature(parameters) {
             for (const param of parameters) {
                 if (param.name === "t") {
@@ -83,14 +72,6 @@ export default {
 
             throw new Error("unable to find parameter for temperature")
         },
-<<<<<<< HEAD
-=======
-    },
-    computed: {
-        getLowestTemperature() {
-            return this.lowest.get(this.skiresort.name).lo
-        },
->>>>>>> b29829d7054c1c235962b06f14609355a8c2ed36
     },
 }
 </script>
