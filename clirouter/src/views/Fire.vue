@@ -52,7 +52,7 @@ export default {
 
                 for (const alert of this.alerts) {
                     if (this.query === alert.info.headline) {
-                        this.fireWarningMesssage = alert.info.eventCode[3].value
+                        this.fireWarningMessage = alert.info.eventCode[3].value
                         isFireWarning = true
                     }
                 }
@@ -68,7 +68,7 @@ export default {
 
 <style>
 .main {
-    width: 400px;
+    width: 350px;
 }
 
 .firewarning {

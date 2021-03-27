@@ -20,7 +20,7 @@
 
 <script>
 export default {
-    name: "HelloWorld",
+    name: "Links",
     props: {
         msg: String,
     },

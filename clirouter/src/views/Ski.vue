@@ -4,7 +4,7 @@
         <p>
             Här kan du välja vilken ort i din närhet som har bäst väder för din skidåkning. Sök på ort för att se väder.
         </p>
-        <div class="autoComplete_wrapper main">
+        <div class="autoComplete_wrapper main hidden">
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
         <div id="ski main">
@@ -102,5 +102,9 @@ export default {
 <style>
 .main {
     width: 400px;
+}
+
+.hidden {
+    display: none;
 }
 </style>
