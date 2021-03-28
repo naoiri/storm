@@ -1,6 +1,7 @@
 <template>
     <div class="compare">
         <Title msg="Jämför vädret historiskt" />
+        <DatePicker />
         <p>Här kan du jämföra hur vädret varit på samma dag för två olika orter.</p>
         <div class="main">
             <span class="text center">Ort 1: </span>
@@ -31,10 +32,12 @@ import autoComplete from "@tarekraafat/autocomplete.js"
 import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
 import Title from "@/components/Title.vue"
 import Cities from "@/db/cities.js"
+import DatePicker from "@/components/DatePicker.vue"
 export default {
     name: "Compare",
     components: {
         Title,
+        DatePicker,
     },
     data() {
         return {
