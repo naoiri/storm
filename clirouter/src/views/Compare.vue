@@ -60,7 +60,7 @@ export default {
             )
             const json = await response.json()
             this.parameter1 = json.value
-            this.temperatureData = this.parameter1[0].value
+            this.temperatureData = this.parameter1[this.parameter1.length-1].value
             this.current = this.query
         },
         onChange() {},
