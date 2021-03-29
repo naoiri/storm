@@ -1,6 +1,7 @@
 <template>
     <div class="fire">
         <Title msg="Brandrisk" />
+        <!--DatePicker /-->
         <p>Här kan du få information om brandrisken.</p>
         <div class="autoComplete_wrapper main">
             <input id="autoComplete" type="text" autocomplete="off" />
@@ -25,11 +26,13 @@ import autoComplete from "@tarekraafat/autocomplete.js"
 import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
 import Counties from "@/db/regions.js"
 import Title from "@/components/Title.vue"
+//import DatePicker from "@/components/DatePicker.vue"
 
 export default {
     name: "Fire",
     components: {
         Title,
+        //DatePicker,
     },
     data() {
         return {

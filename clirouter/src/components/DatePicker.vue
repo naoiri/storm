@@ -1,5 +1,6 @@
 <template>
     <datepicker v-model="picked" :lowerLimit="from" />
+    
 </template>
 
 <script>
