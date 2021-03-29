@@ -14,7 +14,7 @@ export default {
     data() {
         return {
             picked: ref(new Date()),
-            from: new Date("1991-01-01T03:24:00"),
+            from: new Date("2020-12-01"),
         }
     },
 }

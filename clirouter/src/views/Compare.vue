@@ -1,8 +1,8 @@
 <template>
     <div class="compare">
         <Title msg="Jämför vädret historiskt" />
-        <p>Se vilken temperatur det var för 4 månader sedan.</p>
-        <DatePicker />
+        <p>Se vilken temperatur det var historiskt t.o.m. December 2020.</p>
+        <DatePicker id="datePicker" v-model="date" />
         <div class="main">
             <span class="text center">Ort 1: </span>
             <span class="autoComplete_wrapper main">
@@ -22,7 +22,7 @@
             </span>
         </div-->
         <div class="data main center">
-            <div>Vädret i {{ current }} för 4 månader sedan var: {{ temperatureData }} grader Celcius.</div>
+            <div>Vädret i {{ current }} för datum ({{ date }}) var: {{ temperatureData }} grader Celcius.</div>
         </div>
     </div>
 </template>
@@ -62,6 +62,7 @@ export default {
             this.temperatureData = this.parameter1[0].value
             this.current = this.query
         },
+        onChange() {},
     },
     computed: {
         getTemperatureId() {
@@ -98,6 +99,7 @@ export default {
                 document.getElementById("autoComplete").value = feedback.selection.value
                 this.query = feedback.selection.value
                 interaction.updateData()
+                console.log(this.date)
             },
         })
     },
