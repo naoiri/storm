@@ -32,12 +32,8 @@ import autoComplete from "@tarekraafat/autocomplete.js"
 import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
 import Title from "@/components/Title.vue"
 import Cities from "@/db/cities.js"
-<<<<<<< HEAD
-import Sunshine from "@/db/metobs_sunshineTime_active_sites.csv"
-
-=======
+//import Sunshine from "@/db/metobs_sunshineTime_active_sites.csv"
 import DatePicker from "@/components/DatePicker.vue"
->>>>>>> date
 export default {
     name: "Compare",
     components: {
@@ -51,7 +47,7 @@ export default {
             query: "",
             parameter1: [],
             temperatureData: "",
-            Sunshine,
+            //Sunshine,
         }
     },
     methods: {
