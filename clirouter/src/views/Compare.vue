@@ -47,6 +47,7 @@ export default {
             query: "",
             parameter1: [],
             temperatureData: "",
+            date: new Date(Date.now()),
             //Sunshine,
         }
     },
@@ -99,7 +100,6 @@ export default {
                 document.getElementById("autoComplete").value = feedback.selection.value
                 this.query = feedback.selection.value
                 interaction.updateData()
-                console.log(this.date)
             },
         })
     },
