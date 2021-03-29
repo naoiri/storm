@@ -4,13 +4,15 @@
         <p>
             Här kan du välja vilken ort i din närhet som har bäst väder för din skidåkning. Sök på ort för att se väder.
         </p>
-        <div id="ski main">
+        <div id="ski_main">
             <div>
                 <span><em>Ski resorts</em> </span>
                 <span><em> Temperature</em> </span>
             </div>
             <div v-for="skiresort in skiresorts" :key="skiresort.name">
-                {{ skiresort.name }} {{ temperature.get(skiresort.name).lo}}
+                }
+                <span>{{ skiresort.name }} {{ temperature.get(skiresort.name)?.lo }}</span>
+                <span> </span>
             </div>
         </div>
     </div>
@@ -44,11 +46,13 @@ export default {
                 const url = `${BASE_URL}/category/pmp3g/version/2/geotype/point/lon/${lng}/lat/${lat}/data.json`
                 const response = await fetch(url)
                 const forecast = await response.json()
+
                 const { lowest, highest } = this.findHighAndLowTemp(forecast)
                 this.temperature.set(name, { lo: lowest, hi: highest })
             }
         },
-        findHighAndLowTemp(forecast) {
+
+        findLowTemp(forecast) {
             let highest = -1000
             let lowest = 1000
             for (const hourlyData of forecast.timeSeries) {
