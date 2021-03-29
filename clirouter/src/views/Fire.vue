@@ -9,6 +9,7 @@
             <div id="result">
                 <div>{{ query }}</div>
                 <div>{{ fireWarningMessage }}</div>
+                <div>{{ time }}</div>
                 <div id="fire-balls-area">
                     <div v-if="firstBall"><img src="../assets/flamma.png" alt="fire" /></div>
                     <div class="empty-ball" v-else></div>
@@ -39,6 +40,7 @@ export default {
             fireWarningMessage: "",
             firstBall: false,
             secondBall: false,
+            time: "",
         }
     },
 
@@ -65,6 +67,7 @@ export default {
                 for (const alert of this.alerts) {
                     if (this.query === alert.info.headline) {
                         this.fireWarningMessage = alert.info.eventCode[3].value
+                        this.time = alert.send
                         isFireWarning = true
                         if (this.fireWarningMessage === "Risk Gräsbrand") {
                             this.firstBall = true
