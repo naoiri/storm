@@ -8,10 +8,24 @@
             <div>
                 <span><em>Ski resorts</em> </span>
                 <span><em> Temperature</em> </span>
+                <div id="v-model-radiobutton">
+                    <input
+                        type="radio"
+                        id="99"
+                        value="low"
+                        v-model="lowTemp"
+                        checked="true"
+                        @onSelection="this.onSelection"
+                    />
+                    <label for="one">High</label>
+                    <input type="radio" id="100" value="high" v-model="lowTemp" @onSelection="this.onSelection" />
+                    <label for="two">Low</label>
+                </div>
+                <!--<span> lowTemp: {{ lowTemp }}</span>-->
             </div>
             <div v-for="skiresort in skiresorts" :key="skiresort.name">
-                <span>{{ skiresort.name }} {{ temperature.get(skiresort.name)?.lo }}</span>
-                <span> </span>
+                <span v-if="lowTemp">{{ skiresort.name }} {{ temperature.get(skiresort.name)?.lo }}</span>
+                <span v-else>{{ skiresort.name }} {{ temperature.get(skiresort.name)?.hi }}</span>
             </div>
         </div>
     </div>
@@ -32,13 +46,13 @@ export default {
         return {
             skiresorts: [],
             temperature: new Map(),
+            lowTemp: false,
         }
     },
     created() {
         this.skiresorts = Skiresorts
         this.updateWeatherData()
     },
-
     methods: {
         async updateWeatherData() {
             for (const { name, lng, lat } of this.skiresorts) {
@@ -49,6 +63,7 @@ export default {
                 this.temperature.set(name, { lo: lowest, hi: highest })
             }
         },
+
         findLowTemp(forecast) {
             let highest = -1000
             let lowest = 1000
@@ -72,6 +87,19 @@ export default {
             }
 
             throw new Error("unable to find parameter for temperature")
+        },
+        onSelection: (evt) => {
+            if (evt.target.value === "low") {
+                document.getElementById("100").checked = true
+                document.getElementById("99").checked = false
+                this.lowTemp = true
+                this.temperature.get(this.skiresort.name)?.lo
+            } else if (evt.target.value === "high") {
+                document.getElementById("100").checked = false
+                document.getElementById("99").checked = true
+                this.lowTemp = false
+                this.temperature.get(this.skiresort.name)?.hi
+            }
         },
     },
 }
