@@ -27,6 +27,9 @@
                 <span v-if="lowTemp">{{ skiresort.name }} {{ temperature.get(skiresort.name)?.lo }}</span>
                 <span v-else>{{ skiresort.name }} {{ temperature.get(skiresort.name)?.hi }}</span>
             </div>
+            <span v-for="weatherSymbol in weatherSymbols" :key="weatherSymbol">
+                {{ weatherSymbol }}
+            </span>
         </div>
     </div>
 </template>
@@ -47,11 +50,13 @@ export default {
             skiresorts: [],
             temperature: new Map(),
             lowTemp: false,
+            weatherSymbols: [],
         }
     },
     created() {
         this.skiresorts = Skiresorts
         this.updateWeatherData()
+        this.showWeeklyWeatherInAleBacken()
     },
     methods: {
         async updateWeatherData() {
@@ -62,6 +67,34 @@ export default {
                 const { lowest, highest } = this.findLowTemp(forecast)
                 this.temperature.set(name, { lo: lowest, hi: highest })
             }
+        },
+        async showWeeklyWeatherInAleBacken() {
+            const url = `${BASE_URL}/category/pmp3g/version/2/geotype/point/lon/11.9924/lat/57.7156/data.json`
+            const response = await fetch(url)
+            const forecast = await response.json()
+            
+            let weatherValues = []
+            for (const hourlyData of forecast.timeSeries) {
+                if(hourlyData.validTime.includes("T12")) {
+                    weatherValues.push(hourlyData.parameters[18].values[0])
+                }
+            }
+            weatherValues.pop() //Deletes the last(8th element)
+            weatherValues.pop()
+
+            for (const weatherValue of weatherValues) {
+                if (weatherValue <= 4) {
+                    this.weatherSymbols.push("Sunny")
+                } else if (weatherValue <= 7) {
+                    this.weatherSymbols.push("Cloudy")
+                } else if (weatherValue <= 24){
+                    this.weatherSymbols.push("Rainy")
+                } else if (weatherValue <= 27) {
+                    this.weatherSymbols.push("Snowy")
+                }
+            }
+            console.log(weatherValues)
+            console.log(this.weatherSymbols)
         },
 
         findLowTemp(forecast) {
