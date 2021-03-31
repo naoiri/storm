@@ -27,13 +27,11 @@ import autoComplete from "@tarekraafat/autocomplete.js"
 import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
 import Counties from "@/db/regions.js"
 import Title from "@/components/Title.vue"
-//import DatePicker from "@/components/DatePicker.vue"
 
 export default {
     name: "Fire",
     components: {
         Title,
-        //DatePicker,
     },
     data() {
         return {
@@ -44,7 +42,6 @@ export default {
             firstBall: false,
             secondBall: false,
             time: "",
-            //TODO pickedDate: $refs.DatePicker.picked,
         }
     },
 
