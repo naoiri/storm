@@ -2,16 +2,16 @@
     <div class="fire">
         <Title msg="Brandrisk" />
         <!--DatePicker /-->
-        <p>Här kan du få information om brandrisken.</p>
+        <p class="strong">Här kan du få information om brandrisken.</p>
         <div class="autoComplete_wrapper main">
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
         <div class="firewarning main">
             <div id="result">
-                <div>{{ query }}</div>
-                <div>{{ fireWarningMessage }}</div>
+                <div class="space">{{ query }}</div>
+                <div class="space">{{ fireWarningMessage }}</div>
                 <div id="fire-balls-area">
-                    <div v-if="firstBall"><img src="../assets/flamma.png" alt="fire" /></div>
+                    <div v-if="firstBall" class="space"><img src="../assets/flamma.png" alt="fire" /></div>
                     <div class="empty-ball" v-else></div>
                     <div v-if="secondBall"><img src="../assets/flamma.png" alt="fire" /></div>
                     <div class="empty-ball" v-else></div>
@@ -94,6 +94,10 @@ export default {
     width: 350px;
 }
 
+.space {
+    padding-left: 5px;
+}
+
 .firewarning {
     padding: 1rem;
     display: grid;
@@ -120,5 +124,9 @@ img {
     height: 35px;
     border-radius: 50%;
     border: 1px solid black;
+}
+
+.strong {
+    font-weight: bold;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
     <div class="home">
         <Title msg="Välkommen" />
-        <Links msg="hej hej här är lite väder" />
+        <Links class="strong" msg="hej hej här är lite väder" />
     </div>
 </template>
 
@@ -18,3 +18,8 @@ export default {
     },
 }
 </script>
+<style>
+.strong {
+    font-weight: bold;
+}
+</style>

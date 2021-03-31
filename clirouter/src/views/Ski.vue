@@ -1,7 +1,7 @@
 <template>
     <div class="ski">
         <Title msg="Skidorter i Sverige" />
-        <p>
+        <p class="strong">
             Här kan du välja vilken ort i din närhet som har bäst väder för din skidåkning. Sök på ort för att se väder.
         </p>
         <div id="ski_main">
