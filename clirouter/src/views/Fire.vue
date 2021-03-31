@@ -43,7 +43,7 @@ export default {
             fireWarningMessage: "",
             firstBall: false,
             secondBall: false,
-            time: "aaa",
+            time: "",
             //TODO pickedDate: $refs.DatePicker.picked,
         }
     },
