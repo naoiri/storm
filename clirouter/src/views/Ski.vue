@@ -56,7 +56,6 @@ export default {
     created() {
         this.skiresorts = Skiresorts
         this.updateWeatherData()
-        this.showWeeklyWeatherInAleBacken()
     },
     methods: {
         async updateWeatherData() {
@@ -66,16 +65,14 @@ export default {
                 const forecast = await response.json()
                 const { lowest, highest } = this.findLowTemp(forecast)
                 this.temperature.set(name, { lo: lowest, hi: highest })
+                this.findWeeklyWeatherForecast(forecast)
             }
         },
-        async showWeeklyWeatherInAleBacken() {
-            const url = `${BASE_URL}/category/pmp3g/version/2/geotype/point/lon/11.9924/lat/57.7156/data.json`
-            const response = await fetch(url)
-            const forecast = await response.json()
-            
+
+        findWeeklyWeatherForecast(forecast) {
             let weatherValues = []
             for (const hourlyData of forecast.timeSeries) {
-                if(hourlyData.validTime.includes("T12")) {
+                if (hourlyData.validTime.includes("T12")) {
                     weatherValues.push(hourlyData.parameters[18].values[0])
                 }
             }
@@ -93,8 +90,6 @@ export default {
                     this.weatherSymbols.push("Snowy")
                 }
             }
-            console.log(weatherValues)
-            console.log(this.weatherSymbols)
         },
 
         findLowTemp(forecast) {
