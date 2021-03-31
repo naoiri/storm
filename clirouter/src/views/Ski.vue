@@ -106,8 +106,19 @@ export default {
 </script>
 
 <style>
+body {
+    background-color: lightblue;
+}
 .main {
     width: 400px;
+}
+div {
+    color: blue;
+}
+p {
+    color: black;
+    font-size: 30px;
+    text-align: center;
 }
 
 .hidden {
