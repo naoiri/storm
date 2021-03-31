@@ -9,6 +9,7 @@
         <div class="firewarning main">
             <div id="result">
                 <div>{{ query }}</div>
+                <div>Hämtad: {{ time }}</div>
                 <div>{{ fireWarningMessage }}</div>
                 <div id="fire-balls-area">
                     <div v-if="firstBall"><img src="../assets/flamma.png" alt="fire" /></div>
@@ -42,6 +43,7 @@ export default {
             fireWarningMessage: "",
             firstBall: false,
             secondBall: false,
+            time: "aaa",
             //TODO pickedDate: $refs.DatePicker.picked,
         }
     },
@@ -69,6 +71,7 @@ export default {
                 for (const alert of this.alerts) {
                     if (this.query === alert.info.headline) {
                         this.fireWarningMessage = alert.info.eventCode[3].value
+                        this.time = alert.sent
                         isFireWarning = true
                         if (this.fireWarningMessage === "Risk Gräsbrand") {
                             this.firstBall = true
@@ -91,7 +94,7 @@ export default {
 
 <style>
 .main {
-    width: 350px;
+    width: 600px;
 }
 
 .firewarning {
