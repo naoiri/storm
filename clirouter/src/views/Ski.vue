@@ -4,6 +4,7 @@
         <p>
             Här kan du välja vilken ort i din närhet som har bäst väder för din skidåkning. Sök på ort för att se väder.
         </p>
+        <fa icon="sun" style="color: orange" />
         <div id="ski_main">
             <div>
                 <span><em>Ski resorts</em> </span>
