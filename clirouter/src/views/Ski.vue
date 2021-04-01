@@ -31,11 +31,35 @@
 
             <div id="result-area">
                 <div id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
-                    <span v-if="lowTemp">{{ skiresort.name }} {{ temperature.get(skiresort.name)?.lo }}</span>
+                    {{ skiresort.name }}
+                    <div id="weekday-container">
+                        <div id="weekday" v-for="weekDay in weekDays" :key="weekDay">{{ weekDay }}</div>
+                    </div>
+                    <div id="temperature-container">
+                        <div
+                            id="temperature-area"
+                            v-for="temperature in temperature.get(skiresort.name)?.wt"
+                            :key="temperature"
+                        >
+                            {{ temperature }}
+                        </div>
+                    </div>
+                    <div id="weather-container">
+                        <div
+                            id="weather-symbol-area"
+                            v-for="weatherSymbol in temperature.get(skiresort.name)?.ws"
+                            :key="weatherSymbol"
+                        >
+                            {{ weatherSymbol }}
+                        </div>
+                    </div>
+                    <!--<span v-if="lowTemp">{{ skiresort.name }} {{ temperature.get(skiresort.name)?.lo }}</span>
                     <span v-else>{{ skiresort.name }} {{ temperature.get(skiresort.name)?.hi }}</span>
-                    <div>{{ weekDays }}</div>
-                    <div>{{ temperature.get(skiresort.name)?.wt }}</div>
-                    <div>{{ temperature.get(skiresort.name)?.ws }}</div>
+                    <div v-for="weekDay in weekDays" :key="weekDay">
+                        {{ weekDay }}
+                        {{ temperature.get(skiresort.name)?.wt }}
+                        <div>{{ temperature.get(skiresort.name)?.ws }}</div>
+                    </div>-->
                 </div>
             </div>
         </div>
@@ -131,7 +155,7 @@ export default {
             }
         },
 
-        //returns a list of weekly temperatures in one city
+        //Returns a list of weekly temperatures in one city
         findWeeklyTemperatureInOneCity(forecast) {
             let temperatures = []
             for (const hourlyData of forecast.timeSeries) {
@@ -236,5 +260,10 @@ export default {
     border-radius: 10px;
     margin: 1em;
     padding: 0.5em;
+    display: flex;
+}
+
+#each-result * {
+    margin: 0.5em;
 }
 </style>
