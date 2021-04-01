@@ -59,7 +59,6 @@ export default {
             lowTemp: false,
             weatherSymbols: [],
             weeklyTemperatures: [],
-            days: ["Idag", "Imorgon", "Övermorgon", "Om fyra dagar", ],
         }
     },
     created() {
@@ -77,8 +76,23 @@ export default {
                 const weeklyTemperatures = this.findWeeklyTemperatureInOneCity(forecast)
                 this.temperature.set(name, { lo: lowest, hi: highest, wt: weeklyTemperatures, ws: weatherSymbols })
                 this.findWeeklyWeatherForecast(forecast)
-                console.log("Done for " + name)
+                console.log(this.convertDateToWeekday(forecast.timeSeries[0].validTime))
             }
+        },
+        convertDateToWeekday(validTime) {
+            let tempStr1 = validTime
+            let tempStr2 = validTime
+            let tempStr3 = validTime
+            let yearStr = tempStr1.substr(0, 4)
+            let monthStr = tempStr2.substr(5, 2)
+            let dayStr = tempStr3.substr(8, 2)
+
+            let jsMonth = monthStr - 1
+            let dayOfWeekStrSvenska = ["Sön", "Mån", "Tis", "Ons", "Tor", "Fre", "Lör"]
+
+            let date = new Date(yearStr, jsMonth, dayStr)
+            return dayOfWeekStrSvenska[date.getDay()]
+
         },
 
         findWeeklyWeatherForecastInOneCity(forecast) {
@@ -180,6 +194,7 @@ export default {
                 this.temperature.get(this.skiresort.name)?.hi
             }
         },
+
     },
 }
 </script>
@@ -194,6 +209,7 @@ export default {
 }
 #each-result {
     border: 1px solid black;
+    border-radius: 10px;
     margin: 1em;
     padding: 0.5em;
 }
