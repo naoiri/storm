@@ -33,6 +33,7 @@
                 <div id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
                     <span v-if="lowTemp">{{ skiresort.name }} {{ temperature.get(skiresort.name)?.lo }}</span>
                     <span v-else>{{ skiresort.name }} {{ temperature.get(skiresort.name)?.hi }}</span>
+                    <div>{{ weekDays }}</div>
                     <div>{{ temperature.get(skiresort.name)?.wt }}</div>
                     <div>{{ temperature.get(skiresort.name)?.ws }}</div>
                 </div>
@@ -59,6 +60,7 @@ export default {
             lowTemp: false,
             weatherSymbols: [],
             weeklyTemperatures: [],
+            weekDays: [],
         }
     },
     created() {
@@ -76,23 +78,8 @@ export default {
                 const weeklyTemperatures = this.findWeeklyTemperatureInOneCity(forecast)
                 this.temperature.set(name, { lo: lowest, hi: highest, wt: weeklyTemperatures, ws: weatherSymbols })
                 this.findWeeklyWeatherForecast(forecast)
-                console.log(this.convertDateToWeekday(forecast.timeSeries[0].validTime))
+                this.weekDays = this.getWeekDays(forecast)
             }
-        },
-        convertDateToWeekday(validTime) {
-            let tempStr1 = validTime
-            let tempStr2 = validTime
-            let tempStr3 = validTime
-            let yearStr = tempStr1.substr(0, 4)
-            let monthStr = tempStr2.substr(5, 2)
-            let dayStr = tempStr3.substr(8, 2)
-
-            let jsMonth = monthStr - 1
-            let dayOfWeekStrSvenska = ["Sön", "Mån", "Tis", "Ons", "Tor", "Fre", "Lör"]
-
-            let date = new Date(yearStr, jsMonth, dayStr)
-            return dayOfWeekStrSvenska[date.getDay()]
-
         },
 
         findWeeklyWeatherForecastInOneCity(forecast) {
@@ -195,6 +182,43 @@ export default {
             }
         },
 
+        //Returns a list of weekdays starting today.
+        getWeekDays(forecast) {
+            const weekDays = ["Sön", "Mån", "Tis", "Ons", "Tor", "Fre", "Lör"]
+            const today = this.convertDateToWeekday(forecast.timeSeries[0].validTime)
+            let startIndex = 0
+            for (let i = 0; i < weekDays.length; i++) {
+                if (weekDays[i] === today) {
+                    startIndex = i //ex. 4
+                }
+            }
+
+            let modifiedWeekDays = []
+            for (let i = 0; i < 7; i++) {
+                modifiedWeekDays[i] = weekDays[startIndex]
+                startIndex++ // ex.5
+                if (startIndex > 6) {
+                    startIndex = 0
+                }
+            }
+            return modifiedWeekDays
+        },
+
+        //Returns the weekday converted from the given date
+        convertDateToWeekday(validTime) {
+            let tempStr1 = validTime
+            let tempStr2 = validTime
+            let tempStr3 = validTime
+            let yearStr = tempStr1.substr(0, 4)
+            let monthStr = tempStr2.substr(5, 2)
+            let dayStr = tempStr3.substr(8, 2)
+
+            let jsMonth = monthStr - 1
+            let dayOfWeekStrSvenska = ["Sön", "Mån", "Tis", "Ons", "Tor", "Fre", "Lör"]
+
+            let date = new Date(yearStr, jsMonth, dayStr)
+            return dayOfWeekStrSvenska[date.getDay()]
+        },
     },
 }
 </script>
