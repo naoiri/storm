@@ -41,7 +41,7 @@
                             v-for="temperature in temperature.get(skiresort.name)?.wt"
                             :key="temperature"
                         >
-                            {{ temperature }}
+                            {{ temperature }}°C
                         </div>
                     </div>
                     <div id="weather-container">
