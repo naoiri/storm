@@ -5,6 +5,10 @@
             Här kan du välja vilken ort i din närhet som har bäst väder för din skidåkning. Sök på ort för att se väder.
         </p>
         <fa icon="sun" style="color: orange" />
+        <fa icon="cloud" style="color: grey" />
+        <fa icon="cloud-rain" style="color: blue" />
+        <fa icon="snowflake" style="color: aqua" />
+        <fa icon="fire-alt" style="color: red" />
         <div id="ski_main">
             <div>
                 <span><em>Ski resorts</em> </span>
@@ -26,7 +30,7 @@
             </div>
 
             <div id="result-area">
-                <div v-for="skiresort in skiresorts" :key="skiresort.name">
+                <div id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
                     <span v-if="lowTemp">{{ skiresort.name }} {{ temperature.get(skiresort.name)?.lo }}</span>
                     <span v-else>{{ skiresort.name }} {{ temperature.get(skiresort.name)?.hi }}</span>
                     <div>{{ temperature.get(skiresort.name)?.wt }}</div>
@@ -55,6 +59,7 @@ export default {
             lowTemp: false,
             weatherSymbols: [],
             weeklyTemperatures: [],
+            days: ["Idag", "Imorgon", "Övermorgon", "Om fyra dagar", ],
         }
     },
     created() {
@@ -187,5 +192,9 @@ export default {
 .hidden {
     display: none;
 }
-
+#each-result {
+    border: 1px solid black;
+    margin: 1em;
+    padding: 0.5em;
+}
 </style>

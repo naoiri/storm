@@ -12,10 +12,10 @@
                 <div>Hämtad: {{ time }}</div>
                 <div>{{ fireWarningMessage }}</div>
                 <div id="fire-balls-area">
-                    <div v-if="firstBall"><img src="../assets/flamma.png" alt="fire" /></div>
-                    <div class="empty-ball" v-else></div>
-                    <div v-if="secondBall"><img src="../assets/flamma.png" alt="fire" /></div>
-                    <div class="empty-ball" v-else></div>
+                    <div v-if="firstBall"><fa icon="fire-alt" style="color: red" /></div>
+                    <div v-else><fa icon="fire-alt" /></div>
+                    <div v-if="secondBall"><fa icon="fire-alt" style="color: red" /></div>
+                    <div v-else><fa icon="fire-alt" /></div>
                 </div>
             </div>
         </div>
