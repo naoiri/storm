@@ -28,7 +28,8 @@
                 <div v-for="skiresort in skiresorts" :key="skiresort.name">
                     <span v-if="lowTemp">{{ skiresort.name }} {{ temperature.get(skiresort.name)?.lo }}</span>
                     <span v-else>{{ skiresort.name }} {{ temperature.get(skiresort.name)?.hi }}</span>
-                    <span> {{ temperature.get(skiresort.name)?.ws }} </span>
+                    <div>{{ temperature.get(skiresort.name)?.wt }}</div>
+                    <div>{{ temperature.get(skiresort.name)?.ws }}</div>
                 </div>
             </div>
         </div>
@@ -52,6 +53,7 @@ export default {
             temperature: new Map(),
             lowTemp: false,
             weatherSymbols: [],
+            weeklyTemperatures: [],
         }
     },
     created() {
@@ -66,8 +68,10 @@ export default {
                 const forecast = await response.json()
                 const { lowest, highest } = this.findLowTemp(forecast)
                 const weatherSymbols = this.findWeeklyWeatherForecastInOneCity(forecast)
-                this.temperature.set(name, { lo: lowest, hi: highest, ws: weatherSymbols })
+                const weeklyTemperatures = this.findWeeklyTemperatureInOneCity(forecast)
+                this.temperature.set(name, { lo: lowest, hi: highest, wt: weeklyTemperatures, ws: weatherSymbols })
                 this.findWeeklyWeatherForecast(forecast)
+                console.log("Done for " + name)
             }
         },
 
@@ -118,6 +122,19 @@ export default {
                     this.weatherSymbols.push("Snowy")
                 }
             }
+        },
+
+        //returns a list of weekly temperatures in one city
+        findWeeklyTemperatureInOneCity(forecast) {
+            let temperatures = []
+            for (const hourlyData of forecast.timeSeries) {
+                if (hourlyData.validTime.includes("T12")) {
+                    temperatures.push(this.findTemperature(hourlyData.parameters))
+                }
+            }
+            temperatures.pop()
+            temperatures.pop()
+            return temperatures
         },
 
         findLowTemp(forecast) {
