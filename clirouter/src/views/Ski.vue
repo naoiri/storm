@@ -101,7 +101,6 @@ export default {
                 const weatherSymbols = this.findWeeklyWeatherForecastInOneCity(forecast)
                 const weeklyTemperatures = this.findWeeklyTemperatureInOneCity(forecast)
                 this.temperature.set(name, { lo: lowest, hi: highest, wt: weeklyTemperatures, ws: weatherSymbols })
-                this.findWeeklyWeatherForecast(forecast)
                 this.weekDays = this.getWeekDays(forecast)
             }
         },
@@ -120,39 +119,16 @@ export default {
 
             for (const weatherValue of weatherValues) {
                 if (weatherValue <= 4) {
-                    weatherSymbols.push("Sunny")
+                    weatherSymbols.push("sun")
                 } else if (weatherValue <= 7) {
-                    weatherSymbols.push("Cloudy")
+                    weatherSymbols.push("cloud")
                 } else if (weatherValue <= 24) {
-                    weatherSymbols.push("Rainy")
+                    weatherSymbols.push("cloud-rain")
                 } else if ((weatherValue >= 15 && weatherValue <= 17) || (weatherValue >= 25 && weatherValue <= 27)) {
                     weatherSymbols.push("Snowy")
                 }
             }
             return weatherSymbols
-        },
-
-        findWeeklyWeatherForecast(forecast) {
-            let weatherValues = []
-            for (const hourlyData of forecast.timeSeries) {
-                if (hourlyData.validTime.includes("T12")) {
-                    weatherValues.push(hourlyData.parameters[18].values[0])
-                }
-            }
-            weatherValues.pop() //Deletes the last(8th element)
-            weatherValues.pop()
-
-            for (const weatherValue of weatherValues) {
-                if (weatherValue <= 4) {
-                    this.weatherSymbols.push("Sunny")
-                } else if (weatherValue <= 7) {
-                    this.weatherSymbols.push("Cloudy")
-                } else if (weatherValue <= 24) {
-                    this.weatherSymbols.push("Rainy")
-                } else if ((weatherValue >= 15 && weatherValue <= 17) || (weatherValue >= 25 && weatherValue <= 27)) {
-                    this.weatherSymbols.push("Snowy")
-                }
-            }
         },
 
         //Returns a list of weekly temperatures in one city
