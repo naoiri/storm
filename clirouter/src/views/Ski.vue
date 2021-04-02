@@ -107,15 +107,16 @@ export default {
 
         findWeeklyWeatherForecastInOneCity(forecast) {
             let weatherValues = [] //1, 2, 3.....
-            let weatherSymbols = [] //"Sunny", "Cloudy"...
+            let weatherSymbols = [] //"sun", "cloud"...
 
             for (const hourlyData of forecast.timeSeries) {
                 if (hourlyData.validTime.includes("T12")) {
                     weatherValues.push(hourlyData.parameters[18].values[0])
                 }
             }
-            weatherValues.pop() //Deletes the last(8th element)
-            weatherValues.pop()
+
+            //weatherValues.pop() //Deletes the last(8th element)
+            //weatherValues.pop()
 
             for (const weatherValue of weatherValues) {
                 if (weatherValue <= 4) {
@@ -123,9 +124,9 @@ export default {
                 } else if (weatherValue <= 7) {
                     weatherSymbols.push("cloud")
                 } else if (weatherValue <= 24) {
-                    weatherSymbols.push("cloud-rain")
+                    weatherSymbols.push("clo-rai")
                 } else if ((weatherValue >= 15 && weatherValue <= 17) || (weatherValue >= 25 && weatherValue <= 27)) {
-                    weatherSymbols.push("Snowy")
+                    weatherSymbols.push("snow-flake")
                 }
             }
             return weatherSymbols
@@ -139,8 +140,8 @@ export default {
                     temperatures.push(this.findTemperature(hourlyData.parameters))
                 }
             }
-            temperatures.pop()
-            temperatures.pop()
+            //temperatures.pop()
+            //temperatures.pop()
             return temperatures
         },
 
@@ -187,6 +188,8 @@ export default {
             const weekDays = ["Sön", "Mån", "Tis", "Ons", "Tor", "Fre", "Lör"]
             const today = this.convertDateToWeekday(forecast.timeSeries[0].validTime)
             let startIndex = 0
+            
+            //Finds what day it is today, which is the start index 
             for (let i = 0; i < weekDays.length; i++) {
                 if (weekDays[i] === today) {
                     startIndex = i //ex. 4
@@ -194,7 +197,7 @@ export default {
             }
 
             let modifiedWeekDays = []
-            for (let i = 0; i < 7; i++) {
+            for (let i = 0; i < 10; i++) {
                 modifiedWeekDays[i] = weekDays[startIndex]
                 startIndex++ // ex.5
                 if (startIndex > 6) {
