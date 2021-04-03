@@ -13,7 +13,7 @@
             <div>
                 <span><em>Ski resorts</em> </span>
                 <span><em> Temperature</em> </span>
-                <div id="v-model-radiobutton">
+                <!--div id="v-model-radiobutton">
                     <input
                         type="radio"
                         id="99"
@@ -25,11 +25,20 @@
                     <label for="one">High</label>
                     <input type="radio" id="100" value="high" v-model="lowTemp" @onSelection="this.onSelection" />
                     <label for="two">Low</label>
-                </div>
+                </div-->
                 <!--<span> lowTemp: {{ lowTemp }}</span>-->
             </div>
 
             <div id="result-area">
+                <div id="button-area">
+                    <input type="radio" id="one" value="One" name="choice" v-model="picked" v-on:change="showLow" />
+                    <label for="one">Show daily lowest temperature</label>
+                    <br />
+                    <input type="radio" id="two" value="Two" name="choice" v-model="picked" v-on:change="showHigh"/>
+                    <label for="two">Show daily highest temperature</label>
+                    <br />
+                    <span>Picked: {{ picked }}</span>
+                </div>
                 <div id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
                     {{ skiresort.name }}
                     <div id="weekday-container">
@@ -53,7 +62,7 @@
                             {{ weatherSymbol }}
                         </div>
                     </div>
-                    <div id="low-temperature-container">
+                    <div v-if="lowChecked" id="low-temperature-container">
                         <div
                             id="low-temperature-area"
                             v-for="lowTemperature in temperature.get(skiresort.name)?.lo"
@@ -62,7 +71,7 @@
                             {{ lowTemperature }}°C
                         </div>
                     </div>
-                    <div id="high-temperature-container">
+                    <div v-if="highChecked" id="high-temperature-container">
                         <div
                             id="high-temperature-area"
                             v-for="highTemperature in temperature.get(skiresort.name)?.hi"
@@ -104,6 +113,8 @@ export default {
             weatherSymbols: [],
             weeklyTemperaturesAt12: [],
             weekDays: [],
+            lowChecked: false,
+            highChecked: false
         }
     },
     created() {
@@ -112,6 +123,17 @@ export default {
         
     },
     methods: {
+
+        showLow() {
+            this.lowChecked = true
+            this.highChecked = false
+        },
+
+        showHigh() {
+            this.highChecked = true
+            this.lowChecked = false
+        },
+
         async updateWeatherData() {
             for (const { name, lng, lat } of this.skiresorts) {
                 const url = `${BASE_URL}/category/pmp3g/version/2/geotype/point/lon/${lng}/lat/${lat}/data.json`
