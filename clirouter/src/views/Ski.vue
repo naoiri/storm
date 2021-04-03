@@ -17,13 +17,13 @@
 
             <div id="result-area">
                 <div id="button-area">
-                    <input type="radio" id="at12" value="At12" name="choice" v-on:change="showAt12" />
-                    <label for="at12">Show daily temperature at 12 o'clock</label>
+                    <input type="radio" id="av" value="Av" name="choices" v-on:change="showAv" />
+                    <label for="av">Show daily average temperature</label>
                     <br />
-                    <input type="radio" id="low" value="Low" name="choice" v-on:change="showLow" />
+                    <input type="radio" id="low" value="Low" name="choices" v-on:change="showLow" />
                     <label for="low">Show daily lowest temperature</label>
                     <br />
-                    <input type="radio" id="high" value="High" name="choice" v-on:change="showHigh" />
+                    <input type="radio" id="high" value="High" name="choices" v-on:change="showHigh" />
                     <label for="high">Show daily highest temperature</label>
                     <br />
                 </div>
@@ -41,13 +41,13 @@
                             {{ weatherSymbol }}
                         </div>
                     </div>
-                    <div v-if="at12Checked" id="At12-temperature-container">
+                    <div v-if="avChecked" id="av-temperature-container">
                         <div
-                            id="At12-emperature-area"
-                            v-for="at12Temperature in temperature.get(skiresort.name)?.wt"
-                            :key="at12Temperature"
+                            id="av-temperature-area"
+                            v-for="avTemperature in temperature.get(skiresort.name)?.av"
+                            :key="avTemperature"
                         >
-                            {{ at12Temperature }}°C
+                            {{ avTemperature }}°C
                         </div>
                     </div>
                     <div v-if="lowChecked" id="low-temperature-container">
@@ -68,6 +68,7 @@
                             {{ highTemperature }}°C
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -93,7 +94,7 @@ export default {
             weatherSymbols: [],
             weeklyTemperaturesAt12: [],
             weekDays: [],
-            at12Checked: false,
+            avChecked: false,
             lowChecked: false,
             highChecked: false,
         }
@@ -103,20 +104,20 @@ export default {
         this.updateWeatherData()
     },
     methods: {
-        showAt12() {
-            this.at12Checked = true
+        showAv() {
+            this.avChecked = true
             this.lowChecked = false
             this.highChecked = false
         },
 
         showLow() {
-            this.at12Checked = false
+            this.avChecked = false
             this.lowChecked = true
             this.highChecked = false
         },
 
         showHigh() {
-            this.at12Checked = false
+            this.avChecked = false
             this.lowChecked = false
             this.highChecked = true
         },
@@ -128,13 +129,15 @@ export default {
                 const forecast = await response.json()
                 const weatherSymbols = this.findWeeklyWeatherForecastInOneCity(forecast)
                 const weeklyTemperaturesAt12 = this.findWeeklyTemperatureAt12InOneCity(forecast)
-                const dailyLowest = this.findDailyLowTemperature(forecast) //
+                const dailyLowest = this.findDailyLowTemperature(forecast)
                 const dailyHighest = this.findDailyHighTemperature(forecast)
+                const averageTemperatures = this.getDailyAverageTemperatures(forecast)
 
                 this.temperature.set(name, {
                     lo: dailyLowest,
                     hi: dailyHighest,
                     wt: weeklyTemperaturesAt12,
+                    av: averageTemperatures,
                     ws: weatherSymbols,
                 })
                 this.weekDays = this.getWeekDays(forecast)
@@ -174,6 +177,33 @@ export default {
                 }
             }
             return temperatures
+        },
+
+        getDailyAverageTemperatures(forecast) {
+            let tenDaysData = this.sortInfoByDay(forecast)
+            let averageTemperatures = []
+            let hourlyTemperatures = []
+            for(const dailyData of tenDaysData){
+                for(const hourlyData of dailyData){
+                    hourlyTemperatures.push(Number(this.findTemperature(hourlyData.parameters)))
+                }
+                let sum = 0
+                for(const temperature of hourlyTemperatures){
+                    sum += temperature
+                }
+                averageTemperatures.push(sum / hourlyTemperatures.length)
+                hourlyTemperatures = []
+            }
+
+            let roundedAverageTemperatures = []
+            //Avrundning
+            for (let temperature of averageTemperatures) {
+                temperature = temperature * 10 //tex. 375.4321
+                temperature = Math.floor(temperature) //375
+                temperature = temperature / 10 // 37.5
+                roundedAverageTemperatures.push(temperature)
+            }
+            return roundedAverageTemperatures
         },
 
         sortInfoByDay(forecast) {
