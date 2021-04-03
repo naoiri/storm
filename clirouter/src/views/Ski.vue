@@ -68,7 +68,6 @@
                             {{ highTemperature }}°C
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -92,7 +91,6 @@ export default {
             temperature: new Map(),
             lowTemp: false,
             weatherSymbols: [],
-            weeklyTemperaturesAt12: [],
             weekDays: [],
             avChecked: false,
             lowChecked: false,
@@ -128,7 +126,6 @@ export default {
                 const response = await fetch(url)
                 const forecast = await response.json()
                 const weatherSymbols = this.findWeeklyWeatherForecastInOneCity(forecast)
-                const weeklyTemperaturesAt12 = this.findWeeklyTemperatureAt12InOneCity(forecast)
                 const dailyLowest = this.findDailyLowTemperature(forecast)
                 const dailyHighest = this.findDailyHighTemperature(forecast)
                 const averageTemperatures = this.getDailyAverageTemperatures(forecast)
@@ -136,7 +133,6 @@ export default {
                 this.temperature.set(name, {
                     lo: dailyLowest,
                     hi: dailyHighest,
-                    wt: weeklyTemperaturesAt12,
                     av: averageTemperatures,
                     ws: weatherSymbols,
                 })
@@ -168,27 +164,16 @@ export default {
             return weatherSymbols
         },
 
-        //Returns a list of weekly temperatures in one city at 12 o'clock every day
-        findWeeklyTemperatureAt12InOneCity(forecast) {
-            let temperatures = []
-            for (const hourlyData of forecast.timeSeries) {
-                if (hourlyData.validTime.includes("T12")) {
-                    temperatures.push(this.findTemperature(hourlyData.parameters))
-                }
-            }
-            return temperatures
-        },
-
         getDailyAverageTemperatures(forecast) {
             let tenDaysData = this.sortInfoByDay(forecast)
             let averageTemperatures = []
             let hourlyTemperatures = []
-            for(const dailyData of tenDaysData){
-                for(const hourlyData of dailyData){
+            for (const dailyData of tenDaysData) {
+                for (const hourlyData of dailyData) {
                     hourlyTemperatures.push(Number(this.findTemperature(hourlyData.parameters)))
                 }
                 let sum = 0
-                for(const temperature of hourlyTemperatures){
+                for (const temperature of hourlyTemperatures) {
                     sum += temperature
                 }
                 averageTemperatures.push(sum / hourlyTemperatures.length)
