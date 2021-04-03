@@ -13,20 +13,6 @@
             <div>
                 <span><em>Ski resorts</em> </span>
                 <span><em> Temperature</em> </span>
-                <!--div id="v-model-radiobutton">
-                    <input
-                        type="radio"
-                        id="99"
-                        value="low"
-                        v-model="lowTemp"
-                        checked="true"
-                        @onSelection="this.onSelection"
-                    />
-                    <label for="one">High</label>
-                    <input type="radio" id="100" value="high" v-model="lowTemp" @onSelection="this.onSelection" />
-                    <label for="">Low</label>
-                </div-->
-                <!--<span> lowTemp: {{ lowTemp }}</span>-->
             </div>
 
             <div id="result-area">
@@ -40,8 +26,6 @@
                     <input type="radio" id="high" value="High" name="choice" v-on:change="showHigh" />
                     <label for="high">Show daily highest temperature</label>
                     <br />
-                    
-                    
                 </div>
                 <div id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
                     {{ skiresort.name }}
@@ -84,16 +68,6 @@
                             {{ highTemperature }}°C
                         </div>
                     </div>
-                    
-                    
-                    
-                    <!--<span v-if="lowTemp">{{ skiresort.name }} {{ temperature.get(skiresort.name)?.lo }}</span>
-                    <span v-else>{{ skiresort.name }} {{ temperature.get(skiresort.name)?.hi }}</span>
-                    <div v-for="weekDay in weekDays" :key="weekDay">
-                        {{ weekDay }}
-                        {{ temperature.get(skiresort.name)?.wt }}
-                        <div>{{ temperature.get(skiresort.name)?.ws }}</div>
-                    </div>-->
                 </div>
             </div>
         </div>
@@ -127,10 +101,8 @@ export default {
     created() {
         this.skiresorts = Skiresorts
         this.updateWeatherData()
-        
     },
     methods: {
-
         showAt12() {
             this.at12Checked = true
             this.lowChecked = false
@@ -154,7 +126,6 @@ export default {
                 const url = `${BASE_URL}/category/pmp3g/version/2/geotype/point/lon/${lng}/lat/${lat}/data.json`
                 const response = await fetch(url)
                 const forecast = await response.json()
-                //const { lowest, highest } = this.findLowHighTemp(forecast)
                 const weatherSymbols = this.findWeeklyWeatherForecastInOneCity(forecast)
                 const weeklyTemperaturesAt12 = this.findWeeklyTemperatureAt12InOneCity(forecast)
                 const dailyLowest = this.findDailyLowTemperature(forecast) //
@@ -166,9 +137,7 @@ export default {
                     wt: weeklyTemperaturesAt12,
                     ws: weatherSymbols,
                 })
-                
                 this.weekDays = this.getWeekDays(forecast)
-                
             }
         },
 
@@ -214,7 +183,7 @@ export default {
             let todayNum = Number(todayStr) //3
 
             for (const hourlyData of forecast.timeSeries) {
-                //When the day has changed collected data for one day is pushed to tenDaysData
+                //When the day has changed, collected data for one day is pushed to tenDaysData
                 if (Number(hourlyData.validTime.substr(9, 1)) !== todayNum) {
                     tenDaysData.push(dailyData)
                     dailyData = [] //Resets daily info after it is pushed to tenDaysData
@@ -232,7 +201,7 @@ export default {
 
         findDailyLowTemperature(forecast) {
             let dailyLowTemperature = []
-            let tenDaysData = this.sortInfoByDay(forecast) //Returns 10 days info day sorted day by day
+            let tenDaysData = this.sortInfoByDay(forecast) //Returns 10 days data sorted day by day
             for (const dailyData of tenDaysData) {
                 let lowest = 1000
 
@@ -266,33 +235,6 @@ export default {
             return dailyHighTemperature
         },
 
-/*
-        findDailyLowHighTemperature(forecast) {
-            let dailyHighTemperature = []
-            let dailyLowTemperature = []
-
-            let tenDaysData = this.sortInfoByDay(forecast) //Returns 10 days info day sorted day by day
-            for (const dailyData of tenDaysData) {
-                let highest = -1000
-                let lowest = 1000
-
-                for (const hourlyData of dailyData) {
-                    let temp = this.findTemperature(hourlyData.parameters)
-                    if (temp > highest) {
-                        highest = temp
-                    }
-                    if (temp < lowest) {
-                        lowest = temp
-                    }
-                }
-                dailyLowTemperature.push(lowest)
-                dailyHighTemperature.push(highest)
-            }
-            
-            return { dailyLowTemperature, dailyHighTemperature }
-
-        },*/
-
         findLowHighTemp(forecast) {
             let highest = -1000
             let lowest = 1000
@@ -317,37 +259,23 @@ export default {
 
             throw new Error("unable to find parameter for temperature")
         },
-       /*onSelection: (evt) => {
-            if (evt.target.value === "low") {
-                document.getElementById("100").checked = true
-                document.getElementById("99").checked = false
-                this.lowTemp = true
-                this.temperature.get(this.skiresort.name)?.lo
-            } else if (evt.target.value === "high") {
-                document.getElementById("100").checked = false
-                document.getElementById("99").checked = true
-                this.lowTemp = false
-                this.temperature.get(this.skiresort.name)?.hi
-            }
-        },*/
 
         //Returns a list of weekdays starting today.
         getWeekDays(forecast) {
             const weekDays = ["Sön", "Mån", "Tis", "Ons", "Tor", "Fre", "Lör"]
             const today = this.convertDateToWeekday(forecast.timeSeries[0].validTime)
             let startIndex = 0
-            
-            //Finds what day it is today, which is the start index 
+            //Finds what day it is today, which is the start index
             for (let i = 0; i < weekDays.length; i++) {
                 if (weekDays[i] === today) {
-                    startIndex = i //ex. 4
+                    startIndex = i
                 }
             }
 
             let modifiedWeekDays = []
             for (let i = 0; i < 10; i++) {
                 modifiedWeekDays[i] = weekDays[startIndex]
-                startIndex++ // ex.5
+                startIndex++
                 if (startIndex > 6) {
                     startIndex = 0
                 }
