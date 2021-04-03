@@ -24,34 +24,29 @@
                     />
                     <label for="one">High</label>
                     <input type="radio" id="100" value="high" v-model="lowTemp" @onSelection="this.onSelection" />
-                    <label for="two">Low</label>
+                    <label for="">Low</label>
                 </div-->
                 <!--<span> lowTemp: {{ lowTemp }}</span>-->
             </div>
 
             <div id="result-area">
                 <div id="button-area">
-                    <input type="radio" id="one" value="One" name="choice" v-model="picked" v-on:change="showLow" />
-                    <label for="one">Show daily lowest temperature</label>
+                    <input type="radio" id="at12" value="At12" name="choice" v-on:change="showAt12" />
+                    <label for="at12">Show daily temperature at 12 o'clock</label>
                     <br />
-                    <input type="radio" id="two" value="Two" name="choice" v-model="picked" v-on:change="showHigh"/>
-                    <label for="two">Show daily highest temperature</label>
+                    <input type="radio" id="low" value="Low" name="choice" v-on:change="showLow" />
+                    <label for="low">Show daily lowest temperature</label>
                     <br />
-                    <span>Picked: {{ picked }}</span>
+                    <input type="radio" id="high" value="High" name="choice" v-on:change="showHigh" />
+                    <label for="high">Show daily highest temperature</label>
+                    <br />
+                    
+                    
                 </div>
                 <div id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
                     {{ skiresort.name }}
                     <div id="weekday-container">
                         <div id="weekday" v-for="weekDay in weekDays" :key="weekDay">{{ weekDay }}</div>
-                    </div>
-                    <div id="temperature-container">
-                        <div
-                            id="temperature-area"
-                            v-for="temperature in temperature.get(skiresort.name)?.wt"
-                            :key="temperature"
-                        >
-                            {{ temperature }}°C
-                        </div>
                     </div>
                     <div id="weather-container">
                         <div
@@ -60,6 +55,15 @@
                             :key="weatherSymbol"
                         >
                             {{ weatherSymbol }}
+                        </div>
+                    </div>
+                    <div v-if="at12Checked" id="At12-temperature-container">
+                        <div
+                            id="At12-emperature-area"
+                            v-for="at12Temperature in temperature.get(skiresort.name)?.wt"
+                            :key="at12Temperature"
+                        >
+                            {{ at12Temperature }}°C
                         </div>
                     </div>
                     <div v-if="lowChecked" id="low-temperature-container">
@@ -80,6 +84,8 @@
                             {{ highTemperature }}°C
                         </div>
                     </div>
+                    
+                    
                     
                     <!--<span v-if="lowTemp">{{ skiresort.name }} {{ temperature.get(skiresort.name)?.lo }}</span>
                     <span v-else>{{ skiresort.name }} {{ temperature.get(skiresort.name)?.hi }}</span>
@@ -113,8 +119,9 @@ export default {
             weatherSymbols: [],
             weeklyTemperaturesAt12: [],
             weekDays: [],
+            at12Checked: false,
             lowChecked: false,
-            highChecked: false
+            highChecked: false,
         }
     },
     created() {
@@ -124,14 +131,22 @@ export default {
     },
     methods: {
 
+        showAt12() {
+            this.at12Checked = true
+            this.lowChecked = false
+            this.highChecked = false
+        },
+
         showLow() {
+            this.at12Checked = false
             this.lowChecked = true
             this.highChecked = false
         },
 
         showHigh() {
-            this.highChecked = true
+            this.at12Checked = false
             this.lowChecked = false
+            this.highChecked = true
         },
 
         async updateWeatherData() {
@@ -302,7 +317,7 @@ export default {
 
             throw new Error("unable to find parameter for temperature")
         },
-        onSelection: (evt) => {
+       /*onSelection: (evt) => {
             if (evt.target.value === "low") {
                 document.getElementById("100").checked = true
                 document.getElementById("99").checked = false
@@ -314,7 +329,7 @@ export default {
                 this.lowTemp = false
                 this.temperature.get(this.skiresort.name)?.hi
             }
-        },
+        },*/
 
         //Returns a list of weekdays starting today.
         getWeekDays(forecast) {
