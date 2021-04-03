@@ -43,6 +43,7 @@
                         >
                             {{ temperature }}°C
                         </div>
+                        
                     </div>
                     <div id="weather-container">
                         <div
@@ -90,6 +91,7 @@ export default {
     created() {
         this.skiresorts = Skiresorts
         this.updateWeatherData()
+        //this.sortInfoByDay()
     },
     methods: {
         async updateWeatherData() {
@@ -97,13 +99,15 @@ export default {
                 const url = `${BASE_URL}/category/pmp3g/version/2/geotype/point/lon/${lng}/lat/${lat}/data.json`
                 const response = await fetch(url)
                 const forecast = await response.json()
-                const { lowest, highest } = this.findLowTemp(forecast)
+                const { lowest, highest } = this.findLowHighTemp(forecast)
                 const weatherSymbols = this.findWeeklyWeatherForecastInOneCity(forecast)
-                const weeklyTemperatures = this.findWeeklyTemperatureInOneCity(forecast)
+                const weeklyTemperatures = this.findWeeklyTemperatureAt12InOneCity(forecast)
                 this.temperature.set(name, { lo: lowest, hi: highest, wt: weeklyTemperatures, ws: weatherSymbols })
                 this.weekDays = this.getWeekDays(forecast)
+                //this.findDailyHighAndLowTemperatureFor10days(forecast)
+                this.sortInfoByDay(forecast)
             }
-        },
+        },   
 
         findWeeklyWeatherForecastInOneCity(forecast) {
             let weatherValues = [] //1, 2, 3.....
@@ -114,9 +118,6 @@ export default {
                     weatherValues.push(hourlyData.parameters[18].values[0])
                 }
             }
-
-            //weatherValues.pop() //Deletes the last(8th element)
-            //weatherValues.pop()
 
             for (const weatherValue of weatherValues) {
                 if (weatherValue <= 4) {
@@ -132,20 +133,56 @@ export default {
             return weatherSymbols
         },
 
-        //Returns a list of weekly temperatures in one city
-        findWeeklyTemperatureInOneCity(forecast) {
+        //Returns a list of weekly temperatures in one city at 12 o'clock every day
+        findWeeklyTemperatureAt12InOneCity(forecast) {
             let temperatures = []
             for (const hourlyData of forecast.timeSeries) {
                 if (hourlyData.validTime.includes("T12")) {
                     temperatures.push(this.findTemperature(hourlyData.parameters))
                 }
             }
-            //temperatures.pop()
-            //temperatures.pop()
             return temperatures
         },
 
-        findLowTemp(forecast) {
+/*
+        findDailyHighAndLowTemperatureFor10days(forecast) {
+            let tenDaysHighTemperature = []
+            const tenDaysInfo = this.sortInfoByDay(forecast)
+            console.log(tenDaysInfo)
+            for(const eachDay of tenDaysInfo) {
+                let highest = -1000
+                let lowest = 1000
+                
+            }
+        },*/
+
+        sortInfoByDay(forecast) {
+            console.log("Test")
+            let tenDaysInfo = []
+            let dailyInfo = []
+            let todayStr = forecast.timeSeries[0].validTime.substr(9, 1) //"3"
+            let todayNum = Number(todayStr) //3
+
+            for (const hourlyData of forecast.timeSeries) {
+                console.log("Loop start")
+                //When the day has changed collected data for one day is pushed to tenDaysInfo
+                if (Number(hourlyData.validTime.substr(9, 1)) !== todayNum) {
+                    tenDaysInfo.push(dailyInfo)
+                    dailyInfo = [] //Resets daily info after it is pushed to tenDaysInfo
+                    todayNum++
+                    if (todayNum === 10) {
+                        todayNum = 0
+                    }
+                } else {
+                    dailyInfo.push(hourlyData) //Collect data for one day
+                }
+            }
+
+            console.log(tenDaysInfo)
+            return tenDaysInfo
+        },
+
+        findLowHighTemp(forecast) {
             let highest = -1000
             let lowest = 1000
             for (const hourlyData of forecast.timeSeries) {
