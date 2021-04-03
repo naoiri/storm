@@ -38,7 +38,18 @@
                             v-for="weatherSymbol in temperature.get(skiresort.name)?.ws"
                             :key="weatherSymbol"
                         >
-                            {{ weatherSymbol }}
+                        <span v-if="weatherSymbol === 'sun'">
+                            <fa icon="sun" style="color: orange" />{{ weatherSymbol }}
+                        </span>
+                        <span v-else-if="weatherSymbol === 'cloud'">
+                            <fa icon="cloud" style="color: grey" />{{ weatherSymbol }}
+                        </span>
+                        <span v-else-if="weatherSymbol === 'cloud-rain'">
+                            <fa icon="cloud-rain" style="color: blue" />{{ weatherSymbol }}
+                        </span>
+                        <span v-else-if="weatherSymbol === 'snowflake'">
+                            <fa icon="snowflake" style="color: aqua" />{{ weatherSymbol }}
+                        </span>
                         </div>
                     </div>
                     <div v-if="avChecked" id="av-temperature-container">
@@ -156,9 +167,9 @@ export default {
                 } else if (weatherValue <= 7) {
                     weatherSymbols.push("cloud")
                 } else if (weatherValue <= 24) {
-                    weatherSymbols.push("clo-rai")
+                    weatherSymbols.push("cloud-rain")
                 } else if ((weatherValue >= 15 && weatherValue <= 17) || (weatherValue >= 25 && weatherValue <= 27)) {
-                    weatherSymbols.push("snow-flake")
+                    weatherSymbols.push("snowflake")
                 }
             }
             return weatherSymbols
