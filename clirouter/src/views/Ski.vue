@@ -344,7 +344,7 @@ div {
 p {
     color: black;
     font-size: 30px;
-    text-align: center;
+    text-align: left;
 }
 
 .hidden {
