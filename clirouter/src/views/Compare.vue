@@ -9,18 +9,6 @@
                 <input id="autoComplete" type="text" autocomplete="off" />
             </span>
         </div>
-        <!--div class="main">
-            <span class="text center">Ort 2: </span>
-            <span class="autoComplete_wrapper main">
-                <input id="city2" type="text" autocomplete="off" />
-            </span>
-        </div>
-        <div class="main">
-            <span class="text center">Välj datum: </span>
-            <span class="autoComplete_wrapper main">
-                <input id="date" type="text" autocomplete="off" />
-            </span>
-        </div-->
         <div class="data main center">
             <div>
                 Vädret i {{ current }} för datum ({{ date.toLocaleDateString("sv") }}) var: {{ temperatureData }} grader
@@ -35,7 +23,7 @@ import autoComplete from "@tarekraafat/autocomplete.js"
 import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
 import Title from "@/components/Title.vue"
 import Cities from "@/db/cities.js"
-//import Sunshine from "@/db/metobs_sunshineTime_active_sites.csv"
+import csv from "@/db/metobs_airtemperatureInstant_active_sites.csv"
 import DatePicker from "@/components/DatePicker.vue"
 export default {
     name: "Compare",
@@ -101,6 +89,7 @@ export default {
     },
     created() {
         this.cities = Cities
+        console.log(csv)
     },
     mounted() {
         const interaction = this

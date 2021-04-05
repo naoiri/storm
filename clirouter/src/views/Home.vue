@@ -18,8 +18,3 @@ export default {
     },
 }
 </script>
-<style>
-.strong {
-    font-weight: bold;
-}
-</style>

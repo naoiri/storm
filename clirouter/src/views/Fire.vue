@@ -94,10 +94,6 @@ export default {
     width: 600px;
 }
 
-.space {
-    padding-left: 5px;
-}
-
 .firewarning {
     padding: 1rem;
     display: grid;
