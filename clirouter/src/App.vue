@@ -6,3 +6,10 @@
     </nav>
     <router-view></router-view>
 </template>
+<style>
+body {
+    background-color: #bedcd5;
+    font: "Roboto", sans-serif;
+    /*line-height: 1.4;*/
+}
+</style>

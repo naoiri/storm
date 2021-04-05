@@ -2,11 +2,9 @@
     <div class="compare">
         <Title msg="Jämför vädret historiskt" />
         <p class="strong">Se vilken temperatur det var historiskt t.o.m. December 2020.</p>
-        <DatePicker id="datePicker" v-model="date" />
-        <div class="main">
-            <span class="autoComplete_wrapper">
-                <input id="autoComplete" type="text" autocomplete="off" />
-            </span>
+        <DatePicker class="main data blue" id="datePicker" v-model="date" />
+        <div class="autoComplete_wrapper updownpad">
+            <input id="autoComplete" type="text" autocomplete="off" />
         </div>
         <div class="data main center">
             <div>
@@ -113,6 +111,13 @@ export default {
 </script>
 
 <style>
+.blue {
+    background-color: #83abba;
+}
+
+.left-align {
+    left-padding: 0px;
+}
 .strong {
     font-weight: bold;
 }
@@ -125,9 +130,17 @@ p {
 }
 
 .main {
-    width: 250px;
+    width: 260px;
+    margin: 1rem;
+    padding: 0.25rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+.updownpad {
+    width: 250px;
+    margin-up: 1rem;
+    margin-down: 1rem;
 }
 
 .text {
@@ -146,5 +159,6 @@ p {
     display: grid;
     grid-template-columns: 1fr;
     border: 2px solid gray;
+    background-color: white;
 }
 </style>

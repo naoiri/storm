@@ -4,11 +4,13 @@
         <p class="strong">
             Här kan du välja vilken ort i din närhet som har bäst väder för din skidåkning. Sök på ort för att se väder.
         </p>
-        <fa icon="sun" style="color: orange" />
-        <fa icon="cloud" style="color: grey" />
-        <fa icon="cloud-rain" style="color: blue" />
-        <fa icon="snowflake" style="color: aqua" />
-        <fa icon="fire-alt" style="color: red" />
+        <div class="hidden">
+            <fa icon="sun" style="color: orange" />
+            <fa icon="cloud" style="color: grey" />
+            <fa icon="cloud-rain" style="color: blue" />
+            <fa icon="snowflake" style="color: aqua" />
+            <fa icon="fire-alt" style="color: red" />
+        </div>
         <div id="ski_main">
             <div>
                 <span><em>Ski resorts</em> </span>
@@ -27,7 +29,7 @@
                     <label for="high">Show daily highest temperature</label>
                     <br />
                 </div>
-                <div id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
+                <div class="data" id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
                     {{ skiresort.name }}
                     <div id="weekday-container">
                         <div id="weekday" v-for="weekDay in weekDays" :key="weekDay">{{ weekDay }}</div>
@@ -332,18 +334,17 @@ export default {
 </script>
 
 <style>
-body {
-    background-color: lightblue;
-}
 .main {
-    width: 400px;
+    max-width: 260px;
 }
-div {
-    color: blue;
+body {
+    color: black;
+}
+.data {
+    background-color: white;
 }
 p {
-    color: black;
-    font-size: 30px;
+    font-size: x-small;
     text-align: left;
 }
 
