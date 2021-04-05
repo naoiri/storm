@@ -1,5 +1,5 @@
 <template>
-    <div class="ski">
+    <div class="ski maxwidth">
         <Title msg="Skidorter i Sverige" />
         <p class="strong">
             Här kan du välja vilken ort i din närhet som har bäst väder för din skidåkning. Sök på ort för att se väder.
@@ -334,18 +334,14 @@ export default {
 </script>
 
 <style>
-.main {
-    max-width: 260px;
+.maxwidth {
+    max-width: 310px;
 }
 body {
     color: black;
 }
 .data {
     background-color: white;
-}
-p {
-    font-size: x-small;
-    text-align: left;
 }
 
 .hidden {

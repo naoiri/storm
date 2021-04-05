@@ -1,20 +1,10 @@
 <template>
     <div class="links">
         <p>{{ msg }}</p>
-        <ul>
-            <li>
-                <router-link to="/about">About</router-link>
-            </li>
-            <li>
-                <router-link to="/fire">Fire Warning</router-link>
-            </li>
-            <li>
-                <router-link to="/ski">Ski</router-link>
-            </li>
-            <li>
-                <router-link to="/compare">Compare</router-link>
-            </li>
-        </ul>
+        <div><router-link to="/about">About</router-link></div>
+        <div><router-link to="/fire">Fire Warning</router-link></div>
+        <div><router-link to="/ski">Ski</router-link></div>
+        <div><router-link to="/compare">Compare</router-link></div>
     </div>
 </template>
 

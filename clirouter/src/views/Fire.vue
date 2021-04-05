@@ -1,21 +1,24 @@
 <template>
-    <div class="fire">
+    <div class="fire fire-main">
         <Title msg="Brandrisk" />
         <!--DatePicker /-->
-        <p class="strong">Här kan du få information om brandrisken.</p>
-        <div class="autoComplete_wrapper main">
+        <p class="strong">Här kan du få information om vilken brandrisk ett län har.</p>
+        <div class="autoComplete_wrapper">
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
-        <div class="firewarning main">
+        <div class="firewarning">
             <div id="result">
-                <div>{{ query }}</div>
-                <div>Hämtad: {{ time }}</div>
-                <div>{{ fireWarningMessage }}</div>
-                <div id="fire-balls-area">
-                    <div v-if="firstBall"><fa icon="fire-alt" style="color: red" /></div>
-                    <div v-else><fa icon="fire-alt" /></div>
-                    <div v-if="secondBall"><fa icon="fire-alt" style="color: red" /></div>
-                    <div v-else><fa icon="fire-alt" /></div>
+                <div class="firetext">{{ query }}</div>
+                <div class="firetext">{{ time }}</div>
+                <div>
+                    <span class="firetext">{{ fireWarningMessage }}</span>
+
+                    <span class="firetext" id="fire-balls-area">
+                        <div v-if="firstBall"><fa icon="fire-alt" style="color: red" /></div>
+                        <div v-else><fa icon="fire-alt" /></div>
+                        <div v-if="secondBall"><fa icon="fire-alt" style="color: red" /></div>
+                        <div v-else><fa icon="fire-alt" /></div>
+                    </span>
                 </div>
             </div>
         </div>
@@ -90,29 +93,31 @@ export default {
 </script>
 
 <style>
-.main {
-    width: 600px;
+.fire-main {
+    width: 310px;
+}
+
+.blue {
+    background-color: white;
+}
+
+.firetext {
+    margin: 0.25rem;
 }
 
 .firewarning {
-    padding: 1rem;
     display: grid;
     grid-template-columns: 1fr;
     border: 2px solid gray;
+    padding: 0.5rem;
 }
 img {
     width: 40px;
     height: 40px;
 }
 
-#result {
-    display: flex;
-    justify-content: space-between;
-}
-
 #fire-balls-area {
     display: flex;
-    justify-content: space-between;
 }
 
 .empty-ball {
