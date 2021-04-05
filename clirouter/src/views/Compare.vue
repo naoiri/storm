@@ -4,7 +4,6 @@
         <p class="strong">Se vilken temperatur det var historiskt t.o.m. December 2020.</p>
         <DatePicker id="datePicker" v-model="date" />
         <div class="main">
-            <span class="text center">Ort 1: </span>
             <span class="autoComplete_wrapper">
                 <input id="autoComplete" type="text" autocomplete="off" />
             </span>
