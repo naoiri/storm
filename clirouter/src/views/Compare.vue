@@ -5,7 +5,7 @@
         <DatePicker id="datePicker" v-model="date" />
         <div class="main">
             <span class="text center">Ort 1: </span>
-            <span class="autoComplete_wrapper main">
+            <span class="autoComplete_wrapper">
                 <input id="autoComplete" type="text" autocomplete="off" />
             </span>
         </div>
@@ -97,8 +97,19 @@ export default {
 </script>
 
 <style>
+.strong {
+    font-weight: bold;
+}
+h1 {
+    font-size: x-large;
+}
+
+p {
+    font-size: x-small;
+}
+
 .main {
-    width: 350px;
+    width: 250px;
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
