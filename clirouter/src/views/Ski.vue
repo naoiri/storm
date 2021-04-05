@@ -1,7 +1,7 @@
 <template>
     <div class="ski">
         <Title msg="Skidorter i Sverige" />
-        <p>
+        <p class="strong">
             Här kan du välja vilken ort i din närhet som har bäst väder för din skidåkning. Sök på ort för att se väder.
         </p>
         <fa icon="sun" style="color: orange" />
@@ -68,7 +68,6 @@
                             {{ highTemperature }}°C
                         </div>
                     </div>
-                    
                 </div>
             </div>
         </div>
@@ -183,12 +182,12 @@ export default {
             let tenDaysData = this.sortInfoByDay(forecast)
             let averageTemperatures = []
             let hourlyTemperatures = []
-            for(const dailyData of tenDaysData){
-                for(const hourlyData of dailyData){
+            for (const dailyData of tenDaysData) {
+                for (const hourlyData of dailyData) {
                     hourlyTemperatures.push(Number(this.findTemperature(hourlyData.parameters)))
                 }
                 let sum = 0
-                for(const temperature of hourlyTemperatures){
+                for (const temperature of hourlyTemperatures) {
                     sum += temperature
                 }
                 averageTemperatures.push(sum / hourlyTemperatures.length)

@@ -2,7 +2,7 @@
     <div class="fire">
         <Title msg="Brandrisk" />
         <!--DatePicker /-->
-        <p>Här kan du få information om brandrisken.</p>
+        <p class="strong">Här kan du få information om brandrisken.</p>
         <div class="autoComplete_wrapper main">
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
@@ -120,5 +120,9 @@ img {
     height: 35px;
     border-radius: 50%;
     border: 1px solid black;
+}
+
+.strong {
+    font-weight: bold;
 }
 </style>
