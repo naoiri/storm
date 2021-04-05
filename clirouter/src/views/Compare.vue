@@ -22,7 +22,6 @@
 import autoComplete from "@tarekraafat/autocomplete.js"
 import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
 import Title from "@/components/Title.vue"
-import Cities from "@/db/cities.js"
 import csv from "@/db/metobs_airtemperatureInstant_active_sites.csv"
 import DatePicker from "@/components/DatePicker.vue"
 export default {
@@ -34,12 +33,12 @@ export default {
     data() {
         return {
             cities: [],
+            ids: [],
             current: "",
             query: "",
             parameter1: [],
             temperatureData: "",
             date: new Date(Date.now()),
-            //Sunshine,
         }
     },
     methods: {
@@ -67,29 +66,19 @@ export default {
     },
     computed: {
         getTemperatureId() {
-            switch (this.query) {
-                case "Stockholm":
-                    return "98230"
-                case "Göteborg":
-                    return "71420"
-                case "Malmö":
-                    return "52350"
-                case "Uppsala":
-                    return "97510"
-                case "Västerås":
-                    return "96350"
-                case "Örebro":
-                    return "94190"
-                case "Helsingborg":
-                    return "62040"
-                default:
-                    return "00000"
+            for (let i = 0; i < this.cities.length; i++) {
+                if (this.cities[i] === this.query) {
+                    return this.ids[i]
+                }
             }
+            return null
         },
     },
     created() {
-        this.cities = Cities
-        console.log(csv)
+        this.cities = csv.map((a) => a.Namn)
+        this.ids = csv.map((b) => b.Id)
+        //let result = csv.map((a) => a.Namn)
+        console.log(this.ids.length)
     },
     mounted() {
         const interaction = this
