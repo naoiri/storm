@@ -14,6 +14,12 @@
                 Celcius.
             </div>
         </div>
+        <div class="data main center">
+            <div>
+                Vädret i {{ current2 }} för datum ({{ date.toLocaleDateString("sv") }}) var:
+                {{ temperatureData2 }} grader Celcius.
+            </div>
+        </div>
     </div>
 </template>
 
@@ -34,10 +40,13 @@ export default {
             cities: [],
             ids: [],
             current: "",
+            current2: "",
             query: "",
             parameter1: [],
             temperatureData: "",
+            temperatureData2: "",
             date: new Date(Date.now()),
+            first: true,
         }
     },
     methods: {
@@ -49,10 +58,18 @@ export default {
             )
             const json = await response.json()
             this.parameter1 = json.value
-            this.temperatureData = this.parameter1[
-                this.parameter1.length - 1 - this.diff_hours(new Date(Date.now()), this.date)
-            ].value
-            this.current = this.query
+            if (this.first) {
+                this.temperatureData = this.getCorrectHourData()
+                this.current = this.query
+                this.first = false
+            } else {
+                this.temperatureData2 = this.getCorrectHourData()
+                this.current2 = this.query
+                this.first = true
+            }
+        },
+        getCorrectHourData() {
+            return this.parameter1[this.parameter1.length - 1 - this.diff_hours(new Date(Date.now()), this.date)].value
         },
         diff_hours(dt2, dt1) {
             var diff = (dt2.getTime() - dt1.getTime()) / 1000
@@ -86,7 +103,7 @@ export default {
                 src: this.cities,
             },
             onSelection: (feedback) => {
-                document.getElementById("autoComplete").value = feedback.selection.value
+                document.getElementById("autoComplete").value = ""
                 this.query = feedback.selection.value
                 interaction.updateData()
             },
