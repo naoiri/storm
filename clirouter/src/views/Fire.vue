@@ -8,13 +8,14 @@
         </div>
         <div class="firewarning main">
             <div id="result">
-                <div class="space">{{ query }}</div>
-                <div class="space">{{ fireWarningMessage }}</div>
+                <div>{{ query }}</div>
+                <div>Hämtad: {{ time }}</div>
+                <div>{{ fireWarningMessage }}</div>
                 <div id="fire-balls-area">
-                    <div v-if="firstBall" class="space"><img src="../assets/flamma.png" alt="fire" /></div>
-                    <div class="empty-ball" v-else></div>
-                    <div v-if="secondBall"><img src="../assets/flamma.png" alt="fire" /></div>
-                    <div class="empty-ball" v-else></div>
+                    <div v-if="firstBall"><fa icon="fire-alt" style="color: red" /></div>
+                    <div v-else><fa icon="fire-alt" /></div>
+                    <div v-if="secondBall"><fa icon="fire-alt" style="color: red" /></div>
+                    <div v-else><fa icon="fire-alt" /></div>
                 </div>
             </div>
         </div>
@@ -26,13 +27,11 @@ import autoComplete from "@tarekraafat/autocomplete.js"
 import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
 import Counties from "@/db/regions.js"
 import Title from "@/components/Title.vue"
-//import DatePicker from "@/components/DatePicker.vue"
 
 export default {
     name: "Fire",
     components: {
         Title,
-        //DatePicker,
     },
     data() {
         return {
@@ -42,7 +41,7 @@ export default {
             fireWarningMessage: "",
             firstBall: false,
             secondBall: false,
-            //TODO pickedDate: $refs.DatePicker.picked,
+            time: "",
         }
     },
 
@@ -69,6 +68,7 @@ export default {
                 for (const alert of this.alerts) {
                     if (this.query === alert.info.headline) {
                         this.fireWarningMessage = alert.info.eventCode[3].value
+                        this.time = alert.sent
                         isFireWarning = true
                         if (this.fireWarningMessage === "Risk Gräsbrand") {
                             this.firstBall = true
@@ -91,7 +91,7 @@ export default {
 
 <style>
 .main {
-    width: 350px;
+    width: 600px;
 }
 
 .space {
