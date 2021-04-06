@@ -4,13 +4,7 @@
         <p class="strong">
             Här kan du välja vilken ort i din närhet som har bäst väder för din skidåkning. Sök på ort för att se väder.
         </p>
-        <div class="hidden">
-            <fa icon="sun" style="color: orange" />
-            <fa icon="cloud" style="color: grey" />
-            <fa icon="cloud-rain" style="color: blue" />
-            <fa icon="snowflake" style="color: aqua" />
-            <fa icon="fire-alt" style="color: red" />
-        </div>
+
         <div id="ski_main">
             <div>
                 <span><em>Skidorter</em> </span>
@@ -104,6 +98,7 @@ export default {
         this.skiresorts = Skiresorts
         this.updateWeatherData()
     },
+
     methods: {
         showAv() {
             this.avChecked = true
