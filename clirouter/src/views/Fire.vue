@@ -3,6 +3,16 @@
         <Title msg="Brandrisk" />
         <!--DatePicker /-->
         <p class="strong">Här kan du få information om vilken brandrisk ett län har.</p>
+
+        <div id="explanation">
+            <div><fa icon="fire-alt" /> <fa icon="fire-alt" /> Ingen risk finns</div>
+
+            <div><fa icon="fire-alt" style="color: red" /> <fa icon="fire-alt" /> Risk för gräsbrand</div>
+            <div>
+                <fa icon="fire-alt" style="color: red" /> <fa icon="fire-alt" style="color: red" /> Risk för skogsbrand
+                finns
+            </div>
+        </div>
         <div class="autoComplete_wrapper">
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
@@ -106,14 +116,24 @@ export default {
 }
 
 .firewarning {
+    background-color: white;
     display: grid;
     grid-template-columns: 1fr;
     border: 2px solid gray;
+    margin: 0.5rem;
     padding: 0.5rem;
 }
 img {
     width: 40px;
     height: 40px;
+}
+
+#explanation {
+    margin: 0.5rem;
+}
+
+.autoComplete_wrapper {
+    margin: 0.5rem;
 }
 
 #fire-balls-area {
@@ -129,5 +149,6 @@ img {
 
 .strong {
     font-weight: bold;
+    margin: 0.5rem;
 }
 </style>
