@@ -124,10 +124,6 @@ h1 {
     font-size: x-large;
 }
 
-p {
-    font-size: x-small;
-}
-
 .main {
     width: 260px;
     margin: 0.5rem;

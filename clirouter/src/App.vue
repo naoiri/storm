@@ -12,7 +12,8 @@ body {
     font: "Roboto", sans-serif;
     /*line-height: 1.4;*/
 }
-p {
+p,
+div {
     font-size: 14px;
     text-align: left;
 }
