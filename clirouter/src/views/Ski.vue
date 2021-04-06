@@ -13,20 +13,20 @@
         </div>
         <div id="ski_main">
             <div>
-                <span><em>Ski resorts</em> </span>
-                <span><em> Temperature</em> </span>
+                <span><em>Skidorter</em> </span>
+                <span><em> Temperatur</em> </span>
             </div>
 
             <div id="result-area">
                 <div id="button-area">
                     <input type="radio" id="av" value="Av" name="choices" v-on:change="showAv" />
-                    <label for="av">Show daily average temperature</label>
+                    <label for="av">Visa genomsnittlig dygnstemperatur</label>
                     <br />
                     <input type="radio" id="low" value="Low" name="choices" v-on:change="showLow" />
-                    <label for="low">Show daily lowest temperature</label>
+                    <label for="low">Visa lägsta dygnstemperatur</label>
                     <br />
                     <input type="radio" id="high" value="High" name="choices" v-on:change="showHigh" />
-                    <label for="high">Show daily highest temperature</label>
+                    <label for="high">Visa högsta dygnstemperatur</label>
                     <br />
                 </div>
                 <div class="data" id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
@@ -157,13 +157,13 @@ export default {
 
             for (const weatherValue of weatherValues) {
                 if (weatherValue <= 4) {
-                    weatherSymbols.push("sun")
+                    weatherSymbols.push("sol")
                 } else if (weatherValue <= 7) {
-                    weatherSymbols.push("cloud")
+                    weatherSymbols.push("moln")
                 } else if (weatherValue <= 24) {
-                    weatherSymbols.push("clo-rai")
+                    weatherSymbols.push("regn")
                 } else if ((weatherValue >= 15 && weatherValue <= 17) || (weatherValue >= 25 && weatherValue <= 27)) {
-                    weatherSymbols.push("snow-flake")
+                    weatherSymbols.push("snö")
                 }
             }
             return weatherSymbols

@@ -1,22 +1,25 @@
 <template>
     <div class="compare">
-        <Title msg="Jämför vädret historiskt" />
-        <p class="strong">Se vilken temperatur det var historiskt t.o.m. December 2020.</p>
+        <Title msg="Jämför orter" />
+        <p class="strong">Jämför temperaturen mellan två orter fr.o.m. December 2020</p>
         <div class="redborder">
             <DatePicker class="main data blue" id="datePicker" v-model="date" />
         </div>
-        <div class="autoComplete_wrapper updownpad">
-            <input id="autoComplete" type="text" autocomplete="off" />
+        <div class="updownpad">
+            <span class="text center">{{ whichCity }}</span>
+            <span class="autoComplete_wrapper">
+                <input id="autoComplete" type="text" autocomplete="off" />
+            </span>
         </div>
         <div class="data main center">
             <div>
-                Vädret i {{ current }} för datum ({{ date.toLocaleDateString("sv") }}) var: {{ temperatureData }} grader
-                Celcius.
+                Ort 1: Vädret i {{ current }} för datum ({{ date.toLocaleDateString("sv") }}) var:
+                {{ temperatureData }} grader Celcius.
             </div>
         </div>
         <div class="data main center">
             <div>
-                Vädret i {{ current2 }} för datum ({{ date.toLocaleDateString("sv") }}) var:
+                Ort 2: Vädret i {{ current2 }} för datum ({{ date.toLocaleDateString("sv") }}) var:
                 {{ temperatureData2 }} grader Celcius.
             </div>
         </div>
@@ -47,6 +50,7 @@ export default {
             temperatureData2: "",
             date: new Date(Date.now()),
             first: true,
+            whichCity: "Ort 1: ",
         }
     },
     methods: {
@@ -61,10 +65,12 @@ export default {
             if (this.first) {
                 this.temperatureData = this.getCorrectHourData()
                 this.current = this.query
+                this.whichCity = "Ort 2: "
                 this.first = false
             } else {
                 this.temperatureData2 = this.getCorrectHourData()
                 this.current2 = this.query
+                this.whichCity = "Ort 1: "
                 this.first = true
             }
         },
@@ -93,8 +99,6 @@ export default {
     created() {
         this.cities = csv.map((a) => a.Namn)
         this.ids = csv.map((b) => b.Id)
-        //let result = csv.map((a) => a.Namn)
-        console.log(this.ids.length)
     },
     mounted() {
         const interaction = this
@@ -126,7 +130,7 @@ p {
 
 .main {
     width: 260px;
-    margin: 1rem;
+    margin: 0.5rem;
     padding: 0.25rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -134,8 +138,9 @@ p {
 
 .updownpad {
     width: 250px;
-    margin-up: 1rem;
-    margin-down: 1rem;
+    margin-up: 0.5rem;
+    margin-down: 0.5rem;
+    padding: 0.25rem;
 }
 
 .text {

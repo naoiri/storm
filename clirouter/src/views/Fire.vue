@@ -1,9 +1,8 @@
 <template>
     <div class="fire fire-main">
         <Title msg="Brandrisk" />
-        <!--DatePicker /-->
         <p class="strong">Här kan du få information om vilken brandrisk ett län har.</p>
-        <div class="autoComplete_wrapper">
+        <div class="autoComplete_wrapper main">län:
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
         <div class="firewarning">
@@ -12,7 +11,6 @@
                 <div class="firetext">{{ time }}</div>
                 <div>
                     <span class="firetext">{{ fireWarningMessage }}</span>
-
                     <span class="firetext" id="fire-balls-area">
                         <div v-if="firstBall"><fa icon="fire-alt" style="color: red" /></div>
                         <div v-else><fa icon="fire-alt" /></div>
