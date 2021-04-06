@@ -24,11 +24,18 @@
                     <span class="firetext">{{ fireWarningMessage }}</span>
 
                     <span class="firetext" id="fire-balls-area">
-                        <div v-if="firstBall"><fa icon="fire-alt" style="color: red" /></div>
+                        <div v-if="firstBall"><fa icon="fire-alt" style="color: red" fa-xs/></div>
                         <div v-else><fa icon="fire-alt" /></div>
                         <div v-if="secondBall"><fa icon="fire-alt" style="color: red" /></div>
                         <div v-else><fa icon="fire-alt" /></div>
                     </span>
+                    <p v-if="firstBall" style="color: red" class="text">
+                        Att tänka på: Stor försiktighet bör iaktas vid eldning utomhus
+                    </p>
+                    <p v-if="firstBall" class="text">
+                        Risk för gräsbrand finns och utfärdas under våren när risken är stor att bränder uppstår och
+                        lätt sprids i torrt fjårsgräs.
+                    </p>
                 </div>
             </div>
         </div>
@@ -150,5 +157,8 @@ img {
 .strong {
     font-weight: bold;
     margin: 0.5rem;
+}
+.text {
+    font-size: 1rem;
 }
 </style>
