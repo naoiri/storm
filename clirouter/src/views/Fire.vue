@@ -2,6 +2,13 @@
     <div class="fire fire-main">
         <Title msg="Brandrisk" />
         <p class="strong">Här kan du få information om vilken brandrisk ett län har.</p>
+        <div id="explanation">
+            <div><fa icon="fire-alt" /> <fa icon="fire-alt" /> Ingen risk finns </div>
+            <div><fa icon="fire-alt" style="color: red"  /> <fa icon="fire-alt" /> Risk för gräsbrand</div>
+            <div>
+                <fa icon="fire-alt" style="color: red" /> <fa icon="fire-alt" style="color: red" /> Risk för skogsbrand
+            </div>
+        </div>
         <div class="autoComplete_wrapper main">län:
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
@@ -17,6 +24,13 @@
                         <div v-if="secondBall"><fa icon="fire-alt" style="color: red" /></div>
                         <div v-else><fa icon="fire-alt" /></div>
                     </span>
+                    <p v-if="firstBall" style="color: red" class="text">
+                        Att tänka på: Stor försiktighet bör iaktas vid eldning utomhus
+                    </p>
+                    <p v-if="firstBall" class="text">
+                        Risk för gräsbrand finns och utfärdas under våren när risken är stor att bränder och lätt sprids
+                        i torrt sjolåsgräs.
+                    </p>
                 </div>
             </div>
         </div>
