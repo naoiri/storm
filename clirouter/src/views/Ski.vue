@@ -30,30 +30,52 @@
                     <br />
                 </div>
                 <div class="data" id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
-                    {{ skiresort.name }}
+                    
                     <div id="weekday-container">
-                        <div id="weekday" v-for="weekDay in weekDays" :key="weekDay">{{ weekDay }}</div>
+                        <table> 
+                            <tr><th colspan="7"> {{ skiresort.name }}</th>
+                            </tr>
+                            <tr>
+                                <th v-for="weekDay in weekDays" :key="weekDay"> {{ weekDay }} 
+                                </th>
+                            </tr>
+                            <tr>
+                                <th v-for="weatherSymbol in temperature.get(skiresort.name)?.ws" :key="weatherSymbol"> 
+                                    <span v-if="weatherSymbol === 'sol'">
+                                        <fa icon="sun" style="color: orange" />
+                                    </span> 
+                                    <span v-else-if="weatherSymbol === 'moln'">
+                                        <fa icon="cloud" style="color: grey" /><!--{{ weatherSymbol }}-->
+                                    </span>
+                                    <span v-else-if="weatherSymbol === 'regn'">
+                                        <fa icon="cloud-rain" style="color: blue" /><!--{{ weatherSymbol }}-->
+                                    </span>
+                                    <span v-else-if="weatherSymbol === 'snö'">
+                                        <fa icon="snowflake" style="color: aqua" /><!--{{ weatherSymbol }}-->
+                                    </span>
+                                </th>
+                            </tr>
+                            <tr v-if="avChecked" id="av-temperature-container">
+                                <th v-for="avTemperature in temperature.get(skiresort.name)?.av" :key="avTemperature">
+                                    {{ avTemperature }}°C
+                                </th>
+                            </tr>
+                            <tr v-if="lowChecked" id="low-temperature-container">
+                                <th v-for="lowTemperature in temperature.get(skiresort.name)?.lo" :key="lowTemperature">
+                                    {{ lowTemperature }}°C
+                                </th>
+                            </tr>
+                            <tr v-if="highChecked" id="high-temperature-container">
+                                <th
+                                    v-for="highTemperature in temperature.get(skiresort.name)?.hi"
+                                    :key="highTemperature"
+                                >
+                                    {{ highTemperature }}°C
+                                </th>
+                            </tr>
+                        </table>
                     </div>
-                    <div id="weather-container">
-                        <div
-                            id="weather-symbol-area"
-                            v-for="weatherSymbol in temperature.get(skiresort.name)?.ws"
-                            :key="weatherSymbol"
-                        >
-                        <span v-if="weatherSymbol === 'sol'">
-                            <fa icon="sun" style="color: orange" />{{ weatherSymbol }}
-                        </span>
-                        <span v-else-if="weatherSymbol === 'mol'">
-                            <fa icon="cloud" style="color: grey" />{{ weatherSymbol }}
-                        </span>
-                        <span v-else-if="weatherSymbol === 'regn'">
-                            <fa icon="cloud-rain" style="color: blue" />{{ weatherSymbol }}
-                        </span>
-                        <span v-else-if="weatherSymbol === 'snö'">
-                            <fa icon="snowflake" style="color: aqua" />{{ weatherSymbol }}
-                        </span>
-                        </div>
-                    </div>
+                    
                     <div v-if="avChecked" id="av-temperature-container">
                         <div
                             id="av-temperature-area"
@@ -105,7 +127,7 @@ export default {
             lowTemp: false,
             weatherSymbols: [],
             weekDays: [],
-            avChecked: false,
+            avChecked: true,
             lowChecked: false,
             highChecked: false,
         }
@@ -174,6 +196,8 @@ export default {
                     weatherSymbols.push("snö")
                 }
             }
+            weatherSymbols.pop()
+            weatherSymbols.pop()
             return weatherSymbols
         },
 
@@ -308,6 +332,9 @@ export default {
                     startIndex = 0
                 }
             }
+            modifiedWeekDays.pop()
+            modifiedWeekDays.pop()
+            modifiedWeekDays.pop()
             return modifiedWeekDays
         },
 
