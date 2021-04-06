@@ -2,15 +2,8 @@
     <div class="ski maxwidth">
         <Title msg="Skidorter i Sverige" />
         <p class="strong">
-            Här kan du välja vilken ort i din närhet som har bäst väder för din skidåkning. Sök på ort för att se väder.
+            Här kan du se hur vädret och temperaturen skiljer sig mellan de största skidorterna i Sverige
         </p>
-        <div class="hidden">
-            <fa icon="sun" style="color: orange" />
-            <fa icon="cloud" style="color: grey" />
-            <fa icon="cloud-rain" style="color: blue" />
-            <fa icon="snowflake" style="color: aqua" />
-            <fa icon="fire-alt" style="color: red" />
-        </div>
         <div id="ski_main">
             <div>
                 <span><em>Skidorter</em> </span>
@@ -363,7 +356,7 @@ td {
 }
 
 td:nth-child(even) {
-  background-color: #e6e6e6;
+    background-color: #e6e6e6;
 }
 
 th:nth-child(even) {
