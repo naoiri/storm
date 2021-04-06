@@ -3,13 +3,14 @@
         <Title msg="Brandrisk" />
         <p class="strong">Här kan du få information om vilken brandrisk ett län har.</p>
         <div id="explanation">
-            <div><fa icon="fire-alt" /> <fa icon="fire-alt" /> Ingen risk finns </div>
-            <div><fa icon="fire-alt" style="color: red"  /> <fa icon="fire-alt" /> Risk för gräsbrand</div>
+            <div><fa icon="fire-alt" /> <fa icon="fire-alt" /> Ingen risk finns</div>
+            <div><fa icon="fire-alt" style="color: red" /> <fa icon="fire-alt" /> Risk för gräsbrand</div>
             <div>
                 <fa icon="fire-alt" style="color: red" /> <fa icon="fire-alt" style="color: red" /> Risk för skogsbrand
             </div>
         </div>
-        <div class="autoComplete_wrapper main">län:
+        <div class="autoComplete_wrapper main">
+            län:
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
         <div class="firewarning">

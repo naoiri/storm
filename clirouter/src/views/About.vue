@@ -8,7 +8,6 @@
             >
         </p>
         <p>Version 1.2.0"</p>
-
         <p>API1:https://opendata.smhi.se/apidocs/warnings/index.html</p>
         <p>API2A: https://opendata.smhi.se/apidocs/metfcst/get-forecast.html</p>
         <p>API2B: https://opendata.smhi.se/apidocs/metfcst/parameters.html</p>
@@ -49,5 +48,4 @@ export default {
 .about-height {
     height: 2px;
 }
-
 </style>
