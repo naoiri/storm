@@ -366,7 +366,6 @@ td:nth-child(even) {
   background-color: #e6e6e6;
 }
 
-
 th:nth-child(even) {
   background-color: #e6e6e6;
 }
@@ -376,6 +375,7 @@ th:nth-child(even) {
     margin: 1em;
     padding: 0.5em;
     display: flex;
+    width: 23rem;
 }
 
 #each-result * {
