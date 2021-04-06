@@ -11,6 +11,12 @@
                 <input id="autoComplete" type="text" autocomplete="off" />
             </span>
         </div>
+        <div class="updownpad center">
+            <span class="text center">Ort 2: </span>
+            <span class="autoComplete_wrapper">
+                <input type="text" autocomplete="off" />
+            </span>
+        </div>
         <div class="data main center">
             <div>
                 Vädret i {{ current }} för datum ({{ date.toLocaleDateString("sv") }}) var: {{ temperatureData }} grader
@@ -129,7 +135,7 @@ p {
 
 .main {
     width: 260px;
-    margin: 1rem;
+    margin: 0.5rem;
     padding: 0.25rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -137,8 +143,9 @@ p {
 
 .updownpad {
     width: 250px;
-    margin-up: 1rem;
-    margin-down: 1rem;
+    margin-up: 0.5rem;
+    margin-down: 0.5rem;
+    padding: 0.25rem;
 }
 
 .text {
