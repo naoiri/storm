@@ -33,7 +33,10 @@
                     
                     <div id="weekday-container">
                         <table id="result-table"> 
-                            <tr><th colspan="7"> {{ skiresort.name }}</th>
+                            <tr>
+                                <th colspan="7" style="font-size: 20px; padding-bottom: 15px; text-align: left">
+                                    {{ skiresort.name }}
+                                </th>
                             </tr>
                             <tr>
                                 <th v-for="weekDay in weekDays" :key="weekDay">{{ weekDay }}</th>
@@ -351,15 +354,21 @@ body {
     display: none;
 }
 
-th{
-    
-}
-#result-table {
-    
+table {
+    border-collapse: collapse;
 }
 
-.column:nth-child(even) {
-  background-color: #f2f2f2;
+td {
+    text-align: center;
+}
+
+td:nth-child(even) {
+  background-color: #e6e6e6;
+}
+
+
+th:nth-child(even) {
+  background-color: #e6e6e6;
 }
 #each-result {
     border: 1px solid black;
