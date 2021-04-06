@@ -34,7 +34,7 @@
                     </p>
                     <p v-if="firstBall" class="text">
                         Risk för gräsbrand finns och utfärdas under våren när risken är stor att bränder uppstår och
-                        lätt sprids i torrt fjårsgräs.
+                        lätt sprids i torrt fjolårsgräs.
                     </p>
                 </div>
             </div>
