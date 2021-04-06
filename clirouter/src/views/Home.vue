@@ -1,7 +1,10 @@
 <template>
     <div class="home">
         <Title msg="Välkommen" />
-        <Links class="strong" msg="hej hej här är lite väder" />
+        <Links
+            class="strong"
+            msg="Den här tjänsten hjälper dig få koll på väder som varit, kommande väder på närliggande skidorter samt hur brandrisken förväntas bli de närmsta dagarna."
+        />
     </div>
 </template>
 
@@ -18,3 +21,9 @@ export default {
     },
 }
 </script>
+
+<style>
+.home {
+    width: 290px;
+}
+</style>

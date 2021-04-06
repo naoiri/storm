@@ -1,30 +1,26 @@
 <template>
     <div class="compare">
         <Title msg="Jämför orter" />
-        <p class="strong">Jämför temperaturen mellan två orter fr.o.m. December 2020.</p>
-        <DatePicker id="datePicker" v-model="date" />
-        <div class="main">
-            <span class="text center">Ort 1: </span>
-            <span class="autoComplete_wrapper main">
+        <p class="strong">Jämför temperaturen mellan två orter fr.o.m. December 2020</p>
+        <div class="redborder">
+            <DatePicker class="main data blue" id="datePicker" v-model="date" />
+        </div>
+        <div class="updownpad">
+            <span class="text center">{{ whichCity }}</span>
+            <span class="autoComplete_wrapper">
                 <input id="autoComplete" type="text" autocomplete="off" />
             </span>
         </div>
-        <!--div class="main">
-            <span class="text center">Ort 2: </span>
-            <span class="autoComplete_wrapper main">
-                <input id="city2" type="text" autocomplete="off" />
-            </span>
-        </div>
-        <div class="main">
-            <span class="text center">Välj datum: </span>
-            <span class="autoComplete_wrapper main">
-                <input id="date" type="text" autocomplete="off" />
-            </span>
-        </div-->
         <div class="data main center">
             <div>
-                Vädret i {{ current }} för datum ({{ date.toLocaleDateString("sv") }}) var: {{ temperatureData }} grader
-                Celcius.
+                Ort 1: Vädret i {{ current }} för datum ({{ date.toLocaleDateString("sv") }}) var:
+                {{ temperatureData }} grader Celcius.
+            </div>
+        </div>
+        <div class="data main center">
+            <div>
+                Ort 2: Vädret i {{ current2 }} för datum ({{ date.toLocaleDateString("sv") }}) var:
+                {{ temperatureData2 }} grader Celcius.
             </div>
         </div>
     </div>
@@ -34,8 +30,7 @@
 import autoComplete from "@tarekraafat/autocomplete.js"
 import "@tarekraafat/autocomplete.js/dist/css/autoComplete.01.css"
 import Title from "@/components/Title.vue"
-import Cities from "@/db/cities.js"
-//import Sunshine from "@/db/metobs_sunshineTime_active_sites.csv"
+import csv from "@/db/metobs_airtemperatureInstant_active_sites.csv"
 import DatePicker from "@/components/DatePicker.vue"
 export default {
     name: "Compare",
@@ -46,12 +41,16 @@ export default {
     data() {
         return {
             cities: [],
+            ids: [],
             current: "",
+            current2: "",
             query: "",
             parameter1: [],
             temperatureData: "",
+            temperatureData2: "",
             date: new Date(Date.now()),
-            //Sunshine,
+            first: true,
+            whichCity: "Ort 1: ",
         }
     },
     methods: {
@@ -63,10 +62,20 @@ export default {
             )
             const json = await response.json()
             this.parameter1 = json.value
-            this.temperatureData = this.parameter1[
-                this.parameter1.length - 1 - this.diff_hours(new Date(Date.now()), this.date)
-            ].value
-            this.current = this.query
+            if (this.first) {
+                this.temperatureData = this.getCorrectHourData()
+                this.current = this.query
+                this.whichCity = "Ort 2: "
+                this.first = false
+            } else {
+                this.temperatureData2 = this.getCorrectHourData()
+                this.current2 = this.query
+                this.whichCity = "Ort 1: "
+                this.first = true
+            }
+        },
+        getCorrectHourData() {
+            return this.parameter1[this.parameter1.length - 1 - this.diff_hours(new Date(Date.now()), this.date)].value
         },
         diff_hours(dt2, dt1) {
             var diff = (dt2.getTime() - dt1.getTime()) / 1000
@@ -79,28 +88,17 @@ export default {
     },
     computed: {
         getTemperatureId() {
-            switch (this.query) {
-                case "Stockholm":
-                    return "98230"
-                case "Göteborg":
-                    return "71420"
-                case "Malmö":
-                    return "52350"
-                case "Uppsala":
-                    return "97510"
-                case "Västerås":
-                    return "96350"
-                case "Örebro":
-                    return "94190"
-                case "Helsingborg":
-                    return "62040"
-                default:
-                    return "00000"
+            for (let i = 0; i < this.cities.length; i++) {
+                if (this.cities[i] === this.query) {
+                    return this.ids[i]
+                }
             }
+            return null
         },
     },
     created() {
-        this.cities = Cities
+        this.cities = csv.map((a) => a.Namn)
+        this.ids = csv.map((b) => b.Id)
     },
     mounted() {
         const interaction = this
@@ -109,7 +107,7 @@ export default {
                 src: this.cities,
             },
             onSelection: (feedback) => {
-                document.getElementById("autoComplete").value = feedback.selection.value
+                document.getElementById("autoComplete").value = ""
                 this.query = feedback.selection.value
                 interaction.updateData()
             },
@@ -119,10 +117,30 @@ export default {
 </script>
 
 <style>
+.left-align {
+    left-padding: 0px;
+}
+h1 {
+    font-size: x-large;
+}
+
+p {
+    font-size: x-small;
+}
+
 .main {
-    width: 350px;
+    width: 260px;
+    margin: 0.5rem;
+    padding: 0.25rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
+}
+
+.updownpad {
+    width: 250px;
+    margin-up: 0.5rem;
+    margin-down: 0.5rem;
+    padding: 0.25rem;
 }
 
 .text {
@@ -141,5 +159,6 @@ export default {
     display: grid;
     grid-template-columns: 1fr;
     border: 2px solid gray;
+    background-color: white;
 }
 </style>
