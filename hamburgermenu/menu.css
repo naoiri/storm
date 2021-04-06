@@ -41,7 +41,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.4s ease;
+  transition: all 0.2s ease;
 }
 
 /* Hamburger Lines - Top & Bottom */
@@ -90,7 +90,7 @@
 
 .menu-wrap .toggler:checked ~ .menu > div > div {
   opacity: 1;
-  transition: opacity 0.4s ease 0.4s;
+  transition: opacity 0.4s ease 0.2s;
 }
 
 .menu-wrap .menu {
