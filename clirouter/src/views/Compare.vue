@@ -5,27 +5,21 @@
         <div class="redborder">
             <DatePicker class="main data blue" id="datePicker" v-model="date" />
         </div>
-        <div class="updownpad center">
-            <span class="text center">Ort 1: </span>
+        <div class="updownpad">
+            <span class="text center">{{ whichCity }}</span>
             <span class="autoComplete_wrapper">
                 <input id="autoComplete" type="text" autocomplete="off" />
             </span>
         </div>
-        <div class="updownpad center">
-            <span class="text center">Ort 2: </span>
-            <span class="autoComplete_wrapper">
-                <input type="text" autocomplete="off" />
-            </span>
-        </div>
         <div class="data main center">
             <div>
-                Vädret i {{ current }} för datum ({{ date.toLocaleDateString("sv") }}) var: {{ temperatureData }} grader
-                Celcius.
+                Ort 1: Vädret i {{ current }} för datum ({{ date.toLocaleDateString("sv") }}) var:
+                {{ temperatureData }} grader Celcius.
             </div>
         </div>
         <div class="data main center">
             <div>
-                Vädret i {{ current2 }} för datum ({{ date.toLocaleDateString("sv") }}) var:
+                Ort 2: Vädret i {{ current2 }} för datum ({{ date.toLocaleDateString("sv") }}) var:
                 {{ temperatureData2 }} grader Celcius.
             </div>
         </div>
@@ -56,6 +50,7 @@ export default {
             temperatureData2: "",
             date: new Date(Date.now()),
             first: true,
+            whichCity: "Ort 1: ",
         }
     },
     methods: {
@@ -70,10 +65,12 @@ export default {
             if (this.first) {
                 this.temperatureData = this.getCorrectHourData()
                 this.current = this.query
+                this.whichCity = "Ort 2: "
                 this.first = false
             } else {
                 this.temperatureData2 = this.getCorrectHourData()
                 this.current2 = this.query
+                this.whichCity = "Ort 1: "
                 this.first = true
             }
         },
@@ -112,7 +109,7 @@ export default {
                 src: this.cities,
             },
             onSelection: (feedback) => {
-                document.getElementById("autoComplete").value = feedback.selection.value
+                document.getElementById("autoComplete").value = ""
                 this.query = feedback.selection.value
                 interaction.updateData()
             },
