@@ -13,7 +13,7 @@ body {
     /*line-height: 1.4;*/
 }
 p {
-    font-size: x-small;
+    font-size: 14px;
     text-align: left;
 }
 .strong {

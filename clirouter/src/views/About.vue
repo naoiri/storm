@@ -49,4 +49,5 @@ export default {
 .about-height {
     height: 2px;
 }
+
 </style>
