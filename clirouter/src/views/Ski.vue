@@ -32,15 +32,14 @@
                 <div class="data" id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
                     
                     <div id="weekday-container">
-                        <table> 
+                        <table id="result-table"> 
                             <tr><th colspan="7"> {{ skiresort.name }}</th>
                             </tr>
                             <tr>
-                                <th v-for="weekDay in weekDays" :key="weekDay"> {{ weekDay }} 
-                                </th>
+                                <th v-for="weekDay in weekDays" :key="weekDay">{{ weekDay }}</th>
                             </tr>
                             <tr>
-                                <th v-for="weatherSymbol in temperature.get(skiresort.name)?.ws" :key="weatherSymbol"> 
+                                <td v-for="weatherSymbol in temperature.get(skiresort.name)?.ws" :key="weatherSymbol"> 
                                     <span v-if="weatherSymbol === 'sol'">
                                         <fa icon="sun" style="color: orange" />
                                     </span> 
@@ -50,58 +49,30 @@
                                     <span v-else-if="weatherSymbol === 'regn'">
                                         <fa icon="cloud-rain" style="color: blue" /><!--{{ weatherSymbol }}-->
                                     </span>
-                                    <span v-else-if="weatherSymbol === 'snö'">
+                                    <span  v-else-if="weatherSymbol === 'snö'">
                                         <fa icon="snowflake" style="color: aqua" /><!--{{ weatherSymbol }}-->
                                     </span>
-                                </th>
+                                </td>
                             </tr>
                             <tr v-if="avChecked" id="av-temperature-container">
-                                <th v-for="avTemperature in temperature.get(skiresort.name)?.av" :key="avTemperature">
+                                <td v-for="avTemperature in temperature.get(skiresort.name)?.av" :key="avTemperature">
                                     {{ avTemperature }}°C
-                                </th>
+                                </td>
                             </tr>
                             <tr v-if="lowChecked" id="low-temperature-container">
-                                <th v-for="lowTemperature in temperature.get(skiresort.name)?.lo" :key="lowTemperature">
+                                <td v-for="lowTemperature in temperature.get(skiresort.name)?.lo" :key="lowTemperature">
                                     {{ lowTemperature }}°C
-                                </th>
+                                </td>
                             </tr>
                             <tr v-if="highChecked" id="high-temperature-container">
-                                <th
+                                <td
                                     v-for="highTemperature in temperature.get(skiresort.name)?.hi"
                                     :key="highTemperature"
                                 >
                                     {{ highTemperature }}°C
-                                </th>
+                                </td>
                             </tr>
                         </table>
-                    </div>
-                    
-                    <div v-if="avChecked" id="av-temperature-container">
-                        <div
-                            id="av-temperature-area"
-                            v-for="avTemperature in temperature.get(skiresort.name)?.av"
-                            :key="avTemperature"
-                        >
-                            {{ avTemperature }}°C
-                        </div>
-                    </div>
-                    <div v-if="lowChecked" id="low-temperature-container">
-                        <div
-                            id="low-temperature-area"
-                            v-for="lowTemperature in temperature.get(skiresort.name)?.lo"
-                            :key="lowTemperature"
-                        >
-                            {{ lowTemperature }}°C
-                        </div>
-                    </div>
-                    <div v-if="highChecked" id="high-temperature-container">
-                        <div
-                            id="high-temperature-area"
-                            v-for="highTemperature in temperature.get(skiresort.name)?.hi"
-                            :key="highTemperature"
-                        >
-                            {{ highTemperature }}°C
-                        </div>
                     </div>
                 </div>
             </div>
@@ -225,6 +196,9 @@ export default {
                 temperature = temperature / 10 // 37.5
                 roundedAverageTemperatures.push(temperature)
             }
+            roundedAverageTemperatures.pop()
+            roundedAverageTemperatures.pop()
+            roundedAverageTemperatures.pop()
             return roundedAverageTemperatures
         },
 
@@ -266,6 +240,9 @@ export default {
                 dailyLowTemperature.push(lowest)
             }
 
+            dailyLowTemperature.pop()
+            dailyLowTemperature.pop()
+            dailyLowTemperature.pop()
             return dailyLowTemperature
         },
 
@@ -283,7 +260,9 @@ export default {
                 }
                 dailyHighTemperature.push(highest)
             }
-
+            dailyHighTemperature.pop()
+            dailyHighTemperature.pop()
+            dailyHighTemperature.pop()
             return dailyHighTemperature
         },
 
@@ -370,6 +349,17 @@ body {
 
 .hidden {
     display: none;
+}
+
+th{
+    
+}
+#result-table {
+    
+}
+
+.column:nth-child(even) {
+  background-color: #f2f2f2;
 }
 #each-result {
     border: 1px solid black;
