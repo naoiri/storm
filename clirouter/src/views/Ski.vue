@@ -1,33 +1,35 @@
 <template>
-    <div class="ski">
+    <div class="ski maxwidth">
         <Title msg="Skidorter i Sverige" />
-        <p>
+        <p class="strong">
             Här kan du välja vilken ort i din närhet som har bäst väder för din skidåkning. Sök på ort för att se väder.
         </p>
-        <fa icon="sun" style="color: orange" />
-        <fa icon="cloud" style="color: grey" />
-        <fa icon="cloud-rain" style="color: blue" />
-        <fa icon="snowflake" style="color: aqua" />
-        <fa icon="fire-alt" style="color: red" />
+        <div class="hidden">
+            <fa icon="sun" style="color: orange" />
+            <fa icon="cloud" style="color: grey" />
+            <fa icon="cloud-rain" style="color: blue" />
+            <fa icon="snowflake" style="color: aqua" />
+            <fa icon="fire-alt" style="color: red" />
+        </div>
         <div id="ski_main">
             <div>
-                <span><em>Ski resorts</em> </span>
-                <span><em> Temperature</em> </span>
+                <span><em>Skidorter</em> </span>
+                <span><em> Temperatur</em> </span>
             </div>
 
             <div id="result-area">
                 <div id="button-area">
                     <input type="radio" id="av" value="Av" name="choices" v-on:change="showAv" />
-                    <label for="av">Show daily average temperature</label>
+                    <label for="av">Visa genomsnittlig dygnstemperatur</label>
                     <br />
                     <input type="radio" id="low" value="Low" name="choices" v-on:change="showLow" />
-                    <label for="low">Show daily lowest temperature</label>
+                    <label for="low">Visa lägsta dygnstemperatur</label>
                     <br />
                     <input type="radio" id="high" value="High" name="choices" v-on:change="showHigh" />
-                    <label for="high">Show daily highest temperature</label>
+                    <label for="high">Visa högsta dygnstemperatur</label>
                     <br />
                 </div>
-                <div id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
+                <div class="data" id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
                     {{ skiresort.name }}
                     <div id="weekday-container">
                         <div id="weekday" v-for="weekDay in weekDays" :key="weekDay">{{ weekDay }}</div>
@@ -163,13 +165,13 @@ export default {
 
             for (const weatherValue of weatherValues) {
                 if (weatherValue <= 4) {
-                    weatherSymbols.push("sun")
+                    weatherSymbols.push("sol")
                 } else if (weatherValue <= 7) {
-                    weatherSymbols.push("cloud")
+                    weatherSymbols.push("moln")
                 } else if (weatherValue <= 24) {
-                    weatherSymbols.push("cloud-rain")
+                    weatherSymbols.push("regn")
                 } else if ((weatherValue >= 15 && weatherValue <= 17) || (weatherValue >= 25 && weatherValue <= 27)) {
-                    weatherSymbols.push("snowflake")
+                    weatherSymbols.push("snö")
                 }
             }
             return weatherSymbols
@@ -329,8 +331,14 @@ export default {
 </script>
 
 <style>
-.main {
-    width: 400px;
+.maxwidth {
+    max-width: 310px;
+}
+body {
+    color: black;
+}
+.data {
+    background-color: white;
 }
 
 .hidden {
