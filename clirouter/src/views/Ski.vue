@@ -22,10 +22,9 @@
                     <label for="high">Visa högsta dygnstemperatur</label>
                     <br />
                 </div>
-                <div class="data" id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
-                    
+                <div class="data maxwidth" id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
                     <div id="weekday-container">
-                        <table id="result-table"> 
+                        <table id="result-table">
                             <tr>
                                 <th colspan="7" style="font-size: 20px; padding-bottom: 15px; text-align: left">
                                     {{ skiresort.name }}
@@ -35,17 +34,17 @@
                                 <th v-for="weekDay in weekDays" :key="weekDay">{{ weekDay }}</th>
                             </tr>
                             <tr>
-                                <td v-for="weatherSymbol in temperature.get(skiresort.name)?.ws" :key="weatherSymbol"> 
+                                <td v-for="weatherSymbol in temperature.get(skiresort.name)?.ws" :key="weatherSymbol">
                                     <span v-if="weatherSymbol === 'sol'">
                                         <fa icon="sun" style="color: orange" />
-                                    </span> 
+                                    </span>
                                     <span v-else-if="weatherSymbol === 'moln'">
                                         <fa icon="cloud" style="color: grey" /><!--{{ weatherSymbol }}-->
                                     </span>
                                     <span v-else-if="weatherSymbol === 'regn'">
                                         <fa icon="cloud-rain" style="color: blue" /><!--{{ weatherSymbol }}-->
                                     </span>
-                                    <span  v-else-if="weatherSymbol === 'snö'">
+                                    <span v-else-if="weatherSymbol === 'snö'">
                                         <fa icon="snowflake" style="color: aqua" /><!--{{ weatherSymbol }}-->
                                     </span>
                                 </td>
@@ -334,7 +333,7 @@ export default {
 
 <style>
 .maxwidth {
-    max-width: 310px;
+    max-width: 328px;
 }
 body {
     color: black;
@@ -360,7 +359,7 @@ td:nth-child(even) {
 }
 
 th:nth-child(even) {
-  background-color: #e6e6e6;
+    background-color: #e6e6e6;
 }
 #each-result {
     border: 1px solid black;

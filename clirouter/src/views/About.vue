@@ -11,7 +11,7 @@
         <p>API1:https://opendata.smhi.se/apidocs/warnings/index.html</p>
         <p>API2A: https://opendata.smhi.se/apidocs/metfcst/get-forecast.html</p>
         <p>API2B: https://opendata.smhi.se/apidocs/metfcst/parameters.html</p>
-        <p>API3: "https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/"</p>
+        <p>API3: https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/</p>
         <div class="contact">
             <p>Mårten, Java, Email: marten.hernebring@gmail.com</p>
             <p>Naoya, Java, Email: naoya.irikura@skola.goteborg.se</p>

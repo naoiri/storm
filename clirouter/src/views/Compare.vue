@@ -2,14 +2,14 @@
     <div class="compare">
         <Title msg="Jämför orter" />
         <p class="strong">Jämför temperaturen mellan två orter t.o.m. December 2020. Skriv in båda orterna nedan:</p>
-        <div class="redborder">
-            <DatePicker class="main data blue" id="datePicker" v-model="date" />
-        </div>
         <div class="updownpad">
             <span class="text center">{{ whichCity }}</span>
             <span class="autoComplete_wrapper">
                 <input id="autoComplete" type="text" autocomplete="off" />
             </span>
+        </div>
+        <div class="redborder">
+            <DatePicker class="main data blue" id="datePicker" v-model="date" />
         </div>
         <div class="data main center">
             <div>
