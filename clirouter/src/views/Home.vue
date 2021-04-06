@@ -3,7 +3,9 @@
         <Title msg="Välkommen" />
         <Links
             class="strong"
-            msg="Den här tjänsten hjälper dig få koll på väder som varit, kommande väder på närliggande skidorter samt hur brandrisken förväntas bli de närmsta dagarna."
+            msg="Den här tjänsten hjälper dig att få koll på väder som har varit, kommande väder på närliggande skidorter samt hur brandrisken förväntas bli de närmsta dagarna. <br> 
+            <br> Vår förhoppning är att du skall använda appen som ett hjälpmedel för att underlätta val av kläder. Detta kan vara tex när du skall vistas i naturen eller planerar att grilla.
+             Du kan också titta tillbaka på hur temperaturen har varit på två olika orter."
         />
     </div>
 </template>
