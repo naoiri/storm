@@ -3,13 +3,13 @@
         <Title msg="Brandrisk" />
         <!--DatePicker /-->
         <p class="strong">Här kan du få information om brandrisken.</p>
-        <div class="autoComplete_wrapper main">
+        <div class="autoComplete_wrapper main">län:
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
         <div class="firewarning main">
             <div id="result">
                 <div>{{ query }}</div>
-                <div>Hämtad: {{ time }}</div>
+                <div> {{ time }}</div>
                 <div>{{ fireWarningMessage }}</div>
                 <div id="fire-balls-area">
                     <div v-if="firstBall"><fa icon="fire-alt" style="color: red" /></div>
