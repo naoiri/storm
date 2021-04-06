@@ -1,8 +1,8 @@
 <template>
     <div class="fire fire-main">
         <Title msg="Brandrisk" />
-        <p class="strong">Här kan du få information om vilken brandrisk ett län har.</p>
-        <div class="autoComplete_wrapper main">län:
+        <p class="strong">Här kan du få information om vilken brandrisk ett län har. Skriv in länet nedan: </p>
+        <div class="autoComplete_wrapper main">
             <input id="autoComplete" type="text" autocomplete="off" />
         </div>
         <div class="firewarning">

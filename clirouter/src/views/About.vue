@@ -7,7 +7,7 @@
                 veckor.</strong
             >
         </p>
-        <p>Version 1.2.0"</p>
+        <p>Version 1.2.0</p>
 
         <p>API1:https://opendata.smhi.se/apidocs/warnings/index.html</p>
         <p>API2A: https://opendata.smhi.se/apidocs/metfcst/get-forecast.html</p>
