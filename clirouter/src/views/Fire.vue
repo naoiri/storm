@@ -142,4 +142,18 @@ img {
 .strong {
     font-weight: bold;
 }
+
+/* medium, ipad etc */
+@media screen and (min-width: 750px) {
+    .fire-main {
+        width: 500px;
+    }
+}
+
+/* large, desktop */
+@media screen and (min-width: 1000px) {
+    .fire-main {
+        width: 750px;
+    }
+}
 </style>

@@ -26,7 +26,7 @@
                     <div id="weekday-container">
                         <table id="result-table">
                             <tr>
-                                <th colspan="7" style="font-size: 20px; padding-bottom: 15px; text-align: left">
+                                <th colspan="7" class="skiresortname">
                                     {{ skiresort.name }}
                                 </th>
                             </tr>
@@ -346,6 +346,12 @@ body {
     display: none;
 }
 
+.skiresortname {
+    font-size: 20px;
+    padding-bottom: 15px;
+    text-align: left;
+}
+
 table {
     border-collapse: collapse;
 }
@@ -372,5 +378,25 @@ th:nth-child(even) {
 
 #each-result * {
     margin: 0.5em;
+}
+
+/* medium, ipad etc */
+@media screen and (min-width: 750px) {
+    .skiresortname {
+        font-size: 30px;
+    }
+    .maxwidth {
+        max-width: 500px;
+    }
+}
+
+/* large, desktop */
+@media screen and (min-width: 1000px) {
+    .skiresortname {
+        font-size: 40px;
+    }
+    .maxwidth {
+        max-width: 700px;
+    }
 }
 </style>

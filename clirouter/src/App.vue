@@ -20,4 +20,17 @@ div {
 .strong {
     font-weight: bold;
 }
+/* medium, ipad etc */
+@media screen and (min-width: 750px) {
+    body {
+        font-size: 21px;
+    }
+}
+
+/* large, desktop */
+@media screen and (min-width: 1000px) {
+    body {
+        font-size: 28px;
+    }
+}
 </style>

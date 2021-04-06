@@ -48,4 +48,18 @@ export default {
 .about-height {
     height: 2px;
 }
+
+/* medium, ipad etc */
+@media screen and (min-width: 750px) {
+    .about {
+        width: 500px;
+    }
+}
+
+/* large, desktop */
+@media screen and (min-width: 1000px) {
+    .about {
+        width: 750px;
+    }
+}
 </style>
