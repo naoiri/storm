@@ -2,15 +2,8 @@
     <div class="ski maxwidth">
         <Title msg="Skidorter i Sverige" />
         <p class="strong">
-            Här kan du välja vilken ort i din närhet som har bäst väder för din skidåkning. Sök på ort för att se väder.
+            Här kan du se hur vädret och temperaturen skiljer sig mellan de största skidorterna i Sverige
         </p>
-        <div class="hidden">
-            <fa icon="sun" style="color: orange" />
-            <fa icon="cloud" style="color: grey" />
-            <fa icon="cloud-rain" style="color: blue" />
-            <fa icon="snowflake" style="color: aqua" />
-            <fa icon="fire-alt" style="color: red" />
-        </div>
         <div id="ski_main">
             <div>
                 <span><em>Skidorter</em> </span>
@@ -30,45 +23,52 @@
                     <br />
                 </div>
                 <div class="data" id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
-                    {{ skiresort.name }}
+                    
                     <div id="weekday-container">
-                        <div id="weekday" v-for="weekDay in weekDays" :key="weekDay">{{ weekDay }}</div>
-                    </div>
-                    <div id="weather-container">
-                        <div
-                            id="weather-symbol-area"
-                            v-for="weatherSymbol in temperature.get(skiresort.name)?.ws"
-                            :key="weatherSymbol"
-                        >
-                            {{ weatherSymbol }}
-                        </div>
-                    </div>
-                    <div v-if="avChecked" id="av-temperature-container">
-                        <div
-                            id="av-temperature-area"
-                            v-for="avTemperature in temperature.get(skiresort.name)?.av"
-                            :key="avTemperature"
-                        >
-                            {{ avTemperature }}°C
-                        </div>
-                    </div>
-                    <div v-if="lowChecked" id="low-temperature-container">
-                        <div
-                            id="low-temperature-area"
-                            v-for="lowTemperature in temperature.get(skiresort.name)?.lo"
-                            :key="lowTemperature"
-                        >
-                            {{ lowTemperature }}°C
-                        </div>
-                    </div>
-                    <div v-if="highChecked" id="high-temperature-container">
-                        <div
-                            id="high-temperature-area"
-                            v-for="highTemperature in temperature.get(skiresort.name)?.hi"
-                            :key="highTemperature"
-                        >
-                            {{ highTemperature }}°C
-                        </div>
+                        <table id="result-table"> 
+                            <tr>
+                                <th colspan="7" style="font-size: 20px; padding-bottom: 15px; text-align: left">
+                                    {{ skiresort.name }}
+                                </th>
+                            </tr>
+                            <tr>
+                                <th v-for="weekDay in weekDays" :key="weekDay">{{ weekDay }}</th>
+                            </tr>
+                            <tr>
+                                <td v-for="weatherSymbol in temperature.get(skiresort.name)?.ws" :key="weatherSymbol"> 
+                                    <span v-if="weatherSymbol === 'sol'">
+                                        <fa icon="sun" style="color: orange" />
+                                    </span> 
+                                    <span v-else-if="weatherSymbol === 'moln'">
+                                        <fa icon="cloud" style="color: grey" /><!--{{ weatherSymbol }}-->
+                                    </span>
+                                    <span v-else-if="weatherSymbol === 'regn'">
+                                        <fa icon="cloud-rain" style="color: blue" /><!--{{ weatherSymbol }}-->
+                                    </span>
+                                    <span  v-else-if="weatherSymbol === 'snö'">
+                                        <fa icon="snowflake" style="color: aqua" /><!--{{ weatherSymbol }}-->
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr v-if="avChecked" id="av-temperature-container">
+                                <td v-for="avTemperature in temperature.get(skiresort.name)?.av" :key="avTemperature">
+                                    {{ avTemperature }}°C
+                                </td>
+                            </tr>
+                            <tr v-if="lowChecked" id="low-temperature-container">
+                                <td v-for="lowTemperature in temperature.get(skiresort.name)?.lo" :key="lowTemperature">
+                                    {{ lowTemperature }}°C
+                                </td>
+                            </tr>
+                            <tr v-if="highChecked" id="high-temperature-container">
+                                <td
+                                    v-for="highTemperature in temperature.get(skiresort.name)?.hi"
+                                    :key="highTemperature"
+                                >
+                                    {{ highTemperature }}°C
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -93,9 +93,8 @@ export default {
             temperature: new Map(),
             lowTemp: false,
             weatherSymbols: [],
-            weeklyTemperaturesAt12: [],
             weekDays: [],
-            avChecked: false,
+            avChecked: true,
             lowChecked: false,
             highChecked: false,
         }
@@ -129,7 +128,6 @@ export default {
                 const response = await fetch(url)
                 const forecast = await response.json()
                 const weatherSymbols = this.findWeeklyWeatherForecastInOneCity(forecast)
-                const weeklyTemperaturesAt12 = this.findWeeklyTemperatureAt12InOneCity(forecast)
                 const dailyLowest = this.findDailyLowTemperature(forecast)
                 const dailyHighest = this.findDailyHighTemperature(forecast)
                 const averageTemperatures = this.getDailyAverageTemperatures(forecast)
@@ -137,7 +135,6 @@ export default {
                 this.temperature.set(name, {
                     lo: dailyLowest,
                     hi: dailyHighest,
-                    wt: weeklyTemperaturesAt12,
                     av: averageTemperatures,
                     ws: weatherSymbols,
                 })
@@ -166,18 +163,9 @@ export default {
                     weatherSymbols.push("snö")
                 }
             }
+            weatherSymbols.pop()
+            weatherSymbols.pop()
             return weatherSymbols
-        },
-
-        //Returns a list of weekly temperatures in one city at 12 o'clock every day
-        findWeeklyTemperatureAt12InOneCity(forecast) {
-            let temperatures = []
-            for (const hourlyData of forecast.timeSeries) {
-                if (hourlyData.validTime.includes("T12")) {
-                    temperatures.push(this.findTemperature(hourlyData.parameters))
-                }
-            }
-            return temperatures
         },
 
         getDailyAverageTemperatures(forecast) {
@@ -204,6 +192,9 @@ export default {
                 temperature = temperature / 10 // 37.5
                 roundedAverageTemperatures.push(temperature)
             }
+            roundedAverageTemperatures.pop()
+            roundedAverageTemperatures.pop()
+            roundedAverageTemperatures.pop()
             return roundedAverageTemperatures
         },
 
@@ -245,6 +236,9 @@ export default {
                 dailyLowTemperature.push(lowest)
             }
 
+            dailyLowTemperature.pop()
+            dailyLowTemperature.pop()
+            dailyLowTemperature.pop()
             return dailyLowTemperature
         },
 
@@ -262,7 +256,9 @@ export default {
                 }
                 dailyHighTemperature.push(highest)
             }
-
+            dailyHighTemperature.pop()
+            dailyHighTemperature.pop()
+            dailyHighTemperature.pop()
             return dailyHighTemperature
         },
 
@@ -311,6 +307,9 @@ export default {
                     startIndex = 0
                 }
             }
+            modifiedWeekDays.pop()
+            modifiedWeekDays.pop()
+            modifiedWeekDays.pop()
             return modifiedWeekDays
         },
 
@@ -347,12 +346,29 @@ body {
 .hidden {
     display: none;
 }
+
+table {
+    border-collapse: collapse;
+}
+
+td {
+    text-align: center;
+}
+
+td:nth-child(even) {
+    background-color: #e6e6e6;
+}
+
+th:nth-child(even) {
+  background-color: #e6e6e6;
+}
 #each-result {
     border: 1px solid black;
     border-radius: 10px;
     margin: 1em;
     padding: 0.5em;
     display: flex;
+    width: 23rem;
 }
 
 #each-result * {

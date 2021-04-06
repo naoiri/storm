@@ -1,7 +1,7 @@
 <template>
     <div class="compare">
         <Title msg="Jämför orter" />
-        <p class="strong">Jämför temperaturen mellan två orter fr.o.m. December 2020</p>
+        <p class="strong">Jämför temperaturen mellan två orter t.o.m. December 2020. Skriv in båda orterna nedan:</p>
         <div class="redborder">
             <DatePicker class="main data blue" id="datePicker" v-model="date" />
         </div>
