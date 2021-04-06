@@ -5,8 +5,11 @@
         <div class="redborder">
             <DatePicker class="main data blue" id="datePicker" v-model="date" />
         </div>
-        <div class="autoComplete_wrapper updownpad">
-            <input id="autoComplete" type="text" autocomplete="off" />
+        <div class="updownpad center">
+            <span class="text center">Ort 1: </span>
+            <span class="autoComplete_wrapper">
+                <input id="autoComplete" type="text" autocomplete="off" />
+            </span>
         </div>
         <div class="data main center">
             <div>
@@ -103,7 +106,7 @@ export default {
                 src: this.cities,
             },
             onSelection: (feedback) => {
-                document.getElementById("autoComplete").value = ""
+                document.getElementById("autoComplete").value = feedback.selection.value
                 this.query = feedback.selection.value
                 interaction.updateData()
             },
