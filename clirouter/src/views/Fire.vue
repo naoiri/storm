@@ -10,7 +10,6 @@
             <div><fa icon="fire-alt" style="color: red" /> <fa icon="fire-alt" /> Risk för gräsbrand</div>
             <div>
                 <fa icon="fire-alt" style="color: red" /> <fa icon="fire-alt" style="color: red" /> Risk för skogsbrand
-                finns
             </div>
         </div>
         <div class="autoComplete_wrapper">
