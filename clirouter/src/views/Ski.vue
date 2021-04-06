@@ -40,16 +40,16 @@
                             v-for="weatherSymbol in temperature.get(skiresort.name)?.ws"
                             :key="weatherSymbol"
                         >
-                        <span v-if="weatherSymbol === 'sun'">
+                        <span v-if="weatherSymbol === 'sol'">
                             <fa icon="sun" style="color: orange" />{{ weatherSymbol }}
                         </span>
-                        <span v-else-if="weatherSymbol === 'cloud'">
+                        <span v-else-if="weatherSymbol === 'mol'">
                             <fa icon="cloud" style="color: grey" />{{ weatherSymbol }}
                         </span>
-                        <span v-else-if="weatherSymbol === 'cloud-rain'">
+                        <span v-else-if="weatherSymbol === 'regn'">
                             <fa icon="cloud-rain" style="color: blue" />{{ weatherSymbol }}
                         </span>
-                        <span v-else-if="weatherSymbol === 'snowflake'">
+                        <span v-else-if="weatherSymbol === 'snö'">
                             <fa icon="snowflake" style="color: aqua" />{{ weatherSymbol }}
                         </span>
                         </div>
