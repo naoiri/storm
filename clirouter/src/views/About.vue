@@ -17,10 +17,32 @@
             <p>Mårten, Java, Email: marten.hernebring@gmail.com</p>
             <p>Naoya, Java, Email: naoya.irikura@skola.goteborg.se</p>
             <p>Suzana, Java, Email: suztra0803@skola.goteborg.se</p>
-            <p>Jon, UX, Email: jonkarlstrom@hotmail.com</p>
-            <p>Sandra, UX, Email: sandra.125@live.se</p>
-            <p>Noa, UX, Email: noalillskog@gmail.com</p>
-            <p>Jenny, UX, Email: jy.nilsson@outlook.com</p>
+            <p>
+                Jon, studerar Ux-design på Yrgo, har pluggat systemvetenskap och psykologi sedan innan. Största
+                intressen är matlagning och musik. När Sverige inte bjuder på permafrost gillar Jon att vara ute i
+                naturen, paddla kajak och vandra.<br />
+                Email: jonkarlstrom@hotmail.com
+            </p>
+            <p>
+                Sandra, studerar UX-design på Yrgo. Har de senaste 6 åren jobbat inom produktion och främst i projekt
+                för att utveckla produktion av nya produkter, så som bioreaktorer och litsiumjonbatterier. Sandra åker
+                helst på långa resor till varmare breddgrader med fina vågor för surfing eller höga berg att klättra på.
+                Har även en teknisk gymnasieutbildning och en salig blandning av universitetskurser i bagaget.<br />
+                Email: sandra.125@live.se
+            </p>
+            <p>
+                Noa, studerar UX-design just nu och har hållit på med lite olika grejer innan. Har jobbat på
+                landvetterflygplats och lite lätt som föreskolevikarie. Har sedan tidigare en Tekniskt gymnasie
+                utbildning på Hulebäck. <br />
+                Email: noalillskog@gmail.com
+            </p>
+            <p>
+                Jenny Studerar UX-design på Yrgo. Har de senaste 6 åren jobbat inom produktion och främst i projekt för
+                att utveckla produktion av nya produkter, så som bioreaktorer och litsiumjonbatterier. Sandra åker helst
+                på långa resor till varmare breddgrader med fina vågor för surfing eller höga berg att klättra på. Har
+                även en teknisk gymnasieutbildning och en salig blandning av universitetskurser i bagaget. <br />Email:
+                jy.nilsson@outlook.com
+            </p>
         </div>
     </div>
 </template>
@@ -42,6 +64,7 @@ export default {
 
 .about {
     width: 310px;
+    overflow: scroll;
 }
 .contact p {
     padding: 0.25em;
