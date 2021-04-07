@@ -21,9 +21,3 @@ export default {
     },
 }
 </script>
-
-<style>
-.home {
-    width: 290px;
-}
-</style>

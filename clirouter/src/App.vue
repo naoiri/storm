@@ -20,13 +20,14 @@ div {
 .strong {
     font-weight: bold;
 }
+
 /* medium, ipad etc */
 @media screen and (min-width: 750px) {
     body {
-        font-size: 16px;
+        font-size: 20px;
     }
     .skiresortname {
-        font-size: 24px;
+        font-size: 30px;
     }
     .about,
     .main,
@@ -40,10 +41,10 @@ div {
 /* large, desktop */
 @media screen and (min-width: 1000px) {
     body {
-        font-size: 18px;
+        font-size: 30px;
     }
     .skiresortname {
-        font-size: 28px;
+        font-size: 50px;
     }
     .about,
     .main,
