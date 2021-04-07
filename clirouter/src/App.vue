@@ -36,7 +36,9 @@ div {
     .maxwidth {
         width: 350px;
     }
-    .compare {
+    .compare,
+    .home,
+    .about {
         display: flex;
     }
 }

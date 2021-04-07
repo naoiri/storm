@@ -44,7 +44,8 @@ export default {
 
 .about {
     width: 310px;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr;
 }
 .contact p {
     padding: 0.25em;

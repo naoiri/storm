@@ -20,9 +20,6 @@ export default {
 </script>
 
 <style>
-.links {
-    display: flex;
-}
 .marginleft {
     margin-left: 2em;
 }
