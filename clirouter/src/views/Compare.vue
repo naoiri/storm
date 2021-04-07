@@ -3,10 +3,10 @@
         <Title msg="Jämför orter" />
         <p class="strong">Jämför temperaturen mellan två orter t.o.m. December 2020. Skriv in båda orterna nedan:</p>
         <div class="updownpad">
-            <span class="text center">{{ whichCity }}</span>
-            <span class="autoComplete_wrapper">
+            <div class="text center">Fyll i för {{ whichCity }}. Ort 1: {{ current }}, Ort 2: {{ current2 }}</div>
+            <div class="autoComplete_wrapper">
                 <input id="autoComplete" type="text" autocomplete="off" />
-            </span>
+            </div>
         </div>
         <div class="redborder">
             <DatePicker class="main data blue" id="datePicker" v-model="date" />
@@ -50,7 +50,7 @@ export default {
             temperatureData2: "",
             date: new Date(Date.now()),
             first: true,
-            whichCity: "Ort 1: ",
+            whichCity: "Ort 1",
         }
     },
     methods: {
@@ -65,12 +65,12 @@ export default {
             if (this.first) {
                 this.temperatureData = this.getCorrectHourData()
                 this.current = this.query
-                this.whichCity = "Ort 2: "
+                this.whichCity = "Ort 2"
                 this.first = false
             } else {
                 this.temperatureData2 = this.getCorrectHourData()
                 this.current2 = this.query
-                this.whichCity = "Ort 1: "
+                this.whichCity = "Ort 1"
                 this.first = true
             }
         },
@@ -140,7 +140,7 @@ h1 {
 }
 
 .text {
-    width: 100px;
+    width: 400px;
 }
 
 .center {

@@ -23,23 +23,6 @@ div {
 /* medium, ipad etc */
 @media screen and (min-width: 750px) {
     body {
-        font-size: 15px;
-    }
-    .skiresortname {
-        font-size: 22px;
-    }
-    .about,
-    .main,
-    .fire-main,
-    .home,
-    .maxwidth {
-        width: 350px;
-    }
-}
-
-/* large, desktop */
-@media screen and (min-width: 1000px) {
-    body {
         font-size: 16px;
     }
     .skiresortname {
@@ -51,6 +34,23 @@ div {
     .home,
     .maxwidth {
         width: 400px;
+    }
+}
+
+/* large, desktop */
+@media screen and (min-width: 1000px) {
+    body {
+        font-size: 18px;
+    }
+    .skiresortname {
+        font-size: 28px;
+    }
+    .about,
+    .main,
+    .fire-main,
+    .home,
+    .maxwidth {
+        width: 500px;
     }
 }
 </style>
