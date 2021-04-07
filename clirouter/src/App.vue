@@ -25,12 +25,32 @@ div {
     body {
         font-size: 15px;
     }
+    .skiresortname {
+        font-size: 22px;
+    }
+    .about,
+    .main,
+    .fire-main,
+    .home,
+    .maxwidth {
+        width: 350px;
+    }
 }
 
 /* large, desktop */
 @media screen and (min-width: 1000px) {
     body {
         font-size: 16px;
+    }
+    .skiresortname {
+        font-size: 24px;
+    }
+    .about,
+    .main,
+    .fire-main,
+    .home,
+    .maxwidth {
+        width: 400px;
     }
 }
 </style>

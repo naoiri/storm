@@ -26,18 +26,4 @@ export default {
 .home {
     width: 290px;
 }
-
-/* medium, ipad etc */
-@media screen and (min-width: 750px) {
-    .home {
-        width: 350px;
-    }
-}
-
-/* large, desktop */
-@media screen and (min-width: 1000px) {
-    .home {
-        width: 400px;
-    }
-}
 </style>

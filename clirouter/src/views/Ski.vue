@@ -379,24 +379,4 @@ th:nth-child(even) {
 #each-result * {
     margin: 0.5em;
 }
-
-/* medium, ipad etc */
-@media screen and (min-width: 750px) {
-    .skiresortname {
-        font-size: 22px;
-    }
-    .maxwidth {
-        max-width: 350px;
-    }
-}
-
-/* large, desktop */
-@media screen and (min-width: 1000px) {
-    .skiresortname {
-        font-size: 24px;
-    }
-    .maxwidth {
-        max-width: 400px;
-    }
-}
 </style>

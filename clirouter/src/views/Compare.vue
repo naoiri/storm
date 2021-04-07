@@ -157,18 +157,4 @@ h1 {
     border: 2px solid gray;
     background-color: white;
 }
-
-/* medium, ipad etc */
-@media screen and (min-width: 750px) {
-    .main {
-        width: 350px;
-    }
-}
-
-/* large, desktop */
-@media screen and (min-width: 1000px) {
-    .main {
-        width: 400px;
-    }
-}
 </style>
