@@ -1,15 +1,18 @@
 <template>
     <div class="fire fire-main">
-        <Title msg="Brandrisk" />
-        <p class="strong">Här kan du få information om vilken brandrisk ett län har. Skriv in länet nedan:</p>
-        <div class="autoComplete_wrapper main">
-            <input id="autoComplete" type="text" autocomplete="off" />
-        </div>
-        <div id="explanation">
-            <div><fa icon="fire-alt" /> <fa icon="fire-alt" /> Ingen risk finns</div>
-            <div><fa icon="fire-alt" style="color: red" /> <fa icon="fire-alt" /> Risk för gräsbrand</div>
-            <div>
-                <fa icon="fire-alt" style="color: red" /> <fa icon="fire-alt" style="color: red" /> Risk för skogsbrand
+        <div class="paddingright">
+            <Title msg="Brandrisk" />
+            <p class="strong">Här kan du få information om vilken brandrisk ett län har. Skriv in länet nedan:</p>
+            <div class="autoComplete_wrapper main">
+                <input id="autoComplete" type="text" autocomplete="off" />
+            </div>
+            <div id="explanation">
+                <div><fa icon="fire-alt" /> <fa icon="fire-alt" /> Ingen risk finns</div>
+                <div><fa icon="fire-alt" style="color: red" /> <fa icon="fire-alt" /> Risk för gräsbrand</div>
+                <div>
+                    <fa icon="fire-alt" style="color: red" /> <fa icon="fire-alt" style="color: red" /> Risk för
+                    skogsbrand
+                </div>
             </div>
         </div>
         <div class="firewarning">
@@ -107,6 +110,10 @@ export default {
 <style>
 .fire-main {
     width: 310px;
+}
+
+.paddingright {
+    padding-right: 3em;
 }
 
 .blue {

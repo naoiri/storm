@@ -38,8 +38,13 @@ div {
     }
     .compare,
     .home,
-    .about {
+    .about,
+    .fire-main {
         display: flex;
+    }
+
+    .fire-main {
+        flex-direction: row;
     }
 }
 
