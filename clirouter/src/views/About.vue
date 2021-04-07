@@ -41,7 +41,7 @@
                 att utveckla produktion av nya produkter, så som bioreaktorer och litsiumjonbatterier. Sandra åker helst
                 på långa resor till varmare breddgrader med fina vågor för surfing eller höga berg att klättra på. Har
                 även en teknisk gymnasieutbildning och en salig blandning av universitetskurser i bagaget. <br />Email:
-                jy.nilsson@outlook.com
+                jy.nilsson@outlook.comç
             </p>
         </div>
     </div>
