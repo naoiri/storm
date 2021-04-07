@@ -162,8 +162,11 @@ export default {
                     weatherSymbols.push("snö")
                 }
             }
-            weatherSymbols.pop()
-            weatherSymbols.pop()
+
+            while (weatherSymbols.length > 7){
+                weatherSymbols.pop()
+            } 
+            
             return weatherSymbols
         },
 
@@ -191,9 +194,10 @@ export default {
                 temperature = temperature / 10 // 37.5
                 roundedAverageTemperatures.push(temperature)
             }
-            roundedAverageTemperatures.pop()
-            roundedAverageTemperatures.pop()
-            roundedAverageTemperatures.pop()
+
+            while (roundedAverageTemperatures.length > 7){
+                roundedAverageTemperatures.pop()
+            }
             return roundedAverageTemperatures
         },
 
@@ -234,10 +238,9 @@ export default {
                 }
                 dailyLowTemperature.push(lowest)
             }
-
-            dailyLowTemperature.pop()
-            dailyLowTemperature.pop()
-            dailyLowTemperature.pop()
+            while(dailyLowTemperature.length > 7){
+                dailyLowTemperature.pop()
+            }
             return dailyLowTemperature
         },
 
@@ -255,9 +258,9 @@ export default {
                 }
                 dailyHighTemperature.push(highest)
             }
-            dailyHighTemperature.pop()
-            dailyHighTemperature.pop()
-            dailyHighTemperature.pop()
+            while(dailyHighTemperature.length > 7) {
+                dailyHighTemperature.pop()
+            }
             return dailyHighTemperature
         },
 
