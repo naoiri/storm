@@ -383,20 +383,20 @@ th:nth-child(even) {
 /* medium, ipad etc */
 @media screen and (min-width: 750px) {
     .skiresortname {
-        font-size: 30px;
+        font-size: 25px;
     }
     .maxwidth {
-        max-width: 500px;
+        max-width: 400px;
     }
 }
 
 /* large, desktop */
 @media screen and (min-width: 1000px) {
     .skiresortname {
-        font-size: 40px;
+        font-size: 30px;
     }
     .maxwidth {
-        max-width: 700px;
+        max-width: 600px;
     }
 }
 </style>

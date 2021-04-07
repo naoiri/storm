@@ -30,14 +30,14 @@ export default {
 /* medium, ipad etc */
 @media screen and (min-width: 750px) {
     .home {
-        width: 500px;
+        width: 400px;
     }
 }
 
 /* large, desktop */
 @media screen and (min-width: 1000px) {
     .home {
-        width: 750px;
+        width: 600px;
     }
 }
 </style>

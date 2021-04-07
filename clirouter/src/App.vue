@@ -23,14 +23,14 @@ div {
 /* medium, ipad etc */
 @media screen and (min-width: 750px) {
     body {
-        font-size: 17px;
+        font-size: 16px;
     }
 }
 
 /* large, desktop */
 @media screen and (min-width: 1000px) {
     body {
-        font-size: 20px;
+        font-size: 18px;
     }
 }
 </style>
