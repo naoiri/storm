@@ -23,4 +23,7 @@ export default {
 .marginleft {
     margin-left: 2em;
 }
+.links {
+    display: flex;
+}
 </style>

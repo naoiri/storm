@@ -32,12 +32,10 @@ div {
     .about,
     .main,
     .fire-main,
-    .home,
     .maxwidth {
         width: 350px;
     }
     .compare,
-    .home,
     .about,
     .fire-main {
         display: flex;
@@ -59,9 +57,12 @@ div {
     .about,
     .main,
     .fire-main,
-    .home,
     .maxwidth {
         width: 400px;
+    }
+
+    .home {
+        width: 700px;
     }
 }
 </style>
