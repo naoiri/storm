@@ -122,7 +122,7 @@ export default {
 
 <style>
 .paddingright {
-    padding-right: 5em;
+    padding-right: 7.5em;
 }
 
 .left-align {
