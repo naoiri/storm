@@ -36,6 +36,9 @@ div {
     .maxwidth {
         width: 350px;
     }
+    .compare {
+        display: flex;
+    }
 }
 
 /* large, desktop */

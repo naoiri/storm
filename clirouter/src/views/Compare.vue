@@ -1,26 +1,30 @@
 <template>
     <div class="compare">
-        <Title msg="Jämför orter" />
-        <p class="strong">Jämför temperaturen mellan två orter t.o.m. December 2020. Skriv in båda orterna nedan:</p>
-        <div class="updownpad">
-            <div class="text center">Fyll i för {{ whichCity }}. Ort 1: {{ current }}, Ort 2: {{ current2 }}</div>
-            <div class="autoComplete_wrapper">
-                <input id="autoComplete" type="text" autocomplete="off" />
+        <div class="paddingright">
+            <Title msg="Jämför orter" class="main" />
+            <div class="redborder main">
+                <DatePicker class="data blue" id="datePicker" v-model="date" />
             </div>
-        </div>
-        <div class="redborder">
-            <DatePicker class="main data blue" id="datePicker" v-model="date" />
-        </div>
-        <div class="data main center">
-            <div>
-                Ort 1: Vädret i {{ current }} för datum ({{ date.toLocaleDateString("sv") }}) var:
-                {{ temperatureData }} grader Celcius.
+            <div class="updownpad main">
+                <div class="text center">Fyll i för {{ whichCity }}. Ort 1: {{ current }}, Ort 2: {{ current2 }}</div>
+                <div class="autoComplete_wrapper">
+                    <input id="autoComplete" type="text" autocomplete="off" />
+                </div>
             </div>
+            <p class="strong main">Jämför temperaturen mellan två orter t.o.m. December 2020.</p>
         </div>
-        <div class="data main center">
-            <div>
-                Ort 2: Vädret i {{ current2 }} för datum ({{ date.toLocaleDateString("sv") }}) var:
-                {{ temperatureData2 }} grader Celcius.
+        <div>
+            <div class="data main center">
+                <div>
+                    Ort 1: Vädret i {{ current }} för datum ({{ date.toLocaleDateString("sv") }}) var:
+                    {{ temperatureData }} grader Celcius.
+                </div>
+            </div>
+            <div class="data main center">
+                <div>
+                    Ort 2: Vädret i {{ current2 }} för datum ({{ date.toLocaleDateString("sv") }}) var:
+                    {{ temperatureData2 }} grader Celcius.
+                </div>
             </div>
         </div>
     </div>
@@ -117,6 +121,10 @@ export default {
 </script>
 
 <style>
+.paddingright {
+    padding-right: 10em;
+}
+
 .left-align {
     left-padding: 0px;
 }
@@ -129,7 +137,7 @@ h1 {
     margin: 0.5rem;
     padding: 0.25rem;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
 }
 
 .updownpad {
@@ -137,10 +145,6 @@ h1 {
     margin-up: 0.5rem;
     margin-down: 0.5rem;
     padding: 0.25rem;
-}
-
-.text {
-    width: 400px;
 }
 
 .center {
