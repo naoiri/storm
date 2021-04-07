@@ -37,11 +37,10 @@
                 Email: noalillskog@gmail.com
             </p>
             <p>
-                Jenny Studerar UX-design på Yrgo. Har de senaste 6 åren jobbat inom produktion och främst i projekt för
-                att utveckla produktion av nya produkter, så som bioreaktorer och litsiumjonbatterier. Sandra åker helst
-                på långa resor till varmare breddgrader med fina vågor för surfing eller höga berg att klättra på. Har
-                även en teknisk gymnasieutbildning och en salig blandning av universitetskurser i bagaget. <br />Email:
-                jy.nilsson@outlook.comç
+                Jenny Studerar Ux-design och har sedan innan en socialantropologisk utbildning i bagaget samt kunskaper
+                inom områden som media- och kommunikation, verksamhetsplanering, hälsosamordning och administration.
+                Jenny har även en konstnärlig ådra och en förkärlek för att uttrycka den genom blandteknik på stora
+                skivor av plywood, måla möbler eller smida i silver <br />Email: jy.nilsson@outlook.comç
             </p>
         </div>
     </div>
