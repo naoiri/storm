@@ -146,14 +146,14 @@ img {
 /* medium, ipad etc */
 @media screen and (min-width: 750px) {
     .fire-main {
-        width: 400px;
+        width: 350px;
     }
 }
 
 /* large, desktop */
 @media screen and (min-width: 1000px) {
     .fire-main {
-        width: 600px;
+        width: 400px;
     }
 }
 </style>

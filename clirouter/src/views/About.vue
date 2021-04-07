@@ -52,14 +52,14 @@ export default {
 /* medium, ipad etc */
 @media screen and (min-width: 750px) {
     .about {
-        width: 400px;
+        width: 350px;
     }
 }
 
 /* large, desktop */
 @media screen and (min-width: 1000px) {
     .about {
-        width: 600px;
+        width: 400px;
     }
 }
 </style>

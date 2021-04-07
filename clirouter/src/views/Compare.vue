@@ -161,14 +161,14 @@ h1 {
 /* medium, ipad etc */
 @media screen and (min-width: 750px) {
     .main {
-        width: 400px;
+        width: 350px;
     }
 }
 
 /* large, desktop */
 @media screen and (min-width: 1000px) {
     .main {
-        width: 600px;
+        width: 400px;
     }
 }
 </style>
