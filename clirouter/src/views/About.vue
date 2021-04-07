@@ -15,9 +15,9 @@
             <p>API3: https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/</p>
         </div>
         <div class="contact">
-            <p>Mårten, Java, Email: marten.hernebring@gmail.com</p>
+            <p>Mårten, Java, Email: <br />marten.hernebring@gmail.com</p>
             <p>Naoya, Java, Email: naoya.irikura@skola.goteborg.se</p>
-            <p>Suzana, Java, Email: suztra0803@skola.goteborg.se</p>
+            <p>Suzana, Java, Email: <br />suztra0803@skola.goteborg.se</p>
             <p>
                 Jon, studerar Ux-design på Yrgo, har pluggat systemvetenskap och psykologi sedan innan. Största
                 intressen är matlagning och musik. När Sverige inte bjuder på permafrost gillar Jon att vara ute i
