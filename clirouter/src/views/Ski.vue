@@ -130,7 +130,6 @@ export default {
                 const dailyHighest = this.findDailyHighTemperature(forecast)
                 const averageTemperatures = this.getDailyAverageTemperatures(forecast)
 
-                console.log(averageTemperatures)
                 this.temperature.set(name, {
                     lo: dailyLowest,
                     hi: dailyHighest,
