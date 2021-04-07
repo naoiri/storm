@@ -37,7 +37,7 @@ export default {
 
 <style>
 .contact {
-    background-color: white;
+    background-color: blue;
 }
 
 .about {
@@ -49,5 +49,4 @@ export default {
 .about-height {
     height: 2px;
 }
-
 </style>

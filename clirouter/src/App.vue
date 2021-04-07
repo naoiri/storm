@@ -6,11 +6,11 @@
             <div>
                 <div>
                     <ul>
-                        <li><router-link to="/">Start</router-link></li>
-                        <li><router-link to="/about">Om oss</router-link></li>
-                        <li><router-link to="/fire">Brandrisk</router-link></li>
-                        <li><router-link to="/ski">Skidväder</router-link></li>
-                        <li><router-link to="/compare">Ortjämförelse</router-link></li>
+                        <li><router-link to="/" @click="close">Start</router-link></li>
+                        <li><router-link to="/about" @click="close">Om oss</router-link></li>
+                        <li><router-link to="/fire" @click="close">Brandrisk</router-link></li>
+                        <li><router-link to="/ski" @click="close">Skidväder</router-link></li>
+                        <li><router-link to="/compare" @click="close">Ortjämförelse</router-link></li>
                     </ul>
                 </div>
             </div>
@@ -26,6 +26,16 @@
         </div>
     </div>
 </template>
+<script>
+export default {
+    name: "App",
+    methods: {
+        close() {
+            document.querySelector(".menu-wrap input").checked = false
+        },
+    },
+}
+</script>
 <style>
 /*<body {
     background-color: #bedcd5;

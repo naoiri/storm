@@ -123,12 +123,14 @@ export default {
                 const url = `${BASE_URL}/category/pmp3g/version/2/geotype/point/lon/${lng}/lat/${lat}/data.json`
                 const response = await fetch(url)
                 const forecast = await response.json()
+
                 const weatherSymbols = this.findWeeklyWeatherForecastInOneCity(forecast)
                 const weeklyTemperaturesAt12 = this.findWeeklyTemperatureAt12InOneCity(forecast)
                 const dailyLowest = this.findDailyLowTemperature(forecast)
                 const dailyHighest = this.findDailyHighTemperature(forecast)
                 const averageTemperatures = this.getDailyAverageTemperatures(forecast)
 
+                console.log(averageTemperatures)
                 this.temperature.set(name, {
                     lo: dailyLowest,
                     hi: dailyHighest,
@@ -337,6 +339,7 @@ body {
 }
 .data {
     background-color: white;
+    color: black;
 }
 
 .hidden {
