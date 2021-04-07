@@ -34,7 +34,7 @@ div {
     .fire-main,
     .home,
     .maxwidth {
-        width: 400px;
+        width: 350px;
     }
 }
 
@@ -51,7 +51,7 @@ div {
     .fire-main,
     .home,
     .maxwidth {
-        width: 500px;
+        width: 400px;
     }
 }
 </style>
