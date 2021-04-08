@@ -87,7 +87,7 @@ export default {
                 for (const alert of this.alerts) {
                     if (this.query === alert.info.headline) {
                         this.fireWarningMessage = alert.info.eventCode[3].value
-                        this.time = alert.sent
+                        this.time = alert.code[1]
                         isFireWarning = true
                         if (this.fireWarningMessage === "Risk Gräsbrand") {
                             this.firstBall = true
