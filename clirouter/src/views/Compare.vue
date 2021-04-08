@@ -1,23 +1,30 @@
 <template>
     <div class="compare">
-        <Title msg="Jämför vädret historiskt" />
-        <p class="strong">Se vilken temperatur det var historiskt t.o.m. December 2020.</p>
-        <div class="redborder">
-            <DatePicker class="main data blue" id="datePicker" v-model="date" />
-        </div>
-        <div class="autoComplete_wrapper updownpad">
-            <input id="autoComplete" type="text" autocomplete="off" />
-        </div>
-        <div class="data main center">
-            <div>
-                Vädret i {{ current }} för datum ({{ date.toLocaleDateString("sv") }}) var: {{ temperatureData }} grader
-                Celcius.
+        <div class="paddingright">
+            <Title msg="Jämför orter" class="main" />
+            <div class="redborder main">
+                <DatePicker class="data blue" id="datePicker" v-model="date" />
             </div>
+            <div class="updownpad main">
+                <div class="text center">Fyll i för {{ whichCity }}. Ort 1: {{ current }}, Ort 2: {{ current2 }}</div>
+                <div class="autoComplete_wrapper">
+                    <input id="autoComplete" type="text" autocomplete="off" />
+                </div>
+            </div>
+            <p class="strong main">Jämför temperaturen mellan två orter t.o.m. December 2020.</p>
         </div>
-        <div class="data main center">
-            <div>
-                Vädret i {{ current2 }} för datum ({{ date.toLocaleDateString("sv") }}) var:
-                {{ temperatureData2 }} grader Celcius.
+        <div>
+            <div class="data main center">
+                <div>
+                    Ort 1: Vädret i {{ current }} för datum ({{ date.toLocaleDateString("sv") }}) var:
+                    {{ temperatureData }} grader Celcius.
+                </div>
+            </div>
+            <div class="data main center">
+                <div>
+                    Ort 2: Vädret i {{ current2 }} för datum ({{ date.toLocaleDateString("sv") }}) var:
+                    {{ temperatureData2 }} grader Celcius.
+                </div>
             </div>
         </div>
     </div>
@@ -47,6 +54,7 @@ export default {
             temperatureData2: "",
             date: new Date(Date.now()),
             first: true,
+            whichCity: "Ort 1",
         }
     },
     methods: {
@@ -61,10 +69,12 @@ export default {
             if (this.first) {
                 this.temperatureData = this.getCorrectHourData()
                 this.current = this.query
+                this.whichCity = "Ort 2"
                 this.first = false
             } else {
                 this.temperatureData2 = this.getCorrectHourData()
                 this.current2 = this.query
+                this.whichCity = "Ort 1"
                 this.first = true
             }
         },
@@ -93,8 +103,6 @@ export default {
     created() {
         this.cities = csv.map((a) => a.Namn)
         this.ids = csv.map((b) => b.Id)
-        //let result = csv.map((a) => a.Namn)
-        console.log(this.ids.length)
     },
     mounted() {
         const interaction = this
@@ -113,6 +121,10 @@ export default {
 </script>
 
 <style>
+.paddingright {
+    padding-right: 7.5em;
+}
+
 .left-align {
     left-padding: 0px;
 }
@@ -120,26 +132,19 @@ h1 {
     font-size: x-large;
 }
 
-p {
-    font-size: x-small;
-}
-
 .main {
     width: 260px;
-    margin: 1rem;
+    margin: 0.5rem;
     padding: 0.25rem;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
 }
 
 .updownpad {
     width: 250px;
-    margin-up: 1rem;
-    margin-down: 1rem;
-}
-
-.text {
-    width: 100px;
+    margin-up: 0.5rem;
+    margin-down: 0.5rem;
+    padding: 0.25rem;
 }
 
 .center {

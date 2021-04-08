@@ -1,10 +1,12 @@
 <template>
     <div class="links">
         <p>{{ msg }}</p>
-        <div><router-link to="/about">About</router-link></div>
-        <div><router-link to="/fire">Fire Warning</router-link></div>
-        <div><router-link to="/ski">Ski</router-link></div>
-        <div><router-link to="/compare">Compare</router-link></div>
+        <div class="marginleft">
+            <div><router-link to="/about">Om oss</router-link></div>
+            <div><router-link to="/fire">Brandrisk</router-link></div>
+            <div><router-link to="/ski">Skidväder</router-link></div>
+            <div><router-link to="/compare">Ortjämförelse</router-link></div>
+        </div>
     </div>
 </template>
 
@@ -16,3 +18,12 @@ export default {
     },
 }
 </script>
+
+<style>
+.marginleft {
+    margin-left: 2em;
+}
+.links {
+    display: flex;
+}
+</style>

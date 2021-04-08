@@ -2,73 +2,72 @@
     <div class="ski maxwidth">
         <Title msg="Skidorter i Sverige" />
         <p class="strong">
-            Här kan du välja vilken ort i din närhet som har bäst väder för din skidåkning. Sök på ort för att se väder.
+            Här kan du se hur vädret och temperaturen skiljer sig mellan de största skidorterna i Sverige
         </p>
-        <div class="hidden">
-            <fa icon="sun" style="color: orange" />
-            <fa icon="cloud" style="color: grey" />
-            <fa icon="cloud-rain" style="color: blue" />
-            <fa icon="snowflake" style="color: aqua" />
-            <fa icon="fire-alt" style="color: red" />
-        </div>
         <div id="ski_main">
             <div>
-                <span><em>Ski resorts</em> </span>
-                <span><em> Temperature</em> </span>
+                <span><em>Skidorter</em> </span>
+                <span><em> Temperatur</em> </span>
             </div>
 
             <div id="result-area">
                 <div id="button-area">
                     <input type="radio" id="av" value="Av" name="choices" v-on:change="showAv" />
-                    <label for="av">Show daily average temperature</label>
+                    <label for="av">Visa genomsnittlig dygnstemperatur</label>
                     <br />
                     <input type="radio" id="low" value="Low" name="choices" v-on:change="showLow" />
-                    <label for="low">Show daily lowest temperature</label>
+                    <label for="low">Visa lägsta dygnstemperatur</label>
                     <br />
                     <input type="radio" id="high" value="High" name="choices" v-on:change="showHigh" />
-                    <label for="high">Show daily highest temperature</label>
+                    <label for="high">Visa högsta dygnstemperatur</label>
                     <br />
                 </div>
-                <div class="data" id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
-                    {{ skiresort.name }}
+                <div class="data maxwidth" id="each-result" v-for="skiresort in skiresorts" :key="skiresort.name">
                     <div id="weekday-container">
-                        <div id="weekday" v-for="weekDay in weekDays" :key="weekDay">{{ weekDay }}</div>
-                    </div>
-                    <div id="weather-container">
-                        <div
-                            id="weather-symbol-area"
-                            v-for="weatherSymbol in temperature.get(skiresort.name)?.ws"
-                            :key="weatherSymbol"
-                        >
-                            {{ weatherSymbol }}
-                        </div>
-                    </div>
-                    <div v-if="avChecked" id="av-temperature-container">
-                        <div
-                            id="av-temperature-area"
-                            v-for="avTemperature in temperature.get(skiresort.name)?.av"
-                            :key="avTemperature"
-                        >
-                            {{ avTemperature }}°C
-                        </div>
-                    </div>
-                    <div v-if="lowChecked" id="low-temperature-container">
-                        <div
-                            id="low-temperature-area"
-                            v-for="lowTemperature in temperature.get(skiresort.name)?.lo"
-                            :key="lowTemperature"
-                        >
-                            {{ lowTemperature }}°C
-                        </div>
-                    </div>
-                    <div v-if="highChecked" id="high-temperature-container">
-                        <div
-                            id="high-temperature-area"
-                            v-for="highTemperature in temperature.get(skiresort.name)?.hi"
-                            :key="highTemperature"
-                        >
-                            {{ highTemperature }}°C
-                        </div>
+                        <table id="result-table">
+                            <tr>
+                                <th colspan="7" class="skiresortname">
+                                    {{ skiresort.name }}
+                                </th>
+                            </tr>
+                            <tr>
+                                <th v-for="weekDay in weekDays" :key="weekDay">{{ weekDay }}</th>
+                            </tr>
+                            <tr>
+                                <td v-for="weatherSymbol in temperature.get(skiresort.name)?.ws" :key="weatherSymbol">
+                                    <span v-if="weatherSymbol === 'sol'">
+                                        <fa icon="sun" style="color: orange" />
+                                    </span>
+                                    <span v-else-if="weatherSymbol === 'moln'">
+                                        <fa icon="cloud" style="color: grey" /><!--{{ weatherSymbol }}-->
+                                    </span>
+                                    <span v-else-if="weatherSymbol === 'regn'">
+                                        <fa icon="cloud-rain" style="color: blue" /><!--{{ weatherSymbol }}-->
+                                    </span>
+                                    <span v-else-if="weatherSymbol === 'snö'">
+                                        <fa icon="snowflake" style="color: aqua" /><!--{{ weatherSymbol }}-->
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr v-if="avChecked" id="av-temperature-container">
+                                <td v-for="avTemperature in temperature.get(skiresort.name)?.av" :key="avTemperature">
+                                    {{ avTemperature }}°C
+                                </td>
+                            </tr>
+                            <tr v-if="lowChecked" id="low-temperature-container">
+                                <td v-for="lowTemperature in temperature.get(skiresort.name)?.lo" :key="lowTemperature">
+                                    {{ lowTemperature }}°C
+                                </td>
+                            </tr>
+                            <tr v-if="highChecked" id="high-temperature-container">
+                                <td
+                                    v-for="highTemperature in temperature.get(skiresort.name)?.hi"
+                                    :key="highTemperature"
+                                >
+                                    {{ highTemperature }}°C
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -93,9 +92,8 @@ export default {
             temperature: new Map(),
             lowTemp: false,
             weatherSymbols: [],
-            weeklyTemperaturesAt12: [],
             weekDays: [],
-            avChecked: false,
+            avChecked: true,
             lowChecked: false,
             highChecked: false,
         }
@@ -129,7 +127,6 @@ export default {
                 const response = await fetch(url)
                 const forecast = await response.json()
                 const weatherSymbols = this.findWeeklyWeatherForecastInOneCity(forecast)
-                const weeklyTemperaturesAt12 = this.findWeeklyTemperatureAt12InOneCity(forecast)
                 const dailyLowest = this.findDailyLowTemperature(forecast)
                 const dailyHighest = this.findDailyHighTemperature(forecast)
                 const averageTemperatures = this.getDailyAverageTemperatures(forecast)
@@ -137,7 +134,6 @@ export default {
                 this.temperature.set(name, {
                     lo: dailyLowest,
                     hi: dailyHighest,
-                    wt: weeklyTemperaturesAt12,
                     av: averageTemperatures,
                     ws: weatherSymbols,
                 })
@@ -157,27 +153,21 @@ export default {
 
             for (const weatherValue of weatherValues) {
                 if (weatherValue <= 4) {
-                    weatherSymbols.push("sun")
+                    weatherSymbols.push("sol")
                 } else if (weatherValue <= 7) {
-                    weatherSymbols.push("cloud")
+                    weatherSymbols.push("moln")
                 } else if (weatherValue <= 24) {
-                    weatherSymbols.push("clo-rai")
+                    weatherSymbols.push("regn")
                 } else if ((weatherValue >= 15 && weatherValue <= 17) || (weatherValue >= 25 && weatherValue <= 27)) {
-                    weatherSymbols.push("snow-flake")
+                    weatherSymbols.push("snö")
                 }
             }
-            return weatherSymbols
-        },
 
-        //Returns a list of weekly temperatures in one city at 12 o'clock every day
-        findWeeklyTemperatureAt12InOneCity(forecast) {
-            let temperatures = []
-            for (const hourlyData of forecast.timeSeries) {
-                if (hourlyData.validTime.includes("T12")) {
-                    temperatures.push(this.findTemperature(hourlyData.parameters))
-                }
-            }
-            return temperatures
+            while (weatherSymbols.length > 7){
+                weatherSymbols.pop()
+            } 
+            
+            return weatherSymbols
         },
 
         getDailyAverageTemperatures(forecast) {
@@ -203,6 +193,10 @@ export default {
                 temperature = Math.floor(temperature) //375
                 temperature = temperature / 10 // 37.5
                 roundedAverageTemperatures.push(temperature)
+            }
+
+            while (roundedAverageTemperatures.length > 7){
+                roundedAverageTemperatures.pop()
             }
             return roundedAverageTemperatures
         },
@@ -244,7 +238,9 @@ export default {
                 }
                 dailyLowTemperature.push(lowest)
             }
-
+            while(dailyLowTemperature.length > 7){
+                dailyLowTemperature.pop()
+            }
             return dailyLowTemperature
         },
 
@@ -262,7 +258,9 @@ export default {
                 }
                 dailyHighTemperature.push(highest)
             }
-
+            while(dailyHighTemperature.length > 7) {
+                dailyHighTemperature.pop()
+            }
             return dailyHighTemperature
         },
 
@@ -311,6 +309,9 @@ export default {
                     startIndex = 0
                 }
             }
+            modifiedWeekDays.pop()
+            modifiedWeekDays.pop()
+            modifiedWeekDays.pop()
             return modifiedWeekDays
         },
 
@@ -335,7 +336,7 @@ export default {
 
 <style>
 .maxwidth {
-    max-width: 310px;
+    max-width: 328px;
 }
 body {
     color: black;
@@ -347,12 +348,35 @@ body {
 .hidden {
     display: none;
 }
+
+.skiresortname {
+    font-size: 20px;
+    padding-bottom: 15px;
+    text-align: left;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td {
+    text-align: center;
+}
+
+td:nth-child(even) {
+    background-color: #e6e6e6;
+}
+
+th:nth-child(even) {
+    background-color: #e6e6e6;
+}
 #each-result {
     border: 1px solid black;
     border-radius: 10px;
     margin: 1em;
     padding: 0.5em;
     display: flex;
+    width: 23rem;
 }
 
 #each-result * {
