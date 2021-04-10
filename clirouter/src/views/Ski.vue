@@ -149,7 +149,7 @@ export default {
         //Creates an array with daily weather symbols. Returns the array.
         findWeeklyWeatherForecast(forecast) {
             let weatherValues = [] //1, 2, 3.....
-            let weatherSymbols = [] //"sun", "cloud"...
+            let weatherSymbols = [] //"sol", "moln"...
 
             for (const hourlyData of forecast.timeSeries) {
                 if (hourlyData.validTime.includes("T12")) {
@@ -195,13 +195,13 @@ export default {
             let roundedAverageTemperatures = []
             //Avrundning
             for (let temperature of averageTemperatures) {
-                temperature = temperature * 10 //tex. 375.4321
-                temperature = Math.floor(temperature) //375
-                temperature = temperature / 10 // 37.5
+                temperature = temperature * 10
+                temperature = Math.floor(temperature)
+                temperature = temperature / 10
                 roundedAverageTemperatures.push(temperature)
             }
 
-            while (roundedAverageTemperatures.length > 7){
+            while (roundedAverageTemperatures.length > 7) {
                 roundedAverageTemperatures.pop()
             }
             return roundedAverageTemperatures
@@ -211,8 +211,8 @@ export default {
         sortInfoByDay(forecast) {
             let tenDaysData = []
             let dailyData = []
-            let todayStr = forecast.timeSeries[0].validTime.substr(9, 1) //"3"
-            let todayNum = Number(todayStr) //3
+            let todayStr = forecast.timeSeries[0].validTime.substr(9, 1)
+            let todayNum = Number(todayStr)
 
             for (const hourlyData of forecast.timeSeries) {
                 //When the day has changed, collected data for one day is pushed to tenDaysData
