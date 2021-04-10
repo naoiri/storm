@@ -332,6 +332,7 @@ export default {
 <style>
 .maxwidth {
     max-width: 310px;
+     overflow: scroll;
 }
 body {
     color: black;
