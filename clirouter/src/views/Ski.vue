@@ -146,7 +146,7 @@ export default {
             }
         },
 
-        //Creates an array with daily weather symbols
+        //Creates an array with daily weather symbols. Returns the array.
         findWeeklyWeatherForecast(forecast) {
             let weatherValues = [] //1, 2, 3.....
             let weatherSymbols = [] //"sun", "cloud"...
@@ -175,7 +175,7 @@ export default {
             return weatherSymbols
         },
 
-        //Creates an array with daily average temperatures.
+        //Creates an array with daily average temperatures. Returns the array.
         getDailyAverageTemperatures(forecast) {
             let tenDaysData = this.sortInfoByDay(forecast)
             let averageTemperatures = []
@@ -207,7 +207,7 @@ export default {
             return roundedAverageTemperatures
         },
 
-        //Sorts data by day. Return an array with ten days infomation.
+        //Sorts data by day. Returns an sorted array with ten days infomation.
         sortInfoByDay(forecast) {
             let tenDaysData = []
             let dailyData = []
@@ -231,7 +231,7 @@ export default {
             return tenDaysData
         },
 
-        //Returns an array with daily low temperature for a week.
+        //Creates an array with daily low temperature for a week. Returns the array.
         findDailyLowTemperature(forecast) {
             let dailyLowTemperature = []
             let tenDaysData = this.sortInfoByDay(forecast) //Returns 10 days data sorted day by day
@@ -252,7 +252,7 @@ export default {
             return dailyLowTemperature
         },
 
-        //Returns an array with daily high temperature for a week.
+        //Creates an array with daily high temperature for a week. Returns the array.
         findDailyHighTemperature(forecast) {
             let dailyHighTemperature = []
             let tenDaysData = this.sortInfoByDay(forecast) //Returns 10 days info day sorted day by day
@@ -273,7 +273,7 @@ export default {
             return dailyHighTemperature
         },
 
-        //Finds temperature info from api.
+        //Finds temperature info from api. Returns the temparature value.
         findTemperature(parameters) {
             for (const param of parameters) {
                 if (param.name === "t") {
@@ -284,7 +284,7 @@ export default {
             throw new Error("unable to find parameter for temperature")
         },
 
-        //Returns a list of weekdays starting today.
+        //Creates an array of weekdays starting today. Returns the array.
         getWeekDays(forecast) {
             const weekDays = ["Sön", "Mån", "Tis", "Ons", "Tor", "Fre", "Lör"]
             const today = this.convertDateToWeekday(forecast.timeSeries[0].validTime)
@@ -312,7 +312,7 @@ export default {
             return modifiedWeekDays
         },
 
-        //Returns the weekday converted from the given date
+        //Creates an array with weekdays converted from the given date. Returns the array.
         convertDateToWeekday(validTime) {
             let tempStr1 = validTime
             let tempStr2 = validTime
@@ -356,7 +356,8 @@ table {
     border-collapse: collapse;
 }
 
-td, th{
+td,
+th {
     text-align: center;
 }
 
