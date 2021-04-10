@@ -103,30 +103,35 @@ export default {
         this.updateWeatherData()
     },
     methods: {
+
+        //When the button for showing average temperature is pressed
         showAv() {
             this.avChecked = true
             this.lowChecked = false
             this.highChecked = false
         },
 
+        //When the button for showing low temperature is pressed
         showLow() {
             this.avChecked = false
             this.lowChecked = true
             this.highChecked = false
         },
 
+        //When the button for showing high temperature is pressed
         showHigh() {
             this.avChecked = false
             this.lowChecked = false
             this.highChecked = true
         },
 
+        //Fecthes api response and updates weather data in every ski resort.
         async updateWeatherData() {
             for (const { name, lng, lat } of this.skiresorts) {
                 const url = `${BASE_URL}/category/pmp3g/version/2/geotype/point/lon/${lng}/lat/${lat}/data.json`
                 const response = await fetch(url)
                 const forecast = await response.json()
-                const weatherSymbols = this.findWeeklyWeatherForecastInOneCity(forecast)
+                const weatherSymbols = this.findWeeklyWeatherForecast(forecast)
                 const dailyLowest = this.findDailyLowTemperature(forecast)
                 const dailyHighest = this.findDailyHighTemperature(forecast)
                 const averageTemperatures = this.getDailyAverageTemperatures(forecast)
@@ -141,7 +146,8 @@ export default {
             }
         },
 
-        findWeeklyWeatherForecastInOneCity(forecast) {
+        //Creates an array with daily weather symbols
+        findWeeklyWeatherForecast(forecast) {
             let weatherValues = [] //1, 2, 3.....
             let weatherSymbols = [] //"sun", "cloud"...
 
@@ -163,13 +169,13 @@ export default {
                 }
             }
 
-            while (weatherSymbols.length > 7){
+            while (weatherSymbols.length > 7) {
                 weatherSymbols.pop()
-            } 
-            
+            }
             return weatherSymbols
         },
 
+        //Creates an array with daily average temperatures.
         getDailyAverageTemperatures(forecast) {
             let tenDaysData = this.sortInfoByDay(forecast)
             let averageTemperatures = []
@@ -201,6 +207,7 @@ export default {
             return roundedAverageTemperatures
         },
 
+        //Sorts data by day. Return an array with ten days infomation.
         sortInfoByDay(forecast) {
             let tenDaysData = []
             let dailyData = []
@@ -224,6 +231,7 @@ export default {
             return tenDaysData
         },
 
+        //Returns an array with daily low temperature for a week.
         findDailyLowTemperature(forecast) {
             let dailyLowTemperature = []
             let tenDaysData = this.sortInfoByDay(forecast) //Returns 10 days data sorted day by day
@@ -238,12 +246,13 @@ export default {
                 }
                 dailyLowTemperature.push(lowest)
             }
-            while(dailyLowTemperature.length > 7){
+            while (dailyLowTemperature.length > 7) {
                 dailyLowTemperature.pop()
             }
             return dailyLowTemperature
         },
 
+        //Returns an array with daily high temperature for a week.
         findDailyHighTemperature(forecast) {
             let dailyHighTemperature = []
             let tenDaysData = this.sortInfoByDay(forecast) //Returns 10 days info day sorted day by day
@@ -258,27 +267,13 @@ export default {
                 }
                 dailyHighTemperature.push(highest)
             }
-            while(dailyHighTemperature.length > 7) {
+            while (dailyHighTemperature.length > 7) {
                 dailyHighTemperature.pop()
             }
             return dailyHighTemperature
         },
 
-        findLowHighTemp(forecast) {
-            let highest = -1000
-            let lowest = 1000
-            for (const hourlyData of forecast.timeSeries) {
-                const temp = this.findTemperature(hourlyData.parameters)
-                if (temp > highest) {
-                    highest = temp
-                }
-                if (temp < lowest) {
-                    lowest = temp
-                }
-            }
-            return { lowest, highest }
-        },
-
+        //Finds temperature info from api.
         findTemperature(parameters) {
             for (const param of parameters) {
                 if (param.name === "t") {
@@ -310,7 +305,7 @@ export default {
                 }
             }
 
-            while(modifiedWeekDays.length > 7){
+            while (modifiedWeekDays.length > 7) {
                 modifiedWeekDays.pop()
             }
             modifiedWeekDays.splice(0, 1, "Idag")

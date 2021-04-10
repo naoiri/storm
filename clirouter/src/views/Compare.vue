@@ -58,6 +58,8 @@ export default {
         }
     },
     methods: {
+
+        //Fecthes api response and updates weather history in two cities.
         async updateData() {
             const response = await fetch(
                 "https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/" +
@@ -78,9 +80,13 @@ export default {
                 this.first = true
             }
         },
+
+        //
         getCorrectHourData() {
             return this.parameter1[this.parameter1.length - 1 - this.diff_hours(new Date(Date.now()), this.date)].value
         },
+
+        //
         diff_hours(dt2, dt1) {
             var diff = (dt2.getTime() - dt1.getTime()) / 1000
             diff /= 60 * 60
@@ -91,6 +97,7 @@ export default {
         },
     },
     computed: {
+        //Gets temperature id of the searched city
         getTemperatureId() {
             for (let i = 0; i < this.cities.length; i++) {
                 if (this.cities[i] === this.query) {
