@@ -86,7 +86,7 @@ export default {
             return this.parameter1[this.parameter1.length - 1 - this.diff_hours(new Date(Date.now()), this.date)].value
         },
 
-        //Calculates the hour difference in time from now and at 12 on a certain day
+        //Returns the hour difference in time from now and at 12 on a certain day. 
         diff_hours(dt2, dt1) {
             var diff = (dt2.getTime() - dt1.getTime()) / 1000
             diff /= 60 * 60
