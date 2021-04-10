@@ -309,9 +309,11 @@ export default {
                     startIndex = 0
                 }
             }
-            modifiedWeekDays.pop()
-            modifiedWeekDays.pop()
-            modifiedWeekDays.pop()
+
+            while(modifiedWeekDays.length > 7){
+                modifiedWeekDays.pop()
+            }
+            modifiedWeekDays.splice(0, 1, "Idag")
             return modifiedWeekDays
         },
 
@@ -359,7 +361,7 @@ table {
     border-collapse: collapse;
 }
 
-td {
+td, th{
     text-align: center;
 }
 
