@@ -51,7 +51,7 @@ export default {
 .main,
 .fire-main,
 .maxwidth {
-    width: 310px;
+    width: 350px;
 }
 
 /* medium, ipad etc */
@@ -97,7 +97,7 @@ export default {
     .main,
     .fire-main,
     .maxwidth {
-        width: 400px;
+        width: 900px;
     }
 
     .home {

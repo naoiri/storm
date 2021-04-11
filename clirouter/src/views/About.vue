@@ -62,7 +62,6 @@ export default {
 }
 
 .about {
-    display: grid;
     grid-template-columns: 1fr;
 }
 .contact p {
