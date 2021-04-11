@@ -62,7 +62,6 @@ export default {
 }
 
 .about {
-    width: 310px;
     display: grid;
     grid-template-columns: 1fr;
 }
