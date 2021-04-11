@@ -4,6 +4,7 @@
         <p class="strong">
             Här kan du se hur vädret och temperaturen skiljer sig mellan de största skidorterna i Sverige
         </p>
+
         <div id="ski_main">
             <div>
                 <span><em>Skidorter</em> </span>
@@ -102,6 +103,7 @@ export default {
         this.skiresorts = Skiresorts
         this.updateWeatherData()
     },
+
     methods: {
         showAv() {
             this.avChecked = true
@@ -163,10 +165,10 @@ export default {
                 }
             }
 
-            while (weatherSymbols.length > 7){
+            while (weatherSymbols.length > 7) {
                 weatherSymbols.pop()
-            } 
-            
+            }
+
             return weatherSymbols
         },
 
@@ -195,7 +197,7 @@ export default {
                 roundedAverageTemperatures.push(temperature)
             }
 
-            while (roundedAverageTemperatures.length > 7){
+            while (roundedAverageTemperatures.length > 7) {
                 roundedAverageTemperatures.pop()
             }
             return roundedAverageTemperatures
@@ -238,7 +240,7 @@ export default {
                 }
                 dailyLowTemperature.push(lowest)
             }
-            while(dailyLowTemperature.length > 7){
+            while (dailyLowTemperature.length > 7) {
                 dailyLowTemperature.pop()
             }
             return dailyLowTemperature
@@ -258,7 +260,7 @@ export default {
                 }
                 dailyHighTemperature.push(highest)
             }
-            while(dailyHighTemperature.length > 7) {
+            while (dailyHighTemperature.length > 7) {
                 dailyHighTemperature.pop()
             }
             return dailyHighTemperature
@@ -310,7 +312,7 @@ export default {
                 }
             }
 
-            while(modifiedWeekDays.length > 7){
+            while (modifiedWeekDays.length > 7) {
                 modifiedWeekDays.pop()
             }
             modifiedWeekDays.splice(0, 1, "Idag")
@@ -361,7 +363,8 @@ table {
     border-collapse: collapse;
 }
 
-td, th{
+td,
+th {
     text-align: center;
 }
 

@@ -4,6 +4,7 @@ import router from "./router"
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 import { library } from "@fortawesome/fontawesome-svg-core"
 import { fas } from "@fortawesome/free-solid-svg-icons"
-
+import "@/assets/styles/style.css"
+import "@/assets/styles/menu.css"
 library.add(fas)
 createApp(App).use(router).component("fa", FontAwesomeIcon).mount("#app")
