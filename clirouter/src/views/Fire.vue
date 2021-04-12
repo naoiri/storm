@@ -111,6 +111,16 @@ export default {
 .fire-main {
     width: 310px;
 }
+@media screen and (min-width: 750px) {
+    .fire-main {
+        width: 700px;
+    }
+}
+@media screen and (min-width: 900px) {
+    .fire-main {
+        width: 1000px;
+    }
+}
 
 .paddingright {
     padding-right: 3em;

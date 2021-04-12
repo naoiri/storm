@@ -101,7 +101,7 @@ export default {
     .main,
     .fire-main,
     .maxwidth {
-        width: 900px;
+        width: 1200px;
     }
 
     .home {
