@@ -91,9 +91,6 @@ export default {
         return {
             skiresorts: [],
             temperature: new Map(),
-            lowTemp: false,
-            weatherSymbols: [],
-            weekDays: [],
             avChecked: true,
             lowChecked: false,
             highChecked: false,
@@ -143,6 +140,7 @@ export default {
             }
         },
 
+        //Creates an array with daily weather symbols. Returns the array.
         findWeeklyWeatherForecastInOneCity(forecast) {
             let weatherValues = [] //1, 2, 3.....
             let weatherSymbols = [] //"sun", "cloud"...
@@ -171,7 +169,8 @@ export default {
 
             return weatherSymbols
         },
-
+        
+        //Creates an array with daily average temperatures. Returns the array.
         getDailyAverageTemperatures(forecast) {
             let tenDaysData = this.sortInfoByDay(forecast)
             let averageTemperatures = []
@@ -191,9 +190,9 @@ export default {
             let roundedAverageTemperatures = []
             //Avrundning
             for (let temperature of averageTemperatures) {
-                temperature = temperature * 10 //tex. 375.4321
-                temperature = Math.floor(temperature) //375
-                temperature = temperature / 10 // 37.5
+                temperature = temperature * 10
+                temperature = Math.floor(temperature)
+                temperature = temperature / 10
                 roundedAverageTemperatures.push(temperature)
             }
 
@@ -203,11 +202,12 @@ export default {
             return roundedAverageTemperatures
         },
 
+        //Sorts data by day. Returns an sorted array with ten days infomation.
         sortInfoByDay(forecast) {
             let tenDaysData = []
             let dailyData = []
-            let todayStr = forecast.timeSeries[0].validTime.substr(9, 1) //"3"
-            let todayNum = Number(todayStr) //3
+            let todayStr = forecast.timeSeries[0].validTime.substr(9, 1) 
+            let todayNum = Number(todayStr)
 
             for (const hourlyData of forecast.timeSeries) {
                 //When the day has changed, collected data for one day is pushed to tenDaysData
@@ -226,6 +226,7 @@ export default {
             return tenDaysData
         },
 
+        //Creates an array with daily low temperature for a week. Returns the array.
         findDailyLowTemperature(forecast) {
             let dailyLowTemperature = []
             let tenDaysData = this.sortInfoByDay(forecast) //Returns 10 days data sorted day by day
@@ -246,6 +247,7 @@ export default {
             return dailyLowTemperature
         },
 
+        //Creates an array with daily high temperature for a week. Returns the array.
         findDailyHighTemperature(forecast) {
             let dailyHighTemperature = []
             let tenDaysData = this.sortInfoByDay(forecast) //Returns 10 days info day sorted day by day
@@ -265,22 +267,8 @@ export default {
             }
             return dailyHighTemperature
         },
-
-        findLowHighTemp(forecast) {
-            let highest = -1000
-            let lowest = 1000
-            for (const hourlyData of forecast.timeSeries) {
-                const temp = this.findTemperature(hourlyData.parameters)
-                if (temp > highest) {
-                    highest = temp
-                }
-                if (temp < lowest) {
-                    lowest = temp
-                }
-            }
-            return { lowest, highest }
-        },
-
+        
+        //Finds temperature info from api. Returns the temparature value.
         findTemperature(parameters) {
             for (const param of parameters) {
                 if (param.name === "t") {
@@ -291,7 +279,7 @@ export default {
             throw new Error("unable to find parameter for temperature")
         },
 
-        //Returns a list of weekdays starting today.
+        //Creates an array of weekdays starting today. Returns the array.
         getWeekDays(forecast) {
             const weekDays = ["Sön", "Mån", "Tis", "Ons", "Tor", "Fre", "Lör"]
             const today = this.convertDateToWeekday(forecast.timeSeries[0].validTime)
@@ -319,7 +307,7 @@ export default {
             return modifiedWeekDays
         },
 
-        //Returns the weekday converted from the given date
+        //Creates an array with weekdays converted from the given date. Returns the array.
         convertDateToWeekday(validTime) {
             let tempStr1 = validTime
             let tempStr2 = validTime

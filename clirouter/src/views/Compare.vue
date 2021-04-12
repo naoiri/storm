@@ -5,13 +5,13 @@
                 <DatePicker class="data blue" id="datePicker" v-model="date" />
             </div>
             <Title msg="Jämför orter" class="main" />
-            <p class="strong main">Jämför temperaturen mellan två orter t.o.m. December 2020.</p>
             <div class="updownpad main">
                 <div class="text center">Fyll i för {{ whichCity }}. Ort 1: {{ current }}, Ort 2: {{ current2 }}</div>
                 <div class="autoComplete_wrapper">
                     <input id="autoComplete" type="text" autocomplete="off" />
                 </div>
             </div>
+            <p class="strong main">Jämför temperaturen mellan två orter t.o.m. December 2020.</p>
         </div>
         <div>
             <div class="data main center">
@@ -58,6 +58,7 @@ export default {
         }
     },
     methods: {
+        //Fecthes api response and updates weather history in two cities.
         async updateData() {
             const response = await fetch(
                 "https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/" +
@@ -78,9 +79,13 @@ export default {
                 this.first = true
             }
         },
+
+        //Returns what temperature it was at 12 that day 
         getCorrectHourData() {
             return this.parameter1[this.parameter1.length - 1 - this.diff_hours(new Date(Date.now()), this.date)].value
         },
+
+        //Gets temperature id of the searched city
         diff_hours(dt2, dt1) {
             var diff = (dt2.getTime() - dt1.getTime()) / 1000
             diff /= 60 * 60
