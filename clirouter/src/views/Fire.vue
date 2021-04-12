@@ -84,7 +84,7 @@ export default {
                 this.query = feedback.selection.value
 
                 for (const alert of this.alerts) {
-                    if (this.query === alert.info.headline) {
+                    if (this.query === alert.info.headline && alert.info.event === "fire warning") {
                         this.fireWarningMessage = alert.info.eventCode[3].value
                         this.time = alert.code[1]
                         isFireWarning = true
