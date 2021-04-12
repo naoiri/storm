@@ -7,8 +7,8 @@
 
         <div id="ski_main">
             <div>
-                <span><em>Skidorter</em> </span>
-                <span><em> Temperatur</em> </span>
+                <span class="info"><strong>Skidorter</strong> </span>
+                <span class="info"><strong> Temperatur</strong> </span>
             </div>
 
             <div id="result-area">
@@ -358,7 +358,15 @@ body {
     padding-bottom: 15px;
     text-align: left;
 }
+.info {
+    font-size: 25px;
+}
 
+@media screen and (min-width: 750px) {
+    .info {
+        font-size: 40px;
+    }
+}
 table {
     border-collapse: collapse;
 }

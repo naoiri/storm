@@ -68,11 +68,15 @@ export default {
     .skiresortname {
         font-size: 30px;
     }
+    .info {
+        font-size: 70px;
+    }
+
     .about,
     .main,
     .fire-main,
     .maxwidth {
-        width: 350px;
+        width: 750px;
     }
     .compare,
     .about,

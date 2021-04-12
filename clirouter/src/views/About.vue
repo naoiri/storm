@@ -70,6 +70,6 @@ export default {
     padding: 0.25em;
 }
 .about-height {
-    height: 2px;
+    height: 5px;
 }
 </style>
