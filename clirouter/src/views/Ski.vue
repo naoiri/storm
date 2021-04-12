@@ -362,11 +362,6 @@ body {
     font-size: 25px;
 }
 
-@media screen and (min-width: 750px) {
-    .info {
-        font-size: 40px;
-    }
-}
 table {
     border-collapse: collapse;
 }
@@ -394,5 +389,15 @@ th:nth-child(even) {
 
 #each-result * {
     margin: 0.5em;
+}
+@media screen and (min-width: 750px) {
+    .info {
+        font-size: 40px;
+    }
+}
+@media screen and (min-width: 1000px) {
+    #each-result {
+        display: inline-block;
+    }
 }
 </style>
