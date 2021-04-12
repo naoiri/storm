@@ -267,22 +267,7 @@ export default {
             }
             return dailyHighTemperature
         },
-
-        findLowHighTemp(forecast) {
-            let highest = -1000
-            let lowest = 1000
-            for (const hourlyData of forecast.timeSeries) {
-                const temp = this.findTemperature(hourlyData.parameters)
-                if (temp > highest) {
-                    highest = temp
-                }
-                if (temp < lowest) {
-                    lowest = temp
-                }
-            }
-            return { lowest, highest }
-        },
-
+        
         //Finds temperature info from api. Returns the temparature value.
         findTemperature(parameters) {
             for (const param of parameters) {
