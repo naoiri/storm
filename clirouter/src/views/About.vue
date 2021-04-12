@@ -1,7 +1,7 @@
 <template>
     <div class="about">
-        <Title msg="Om oss" class="omoss-title"/>
-        <p class="strong">
+        <Title msg="Om oss" class="omoss-title "/>
+        <p class="strong absolute-left">
             <strong
                 >Vi är en grupp Java och Ux studerande som har utvecklat den här appen tillsammans under 5
                 veckor.</strong
@@ -82,13 +82,14 @@ export default {
 }
 
 @media screen and (min-width: 750px) {
-    .contact {
-        margin-top: 500px;
-    }
+    
     .omoss-title {
-        position: absolute;
+        position: fixed;
         margin-left: 170px;
         margin-top: 10px;
+    }
+    .absolute-left {
+        margin-left: 170px;
     }
 }
 </style>
