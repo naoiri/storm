@@ -84,12 +84,29 @@ export default {
 @media screen and (min-width: 750px) {
     
     .omoss-title {
-        position: fixed;
-        margin-left: 170px;
-        margin-top: 10px;
+        top: 75px;
+        position: absolute;
+        left: 75px;
     }
     .absolute-left {
-        margin-left: 170px;
+        top: 200px;
+        position: absolute;
+        left: 75px;
     }
+
+    .contact {
+        top: 250px;
+        position: absolute;
+        left: 75px;
+        padding-bottom: 500px;
+    }
+
+    .footer {
+        bottom: 0;
+        position: fixed;
+        background-color: white;
+        height: 70px;
+    }
+    
 }
 </style>
