@@ -1,24 +1,57 @@
 <template>
-    <nav>
+    <nav class="menu-wrap small-screen">
+        <input type="checkbox" class="toggler" />
+        <div class="hamburger"><div></div></div>
+        <div class="menu">
+            <div>
+                <div>
+                    <ul>
+                        <li><router-link to="/" @click="close">Start</router-link></li>
+                        <li><router-link to="/about" @click="close">Om oss</router-link></li>
+                        <li><router-link to="/fire" @click="close">Brandrisk</router-link></li>
+                        <li><router-link to="/ski" @click="close">Skidväder</router-link></li>
+                        <li><router-link to="/compare" @click="close">Ortjämförelse</router-link></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <nav class="big-screen">
         <router-link to="/">Start</router-link> | <router-link to="/about">Om oss</router-link> |
         <router-link to="/fire">Brandrisk</router-link> | <router-link to="/ski">Skidväder</router-link> |
         <router-link to="/compare">Ortjämförelse</router-link>
     </nav>
-    <router-view></router-view>
+    <div class="showcase">
+        <div class="container showcase-inner">
+            <router-view></router-view>
+        </div>
+    </div>
 </template>
+<script>
+export default {
+    name: "App",
+    methods: {
+        close() {
+            document.querySelector(".menu-wrap input").checked = false
+        },
+    },
+}
+</script>
 <style>
-body {
-    background-color: #bedcd5;
-    font: "Roboto", sans-serif;
-    /*line-height: 1.4;*/
+.showcase-inner > div {
+    overflow: scroll;
 }
-p,
-div {
-    font-size: 14px;
-    text-align: left;
+.small-screen {
+    display: block;
 }
-.strong {
-    font-weight: bold;
+.big-screen {
+    display: none;
+}
+.about,
+.main,
+.fire-main,
+.maxwidth {
+    width: 350px;
 }
 
 /* medium, ipad etc */
@@ -26,14 +59,24 @@ div {
     body {
         font-size: 20px;
     }
+    .small-screen {
+        display: none;
+    }
+    .big-screen {
+        display: block;
+    }
     .skiresortname {
         font-size: 30px;
     }
+    .info {
+        font-size: 70px;
+    }
+
     .about,
     .main,
     .fire-main,
     .maxwidth {
-        width: 350px;
+        width: 750px;
     }
     .compare,
     .about,
@@ -58,7 +101,7 @@ div {
     .main,
     .fire-main,
     .maxwidth {
-        width: 400px;
+        width: 1200px;
     }
 
     .home {

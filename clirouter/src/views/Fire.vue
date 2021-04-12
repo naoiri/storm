@@ -111,6 +111,16 @@ export default {
 .fire-main {
     width: 310px;
 }
+@media screen and (min-width: 750px) {
+    .fire-main {
+        width: 700px;
+    }
+}
+@media screen and (min-width: 900px) {
+    .fire-main {
+        width: 1000px;
+    }
+}
 
 .paddingright {
     padding-right: 3em;
@@ -129,6 +139,8 @@ export default {
     grid-template-columns: 1fr;
     border: 2px solid gray;
     padding: 0.5rem;
+    background-color: white;
+    text-align: left;
 }
 img {
     width: 40px;

@@ -1,17 +1,17 @@
 <template>
     <div class="compare">
         <div class="paddingright">
-            <Title msg="Jämför orter" class="main" />
             <div class="redborder main">
                 <DatePicker class="data blue" id="datePicker" v-model="date" />
             </div>
+            <Title msg="Jämför orter" class="main" />
+            <p class="strong main">Jämför temperaturen mellan två orter t.o.m. December 2020.</p>
             <div class="updownpad main">
                 <div class="text center">Fyll i för {{ whichCity }}. Ort 1: {{ current }}, Ort 2: {{ current2 }}</div>
                 <div class="autoComplete_wrapper">
                     <input id="autoComplete" type="text" autocomplete="off" />
                 </div>
             </div>
-            <p class="strong main">Jämför temperaturen mellan två orter t.o.m. December 2020.</p>
         </div>
         <div>
             <div class="data main center">
