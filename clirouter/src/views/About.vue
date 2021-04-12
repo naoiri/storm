@@ -1,7 +1,7 @@
 <template>
     <div class="about">
         <Title msg="Om oss" />
-        <p>
+        <p class="strong">
             <strong
                 >Vi är en grupp Java och Ux studerande som har utvecklat den här appen tillsammans under 5
                 veckor.</strong
