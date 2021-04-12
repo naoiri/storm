@@ -139,6 +139,8 @@ export default {
     grid-template-columns: 1fr;
     border: 2px solid gray;
     padding: 0.5rem;
+    background-color: white;
+    text-align: left;
 }
 img {
     width: 40px;
