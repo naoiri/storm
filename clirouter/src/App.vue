@@ -26,6 +26,11 @@
             <router-view></router-view>
         </div>
     </div>
+    <nav class="big-screen">
+        <router-link to="/" class="bs-menu">Start</router-link> | <router-link to="/about" class="bs-menu">Om oss</router-link> |
+        <router-link to="/fire" class="bs-menu">Brandrisk</router-link> | <router-link to="/ski" class="bs-menu">Skidväder</router-link> |
+        <router-link to="/compare" class="bs-menu">Ortjämförelse</router-link>
+    </nav>
 </template>
 <script>
 export default {
@@ -46,7 +51,7 @@ export default {
 }
 .big-screen {
     display: none;
-    height: 100px;
+    height: 70px;
 }
 .about,
 .main,
