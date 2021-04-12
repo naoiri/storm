@@ -1,6 +1,6 @@
 <template>
     <div class="about">
-        <Title msg="Om oss" />
+        <Title msg="Om oss" class="omoss-title"/>
         <p class="strong">
             <strong
                 >Vi är en grupp Java och Ux studerande som har utvecklat den här appen tillsammans under 5
@@ -67,7 +67,7 @@ export default {
     margin-top: 1em;
 }
 .about {
-    grid-template-columns: 3fr;
+    grid-template-columns: 1fr;
 }
 .contact p {
     background-color: white;
@@ -79,5 +79,16 @@ export default {
 }
 .about-height {
     height: 5px;
+}
+
+@media screen and (min-width: 750px) {
+    .contact {
+        margin-top: 500px;
+    }
+    .omoss-title {
+        position: absolute;
+        margin-left: 170px;
+        margin-top: 10px;
+    }
 }
 </style>
