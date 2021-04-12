@@ -1,6 +1,6 @@
 <template>
     <div class="about">
-        <Title msg="Om oss" class="omoss-title "/>
+        <Title msg="Om oss" class="omoss-title" />
         <p class="strong absolute-left">
             <strong
                 >Vi är en grupp Java och Ux studerande som har utvecklat den här appen tillsammans under 5
@@ -69,6 +69,7 @@ export default {
         top: 200px;
         position: absolute;
         left: 75px;
+        padding-top: 10px;
     }
 
     .contact {
@@ -85,7 +86,9 @@ export default {
         height: 70px;
     }
     .api {
-        margin-top: 100px;
+        bottom: 100px;
+        position: absolute;
+        left: 0px;
     }
 }
 </style>
