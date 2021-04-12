@@ -107,6 +107,5 @@ export default {
         background-color: white;
         height: 70px;
     }
-    
 }
 </style>
