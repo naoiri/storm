@@ -91,9 +91,6 @@ export default {
         return {
             skiresorts: [],
             temperature: new Map(),
-            lowTemp: false,
-            weatherSymbols: [],
-            weekDays: [],
             avChecked: true,
             lowChecked: false,
             highChecked: false,
