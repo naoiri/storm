@@ -398,6 +398,7 @@ th:nth-child(even) {
 @media screen and (min-width: 1000px) {
     #each-result {
         display: inline-block;
+        font-size: 20px;
     }
 }
 </style>
