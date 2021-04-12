@@ -1,3 +1,11 @@
+
+
+# Grupp Storm Projekt "SMHI väder application"
+
+## Allmänt
+
+Det är en app för folk som ska resa eller bara är intresserade av väder.
+
 ### Klona och köra programmet
 
 Hur man startar programmet:
