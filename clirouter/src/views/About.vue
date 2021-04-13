@@ -16,6 +16,7 @@
                 <p><strong>Jon, UX</strong>, Email: <br />jonkarlstrom@hotmail.com</p>
                 <p><strong>Sandra, UX</strong>, Email: <br />sandra.125@live.se</p>
                 <p><strong>Jenny, UX</strong>, Email: <br />jy.nilsson@outlook.com</p>
+                <p><strong>Noa, UX</strong> , Email: <br />noalillskog@gmail.com</p>
             </div>
             <div class="api">
                 <p>Version 1.2.0</p>
